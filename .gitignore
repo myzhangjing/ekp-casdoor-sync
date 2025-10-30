@@ -1,0 +1,28 @@
+# .NET / VS / VSCode
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.orig
+*.tmp
+*.log
+logs/
+launchSettings.json
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Tooling
+node_modules/
+
+# Local state
+sync_state.json
+SyncEkpToCasdoor/sync_state.json
+
+# Secrets (do NOT commit)
+*.secret
+.env
+.env.*

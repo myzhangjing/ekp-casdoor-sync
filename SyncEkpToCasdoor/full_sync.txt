@@ -1,0 +1,1737 @@
+﻿C:\Users\ThinkPad\Desktop\VSCOD\SyncEkpToCasdoor\SyncEkpToCasdoor.csproj : warning NU1603: SyncEkpToCasdoor 渚濊禆浜?Casdoor.Client (>= 1.1.3)锛屼絾娌℃湁鎵惧埌 Casdoor.Client 1.1.3銆傚凡鏀逛负瑙ｆ瀽 Casdoor.Client 1.2.0銆?
+C:\Users\ThinkPad\Desktop\VSCOD\SyncEkpToCasdoor\SyncEkpToCasdoor.csproj : warning NU1603: SyncEkpToCasdoor 渚濊禆浜?Casdoor.Client (>= 1.1.3)锛屼絾娌℃湁鎵惧埌 Casdoor.Client 1.1.3銆傚凡鏀逛负瑙ｆ瀽 Casdoor.Client 1.2.0銆?
+EKP -> Casdoor 鍚屾绋嬪簭鍚姩銆?
+寮€濮嬫墽琛屾竻鐞嗭細浠呬繚鐣?owner = fzswjtOrganization 鐨勭敤鎴蜂笌缁勭粐銆?
+  GET /api/get-organizations
+    HTTP 200 - 鍝嶅簲闀垮害: 17307 瀛楄妭
+  GET /api/get-users?owner=built-in
+    HTTP 200 - 鍝嶅簲闀垮害: 4212 瀛楄妭
+  POST /api/delete-user
+    HTTP 200 - 鍝嶅簲闀垮害: 135 瀛楄妭
+  GET /api/get-groups?owner=built-in
+    HTTP 200 - 鍝嶅簲闀垮害: 108 瀛楄妭
+  GET /api/get-users?owner=app
+    HTTP 200 - 鍝嶅簲闀垮害: 108 瀛楄妭
+  GET /api/get-groups?owner=app
+    HTTP 200 - 鍝嶅簲闀垮害: 108 瀛楄妭
+娓呯悊瀹屾垚銆?
+寮€濮嬪悓姝ョ粍缁囩粨鏋勶紝鏃堕棿鑼冨洿锛氬叏閲?
+  -> 鍚屾缇ょ粍锛?6f1c1a492fd930d29dd4d2431f925ed锛堝悕绉帮細浜哄姏璧勬簮閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a492fd930d29dd4d2431f925ed (浜哄姏璧勬簮閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a492fd930d29dd4d2431f925ed - 浜哄姏璧勬簮閮?
+  -> 鍚屾缇ょ粍锛?6f1c1a493ff7d63d4310f1409f8c158锛堝悕绉帮細瀹㈡湇閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158 (瀹㈡湇閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158 - 瀹㈡湇閮?
+  -> 鍚屾缇ょ粍锛?6f1c1a494ec6d4d6e12cf94cf4adae2锛堝悕绉帮細鍏氱兢閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a494ec6d4d6e12cf94cf4adae2 (鍏氱兢閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a494ec6d4d6e12cf94cf4adae2 - 鍏氱兢閮?
+  -> 鍚屾缇ょ粍锛?6f1c1a495ecf0e6b53ea74440d9f478锛堝悕绉帮細鍏徃棰嗗鐝瓙锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a495ecf0e6b53ea74440d9f478 (鍏徃棰嗗鐝瓙) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a495ecf0e6b53ea74440d9f478 - 鍏徃棰嗗鐝瓙
+  -> 鍚屾缇ょ粍锛?6f1c1a49710197e91a393841508bb01锛堝悕绉帮細瀹夊叏璐ㄩ噺閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a49710197e91a393841508bb01 (瀹夊叏璐ㄩ噺閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a49710197e91a393841508bb01 - 瀹夊叏璐ㄩ噺閮?
+  -> 鍚屾缇ょ粍锛?6f1c1a499d2a79baaa29974096aa1f1锛堝悕绉帮細甯傚満鍚堢害閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1 (甯傚満鍚堢害閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1 - 甯傚満鍚堢害閮?
+  -> 鍚屾缇ょ粍锛?6f1c1a49add8c3c620535d42cdbd7a6锛堝悕绉帮細娉电珯杩愮淮閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6 (娉电珯杩愮淮閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6 - 娉电珯杩愮淮閮?
+  -> 鍚屾缇ょ粍锛?6f1c1a4a0bfd1e4575dcdf4b1ea2b60锛堝悕绉帮細缁煎悎绠＄悊閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a4a0bfd1e4575dcdf4b1ea2b60 (缁煎悎绠＄悊閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a4a0bfd1e4575dcdf4b1ea2b60 - 缁煎悎绠＄悊閮?
+  -> 鍚屾缇ょ粍锛?6f1c1a4a1a69277ec35e494049ab52a锛堝悕绉帮細瑁呭鏉愭枡閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a4a1a69277ec35e494049ab52a (瑁呭鏉愭枡閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a4a1a69277ec35e494049ab52a - 瑁呭鏉愭枡閮?
+  -> 鍚屾缇ょ粍锛?6f1c1a4a2aa9f389dbf3fd493a8342e锛堝悕绉帮細璐㈠姟閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/16f1c1a4a2aa9f389dbf3fd493a8342e (璐㈠姟閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/16f1c1a4a2aa9f389dbf3fd493a8342e - 璐㈠姟閮?
+  -> 鍚屾缇ょ粍锛?702e970dbe674ab7d79320474c9644d锛堝悕绉帮細绾瀹わ級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702e970dbe674ab7d79320474c9644d (绾瀹? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702e970dbe674ab7d79320474c9644d - 绾瀹?
+  -> 鍚屾缇ょ粍锛?702e980bd7c154077809bc4dd7bae17锛堝悕绉帮細瀹¤閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702e980bd7c154077809bc4dd7bae17 (瀹¤閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702e980bd7c154077809bc4dd7bae17 - 瀹¤閮?
+  -> 鍚屾缇ょ粍锛?702e9983fe4f03c6af31f2432d9ea73锛堝悕绉帮細杩愯惀绠＄悊閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702e9983fe4f03c6af31f2432d9ea73 (杩愯惀绠＄悊閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702e9983fe4f03c6af31f2432d9ea73 - 杩愯惀绠＄悊閮?
+  -> 鍚屾缇ょ粍锛?702e9e1e9f9dfb2d9d005541de9f9c1锛堝悕绉帮細椤圭洰绠＄悊閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702e9e1e9f9dfb2d9d005541de9f9c1 (椤圭洰绠＄悊閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702e9e1e9f9dfb2d9d005541de9f9c1 - 椤圭洰绠＄悊閮?
+  -> 鍚屾缇ょ粍锛?702ea50771508550dd3a0c462abe30a锛堝悕绉帮細榧撳彴鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702ea50771508550dd3a0c462abe30a (榧撳彴鍏徃) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702ea50771508550dd3a0c462abe30a - 榧撳彴鍏徃
+  -> 鍚屾缇ょ粍锛?702ea5397ada9df93bf9534b438ebf9锛堝悕绉帮細绂忓窞鍒嗗叕鍙革級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9 (绂忓窞鍒嗗叕鍙? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9 - 绂忓窞鍒嗗叕鍙?
+  -> 鍚屾缇ょ粍锛?702ea56b2074b5c6191ef24314bb803锛堝悕绉帮細鏅嬪畨鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702ea56b2074b5c6191ef24314bb803 (鏅嬪畨鍏徃) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702ea56b2074b5c6191ef24314bb803 - 鏅嬪畨鍏徃
+  -> 鍚屾缇ょ粍锛?702ea594c72ddec7866ff74fa6b3937锛堝悕绉帮細浠撳北鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702ea594c72ddec7866ff74fa6b3937 (浠撳北鍏徃) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702ea594c72ddec7866ff74fa6b3937 - 浠撳北鍏徃
+  -> 鍚屾缇ょ粍锛?702ea958ec34fc2fb388fe450e809bf锛堝悕绉帮細濉樺潅寮曟按椤圭洰閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1702ea958ec34fc2fb388fe450e809bf (濉樺潅寮曟按椤圭洰閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1702ea958ec34fc2fb388fe450e809bf - 濉樺潅寮曟按椤圭洰閮?
+  -> 鍚屾缇ょ粍锛?777f6b3be388fa5b21ba404f12b6d87锛堝悕绉帮細閲戝北鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1777f6b3be388fa5b21ba404f12b6d87 (閲戝北鍏徃) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1777f6b3be388fa5b21ba404f12b6d87 - 閲戝北鍏徃
+  -> 鍚屾缇ょ粍锛?794b265af531604c1e667c4a1498c3a锛堝悕绉帮細鍏氬瀹ｄ紶閮級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1794b265af531604c1e667c4a1498c3a (鍏氬瀹ｄ紶閮? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1794b265af531604c1e667c4a1498c3a - 鍏氬瀹ｄ紶閮?
+  -> 鍚屾缇ょ粍锛?7d212bc16954bf901e72854cdd95690锛堝悕绉帮細濉樺潅寮曟按宸ョ▼1_5鏍囧伐绋嬬粨绠楃粍锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/17d212bc16954bf901e72854cdd95690 (濉樺潅寮曟按宸ョ▼1_5鏍囧伐绋嬬粨绠楃粍) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/17d212bc16954bf901e72854cdd95690 - 濉樺潅寮曟按宸ョ▼1_5鏍囧伐绋嬬粨绠楃粍
+  -> 鍚屾缇ょ粍锛?8e5635d937ed417ca788e54ad687785锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5635d937ed417ca788e54ad687785 (鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5635d937ed417ca788e54ad687785 - 鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  -> 鍚屾缇ょ粍锛?8e56368cf7552a0b59c1364b41b7e88锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e56368cf7552a0b59c1364b41b7e88 (鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e56368cf7552a0b59c1364b41b7e88 - 鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?8e563710626c653c4e74bc40a38c116锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範绂忓窞鍩庡缓闄級锛屽眰绾э細0锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e563710626c653c4e74bc40a38c116 (鍗遍櫓浣滀笟瀛︿範绂忓窞鍩庡缓闄? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e563710626c653c4e74bc40a38c116 - 鍗遍櫓浣滀笟瀛︿範绂忓窞鍩庡缓闄?
+  -> 鍚屾缇ょ粍锛?8e563764b850325d4982604602995e6锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e563764b850325d4982604602995e6 (鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e563764b850325d4982604602995e6 - 鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  -> 鍚屾缇ょ粍锛?8e5637a50edf2fed4b72dd4af1af4dc锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5637a50edf2fed4b72dd4af1af4dc (鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5637a50edf2fed4b72dd4af1af4dc - 鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥
+  -> 鍚屾缇ょ粍锛?8e5637e95bbe5e442a087e4cc998284锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5637e95bbe5e442a087e4cc998284 (鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5637e95bbe5e442a087e4cc998284 - 鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  -> 鍚屾缇ょ粍锛?8e56383426348ce70f67494ac89056a锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔★級锛屽眰绾э細0锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e56383426348ce70f67494ac89056a (鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e56383426348ce70f67494ac89056a - 鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  -> 鍚屾缇ょ粍锛?8e563872466ce0fc9adb184f83963ad锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範姘村姟鏂囨梾锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e563872466ce0fc9adb184f83963ad (鍗遍櫓浣滀笟瀛︿範姘村姟鏂囨梾) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e563872466ce0fc9adb184f83963ad - 鍗遍櫓浣滀笟瀛︿範姘村姟鏂囨梾
+  -> 鍚屾缇ょ粍锛?8e5638e3f58d0f0aea894547b99618e锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5638e3f58d0f0aea894547b99618e (鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5638e3f58d0f0aea894547b99618e - 鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  -> 鍚屾缇ょ粍锛?8e56391ec200ba640c74724e268295b锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範姘磋祫婧愬紑鍙戯級锛屽眰绾э細0锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e56391ec200ba640c74724e268295b (鍗遍櫓浣滀笟瀛︿範姘磋祫婧愬紑鍙? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e56391ec200ba640c74724e268295b - 鍗遍櫓浣滀笟瀛︿範姘磋祫婧愬紑鍙?
+  -> 鍚屾缇ょ粍锛?8ea3493cfd47b6fbcdb817459c9357a锛堝悕绉帮細鍗遍櫓浣滀笟瀛︿範缁勭粐锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(18e389224b660b4d67413f8466285581)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ea3493cfd47b6fbcdb817459c9357a (鍗遍櫓浣滀笟瀛︿範缁勭粐) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ea3493cfd47b6fbcdb817459c9357a - 鍗遍櫓浣滀笟瀛︿範缁勭粐
+  -> 鍚屾缇ょ粍锛?8f5b6c906fabb74b110b6f4e51bc340锛堝悕绉帮細鎶€鏈鐞嗛儴锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18f5b6c906fabb74b110b6f4e51bc340 (鎶€鏈鐞嗛儴) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18f5b6c906fabb74b110b6f4e51bc340 - 鎶€鏈鐞嗛儴
+  -> 鍚屾缇ょ粍锛?95184144551193dbb88916408d95e13锛堝悕绉帮細鏁板瓧鍖栨湇鍔′腑蹇冿級锛屽眰绾э細0锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/195184144551193dbb88916408d95e13 (鏁板瓧鍖栨湇鍔′腑蹇? parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/195184144551193dbb88916408d95e13 - 鏁板瓧鍖栨湇鍔′腑蹇?
+  -> 鍚屾缇ょ粍锛?978ccd99482b1b05ace31940b29c252锛堝悕绉帮細闂芥竻宸ヤ綔灏忕粍锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1978ccd99482b1b05ace31940b29c252 (闂芥竻宸ヤ綔灏忕粍) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1978ccd99482b1b05ace31940b29c252 - 闂芥竻宸ヤ綔灏忕粍
+  -> 鍚屾缇ょ粍锛?987850831cbb019a9fb3464e29a1902锛堝悕绉帮細澶栭儴鍗曚綅锛夛紝灞傜骇锛?锛岀埗绾э細缂哄け(16f1c1a4910426f41649fd14862b99a1)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1987850831cbb019a9fb3464e29a1902 (澶栭儴鍗曚綅) parent=鏃?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1987850831cbb019a9fb3464e29a1902 - 澶栭儴鍗曚綅
+  -> 鍚屾缇ょ粍锛?8e5638a97b1f96057e2541456b80779锛堝悕绉帮細姘村姟渚涘簲閾撅級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18ea3493cfd47b6fbcdb817459c9357a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5638a97b1f96057e2541456b80779 (姘村姟渚涘簲閾? parent=鍗遍櫓浣滀笟瀛︿範缁勭粐
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5638a97b1f96057e2541456b80779 - 姘村姟渚涘簲閾?
+  -> 鍚屾缇ょ粍锛?8e56394c3afdcef5f3966c4a56b5f71锛堝悕绉帮細闂戒警姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18ea3493cfd47b6fbcdb817459c9357a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e56394c3afdcef5f3966c4a56b5f71 (闂戒警姘村姟) parent=鍗遍櫓浣滀笟瀛︿範缁勭粐
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e56394c3afdcef5f3966c4a56b5f71 - 闂戒警姘村姟
+  -> 鍚屾缇ょ粍锛?8e5b65717d23819c0a0480439f8f236锛堝悕绉帮細绂忓缓鐪佽交瀹夊伐绋嬪缓璁炬湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5638e3f58d0f0aea894547b99618e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b65717d23819c0a0480439f8f236 (绂忓缓鐪佽交瀹夊伐绋嬪缓璁炬湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b65717d23819c0a0480439f8f236 - 绂忓缓鐪佽交瀹夊伐绋嬪缓璁炬湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8e5b6571e78ef8ced28b8e427d8fc4c锛堝悕绉帮細姹熻嫃寰风婧愮鎶€鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5638e3f58d0f0aea894547b99618e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b6571e78ef8ced28b8e427d8fc4c (姹熻嫃寰风婧愮鎶€鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b6571e78ef8ced28b8e427d8fc4c - 姹熻嫃寰风婧愮鎶€鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8e5b65734a7e64c4b2487e48d696674锛堝悕绉帮細绂忔竻甯備笢妤犲缓璁惧伐绋嬫湁闄愬叕鍙哥涓€鍒嗗叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5638e3f58d0f0aea894547b99618e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b65734a7e64c4b2487e48d696674 (绂忔竻甯備笢妤犲缓璁惧伐绋嬫湁闄愬叕鍙哥涓€鍒嗗叕鍙? parent=鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b65734a7e64c4b2487e48d696674 - 绂忔竻甯備笢妤犲缓璁惧伐绋嬫湁闄愬叕鍙哥涓€鍒嗗叕鍙?
+  -> 鍚屾缇ょ粍锛?8e5b7bc6adb1641fef68ea447fa00d8锛堝悕绉帮細绂忓缓鐪侀缚鍒涘缓绛戝伐绋嬫湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637a50edf2fed4b72dd4af1af4dc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b7bc6adb1641fef68ea447fa00d8 (绂忓缓鐪侀缚鍒涘缓绛戝伐绋嬫湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b7bc6adb1641fef68ea447fa00d8 - 绂忓缓鐪侀缚鍒涘缓绛戝伐绋嬫湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8e5b7bc6e26d1282c8e9e340a196cc5锛堝悕绉帮細骞崇叅绁為┈寤哄伐闆嗗洟鏈夐檺鍏徃绂忓缓鍒嗗叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637a50edf2fed4b72dd4af1af4dc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b7bc6e26d1282c8e9e340a196cc5 (骞崇叅绁為┈寤哄伐闆嗗洟鏈夐檺鍏徃绂忓缓鍒嗗叕鍙? parent=鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b7bc6e26d1282c8e9e340a196cc5 - 骞崇叅绁為┈寤哄伐闆嗗洟鏈夐檺鍏徃绂忓缓鍒嗗叕鍙?
+  -> 鍚屾缇ょ粍锛?8e5b7bc71382407823cd0b46d99942c锛堝悕绉帮細绂忓缓鐪佽儶宄板缓璁惧彂灞曟湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637a50edf2fed4b72dd4af1af4dc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b7bc71382407823cd0b46d99942c (绂忓缓鐪佽儶宄板缓璁惧彂灞曟湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b7bc71382407823cd0b46d99942c - 绂忓缓鐪佽儶宄板缓璁惧彂灞曟湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8e5b7bc75497e95481c12549cdb19b2锛堝悕绉帮細绂忓窞寮哄姏绠￠亾璁惧鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637a50edf2fed4b72dd4af1af4dc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b7bc75497e95481c12549cdb19b2 (绂忓窞寮哄姏绠￠亾璁惧鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b7bc75497e95481c12549cdb19b2 - 绂忓窞寮哄姏绠￠亾璁惧鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8e5b7bc7902964a99bdcc547bd82a29锛堝悕绉帮細绂忓缓鐪佺櫨鐩涘缓璁惧彂灞曟湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637a50edf2fed4b72dd4af1af4dc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b7bc7902964a99bdcc547bd82a29 (绂忓缓鐪佺櫨鐩涘缓璁惧彂灞曟湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b7bc7902964a99bdcc547bd82a29 - 绂忓缓鐪佺櫨鐩涘缓璁惧彂灞曟湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8e5b7bc7e701e18fc543374bad9ce50锛堝悕绉帮細閿︽寤鸿闆嗗洟鏈夐檺鍏徃闄勪欢鍒嗗叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637a50edf2fed4b72dd4af1af4dc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b7bc7e701e18fc543374bad9ce50 (閿︽寤鸿闆嗗洟鏈夐檺鍏徃闄勪欢鍒嗗叕鍙? parent=鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b7bc7e701e18fc543374bad9ce50 - 閿︽寤鸿闆嗗洟鏈夐檺鍏徃闄勪欢鍒嗗叕鍙?
+  -> 鍚屾缇ょ粍锛?8e5b7bc834fdf58099f8384d7db3c5d锛堝悕绉帮細绂忓缓寰椾咕闆嗗洟鏈夐檺璐ｄ换鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637a50edf2fed4b72dd4af1af4dc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b7bc834fdf58099f8384d7db3c5d (绂忓缓寰椾咕闆嗗洟鏈夐檺璐ｄ换鍏徃) parent=鍗遍櫓浣滀笟瀛︿範婧愯剦娓╂硥
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b7bc834fdf58099f8384d7db3c5d - 绂忓缓寰椾咕闆嗗洟鏈夐檺璐ｄ换鍏徃
+  -> 鍚屾缇ょ粍锛?8e79f6c67f0c58867488c24eec9d801锛堝悕绉帮細寮€杈夛級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e79f6c67f0c58867488c24eec9d801 (寮€杈? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e79f6c67f0c58867488c24eec9d801 - 寮€杈?
+  -> 鍚屾缇ょ粍锛?8e79f81fda88670fdb7b84479ca58bd锛堝悕绉帮細鍗庡缓锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e79f81fda88670fdb7b84479ca58bd (鍗庡缓) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e79f81fda88670fdb7b84479ca58bd - 鍗庡缓
+  -> 鍚屾缇ょ粍锛?8e79f85fe5c7857b24094e4819b72c7锛堝悕绉帮細姘镐笢鍗楋級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e79f85fe5c7857b24094e4819b72c7 (姘镐笢鍗? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e79f85fe5c7857b24094e4819b72c7 - 姘镐笢鍗?
+  -> 鍚屾缇ょ粍锛?8e79f89a15f876d5fc2ef2452a8e9cb锛堝悕绉帮細閼畯鎵級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e79f89a15f876d5fc2ef2452a8e9cb (閼畯鎵? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e79f89a15f876d5fc2ef2452a8e9cb - 閼畯鎵?
+  -> 鍚屾缇ょ粍锛?8e79f8dc2e2695e873721447f182794锛堝悕绉帮細閲戝畯瀹囷級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e79f8dc2e2695e873721447f182794 (閲戝畯瀹? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e79f8dc2e2695e873721447f182794 - 閲戝畯瀹?
+  -> 鍚屾缇ょ粍锛?8e79f96aa10c322d0cd6fa42179673d锛堝悕绉帮細鍋ユ按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e79f96aa10c322d0cd6fa42179673d (鍋ユ按) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e79f96aa10c322d0cd6fa42179673d - 鍋ユ按
+  -> 鍚屾缇ょ粍锛?8e79fd7f7c81ba72484f8d40a1b17ca锛堝悕绉帮細鏉ュ疂锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e79fd7f7c81ba72484f8d40a1b17ca (鏉ュ疂) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e79fd7f7c81ba72484f8d40a1b17ca - 鏉ュ疂
+  -> 鍚屾缇ょ粍锛?8e7a2c0caea7e4bc2a0275481e8b03b锛堝悕绉帮細铻嶄笢锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a2c0caea7e4bc2a0275481e8b03b (铻嶄笢) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a2c0caea7e4bc2a0275481e8b03b - 铻嶄笢
+  -> 鍚屾缇ょ粍锛?8e7a2c79ecf1f2b46763c94c878518e锛堝悕绉帮細绂忓缓鍏寸锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a2c79ecf1f2b46763c94c878518e (绂忓缓鍏寸) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a2c79ecf1f2b46763c94c878518e - 绂忓缓鍏寸
+  -> 鍚屾缇ょ粍锛?8e7a2ccdc1fe2b45a89b8740baafadc锛堝悕绉帮細绂忔竻浜屽缓锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a2ccdc1fe2b45a89b8740baafadc (绂忔竻浜屽缓) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a2ccdc1fe2b45a89b8740baafadc - 绂忔竻浜屽缓
+  -> 鍚屾缇ょ粍锛?8e7a2febf4a14f0cea18b64746b2ff2锛堝悕绉帮細鍗楀墤锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a2febf4a14f0cea18b64746b2ff2 (鍗楀墤) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a2febf4a14f0cea18b64746b2ff2 - 鍗楀墤
+  -> 鍚屾缇ょ粍锛?8e7a39915fbeb748c185254980af411锛堝悕绉帮細鏉窞璺ˉ锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a39915fbeb748c185254980af411 (鏉窞璺ˉ) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a39915fbeb748c185254980af411 - 鏉窞璺ˉ
+  -> 鍚屾缇ょ粍锛?8e7a39f7d9c83853972d114de2a4be2锛堝悕绉帮細鍚堥緳寤哄伐锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a39f7d9c83853972d114de2a4be2 (鍚堥緳寤哄伐) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a39f7d9c83853972d114de2a4be2 - 鍚堥緳寤哄伐
+  -> 鍚屾缇ょ粍锛?8e7a3b406c3e003d1e3b174de4aa19c锛堝悕绉帮細绂忓缓鍏寸绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a3b406c3e003d1e3b174de4aa19c (绂忓缓鍏寸绂忓窞鎺掓按) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a3b406c3e003d1e3b174de4aa19c - 绂忓缓鍏寸绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?8e9770ee44d0d3fcbb95cf402b89ba2锛堝悕绉帮細鍋ユ按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9770ee44d0d3fcbb95cf402b89ba2 (鍋ユ按) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9770ee44d0d3fcbb95cf402b89ba2 - 鍋ユ按
+  -> 鍚屾缇ょ粍锛?8e97712778ea2fba85f9094fb0b1a20锛堝悕绉帮細楦垮垱锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e97712778ea2fba85f9094fb0b1a20 (楦垮垱) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e97712778ea2fba85f9094fb0b1a20 - 楦垮垱
+  -> 鍚屾缇ょ粍锛?8e98d580145f298941277e4ae4b098a锛堝悕绉帮細鍋ユ按楂樻柊鍖猴級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98d580145f298941277e4ae4b098a (鍋ユ按楂樻柊鍖? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98d580145f298941277e4ae4b098a - 鍋ユ按楂樻柊鍖?
+  -> 鍚屾缇ょ粍锛?8e98da0994df884fd37c4d4adf8dad1锛堝悕绉帮細楦垮垱楂樻柊姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98da0994df884fd37c4d4adf8dad1 (楦垮垱楂樻柊姘村姟) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98da0994df884fd37c4d4adf8dad1 - 楦垮垱楂樻柊姘村姟
+  -> 鍚屾缇ょ粍锛?8e98dc55e061f43514c0b24e03a06ee锛堝悕绉帮細寰椾咕楂樻柊姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98dc55e061f43514c0b24e03a06ee (寰椾咕楂樻柊姘村姟) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98dc55e061f43514c0b24e03a06ee - 寰椾咕楂樻柊姘村姟
+  -> 鍚屾缇ょ粍锛?8e98dd977854874b9b13a849ada3a52锛堝悕绉帮細涓椊锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98dd977854874b9b13a849ada3a52 (涓椊) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98dd977854874b9b13a849ada3a52 - 涓椊
+  -> 鍚屾缇ょ粍锛?8e98de050f261cb6c7341547f28cd17锛堝悕绉帮細澶ч簱锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98de050f261cb6c7341547f28cd17 (澶ч簱) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98de050f261cb6c7341547f28cd17 - 澶ч簱
+  -> 鍚屾缇ょ粍锛?8e98e05a9cfb27579a36f54db7b62da锛堝悕绉帮細杞诲畨楂樻柊姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98e05a9cfb27579a36f54db7b62da (杞诲畨楂樻柊姘村姟) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98e05a9cfb27579a36f54db7b62da - 杞诲畨楂樻柊姘村姟
+  -> 鍚屾缇ょ粍锛?8e98ed06992e1c98da2b4a4d8f8760c锛堝悕绉帮細鍢夌€氾級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98ed06992e1c98da2b4a4d8f8760c (鍢夌€? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98ed06992e1c98da2b4a4d8f8760c - 鍢夌€?
+  -> 鍚屾缇ょ粍锛?8e98efa335379206f7d6b34ef2ba992锛堝悕绉帮細閲戝畯瀹囬珮鏂版按鍔★級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98efa335379206f7d6b34ef2ba992 (閲戝畯瀹囬珮鏂版按鍔? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98efa335379206f7d6b34ef2ba992 - 閲戝畯瀹囬珮鏂版按鍔?
+  -> 鍚屾缇ょ粍锛?8e98f0d4e1edafa35b6b294407a8a0b锛堝悕绉帮細鍚惧叚楂樻柊姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98f0d4e1edafa35b6b294407a8a0b (鍚惧叚楂樻柊姘村姟) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98f0d4e1edafa35b6b294407a8a0b - 鍚惧叚楂樻柊姘村姟
+  -> 鍚屾缇ょ粍锛?8e9c96a5cf15c6387d3c62450d83519锛堝悕绉帮細鍏嗕嚎绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9c96a5cf15c6387d3c62450d83519 (鍏嗕嚎绂忓窞鎺掓按) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9c96a5cf15c6387d3c62450d83519 - 鍏嗕嚎绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?8e9c9f75a47bfb80cdff7b49ed9775b锛堝悕绉帮細姹夋Λ绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9c9f75a47bfb80cdff7b49ed9775b (姹夋Λ绂忓窞鎺掓按) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9c9f75a47bfb80cdff7b49ed9775b - 姹夋Λ绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?8e9cb934f2c0f81fabd7ed4870b5c8e锛堝悕绉帮細姘稿瘜锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9cb934f2c0f81fabd7ed4870b5c8e (姘稿瘜) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9cb934f2c0f81fabd7ed4870b5c8e - 姘稿瘜
+  -> 鍚屾缇ょ粍锛?8e9ce2699bdc49448335334fca83bf6锛堝悕绉帮細闀跨洓闃熶紞锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce2699bdc49448335334fca83bf6 (闀跨洓闃熶紞) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce2699bdc49448335334fca83bf6 - 闀跨洓闃熶紞
+  -> 鍚屾缇ょ粍锛?8e9ce2a99a93d3f2dc346e4c039e1ef锛堝悕绉帮細榫欏ぉ闃熶紞锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce2a99a93d3f2dc346e4c039e1ef (榫欏ぉ闃熶紞) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce2a99a93d3f2dc346e4c039e1ef - 榫欏ぉ闃熶紞
+  -> 鍚屾缇ょ粍锛?8e9ce2da63331fd41d22ca4061b8580锛堝悕绉帮細鍏撮泤杈鹃槦浼嶏級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce2da63331fd41d22ca4061b8580 (鍏撮泤杈鹃槦浼? parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce2da63331fd41d22ca4061b8580 - 鍏撮泤杈鹃槦浼?
+  -> 鍚屾缇ょ粍锛?8e9ce30a8cab51ad5b4f844ba39d8ec锛堝悕绉帮細閼€€宄帮級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce30a8cab51ad5b4f844ba39d8ec (閼€€宄? parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce30a8cab51ad5b4f844ba39d8ec - 閼€€宄?
+  -> 鍚屾缇ょ粍锛?8e9ce423bdcce235af902a4455a28a0锛堝悕绉帮細楦垮垱姘村姟宸ョ▼锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce423bdcce235af902a4455a28a0 (楦垮垱姘村姟宸ョ▼) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce423bdcce235af902a4455a28a0 - 楦垮垱姘村姟宸ョ▼
+  -> 鍚屾缇ょ粍锛?8e9ce6d22ae66e481b366e48bd9d9d5锛堝悕绉帮細涓滄姘村姟宸ョ▼锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce6d22ae66e481b366e48bd9d9d5 (涓滄姘村姟宸ョ▼) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce6d22ae66e481b366e48bd9d9d5 - 涓滄姘村姟宸ョ▼
+  -> 鍚屾缇ょ粍锛?8e9ce84b33745a09569b744260a90d5锛堝悕绉帮細铻嶅ぇ闃熶紞锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce84b33745a09569b744260a90d5 (铻嶅ぇ闃熶紞) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce84b33745a09569b744260a90d5 - 铻嶅ぇ闃熶紞
+  -> 鍚屾缇ょ粍锛?8e9ce873ada477921d3c2348089a28e锛堝悕绉帮細闂界洓锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce873ada477921d3c2348089a28e (闂界洓) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce873ada477921d3c2348089a28e - 闂界洓
+  -> 鍚屾缇ょ粍锛?8e9ce8a6cfccfbef90e025424ab2e95锛堝悕绉帮細铻嶇ゥ闃熶紞锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce8a6cfccfbef90e025424ab2e95 (铻嶇ゥ闃熶紞) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce8a6cfccfbef90e025424ab2e95 - 铻嶇ゥ闃熶紞
+  -> 鍚屾缇ょ粍锛?8e9ce9afcbd8c504dc2dbb4ade8a63b锛堝悕绉帮細寰椾咕姘村姟宸ョ▼锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce9afcbd8c504dc2dbb4ade8a63b (寰椾咕姘村姟宸ョ▼) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce9afcbd8c504dc2dbb4ade8a63b - 寰椾咕姘村姟宸ョ▼
+  -> 鍚屾缇ょ粍锛?8e9ce9f369803f84b41b844dd7b100f锛堝悕绉帮細涓滆景闃熶紞锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce9f369803f84b41b844dd7b100f (涓滆景闃熶紞) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce9f369803f84b41b844dd7b100f - 涓滆景闃熶紞
+  -> 鍚屾缇ょ粍锛?8e9ceaaf6fe3210ef59c5f4fbf97e66锛堝悕绉帮細姹夋Λ姘村姟宸ョ▼锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ceaaf6fe3210ef59c5f4fbf97e66 (姹夋Λ姘村姟宸ョ▼) parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ceaaf6fe3210ef59c5f4fbf97e66 - 姹夋Λ姘村姟宸ョ▼
+  -> 鍚屾缇ょ粍锛?8e9ceb0809cef40f20d93c455894405锛堝悕绉帮細鎭掗懌婧愰槦浼嶏級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e563764b850325d4982604602995e6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ceb0809cef40f20d93c455894405 (鎭掗懌婧愰槦浼? parent=鍗遍櫓浣滀笟瀛︿範姘村姟宸ョ▼
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ceb0809cef40f20d93c455894405 - 鎭掗懌婧愰槦浼?
+  -> 鍚屾缇ょ粍锛?8e9d7bbda69470043a24cf4d4bb7724锛堝悕绉帮細寮€杈夋花娴锋按鍔★級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d7bbda69470043a24cf4d4bb7724 (寮€杈夋花娴锋按鍔? parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d7bbda69470043a24cf4d4bb7724 - 寮€杈夋花娴锋按鍔?
+  -> 鍚屾缇ょ粍锛?8e9d81103fd4710f973ac547d88e4b8锛堝悕绉帮細绂忓缓鐪佸ぉ鏌卞缓璁惧伐绋嬫湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d81103fd4710f973ac547d88e4b8 (绂忓缓鐪佸ぉ鏌卞缓璁惧伐绋嬫湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d81103fd4710f973ac547d88e4b8 - 绂忓缓鐪佸ぉ鏌卞缓璁惧伐绋嬫湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8e9d816c7106aa5efc810544ab90252锛堝悕绉帮細绂忓缓鐪佺敵鏄庡缓绛戝伐绋嬫湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d816c7106aa5efc810544ab90252 (绂忓缓鐪佺敵鏄庡缓绛戝伐绋嬫湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d816c7106aa5efc810544ab90252 - 绂忓缓鐪佺敵鏄庡缓绛戝伐绋嬫湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8e9d81cf53e2338e54d0e54804b2c4e锛堝悕绉帮細绂忓缓鑽ｅ彂寤虹瓚宸ョ▼鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d81cf53e2338e54d0e54804b2c4e (绂忓缓鑽ｅ彂寤虹瓚宸ョ▼鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d81cf53e2338e54d0e54804b2c4e - 绂忓缓鑽ｅ彂寤虹瓚宸ョ▼鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8e9d832664e005b1d14a934204abf27锛堝悕绉帮細楦垮垱婊ㄦ捣姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d832664e005b1d14a934204abf27 (楦垮垱婊ㄦ捣姘村姟) parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d832664e005b1d14a934204abf27 - 楦垮垱婊ㄦ捣姘村姟
+  -> 鍚屾缇ょ粍锛?8e9d83618015f4c6bce9ad4d65ba328锛堝悕绉帮細绂忓缓鐪侀暱涔愬競瀹夎鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d83618015f4c6bce9ad4d65ba328 (绂忓缓鐪侀暱涔愬競瀹夎鍏徃) parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d83618015f4c6bce9ad4d65ba328 - 绂忓缓鐪侀暱涔愬競瀹夎鍏徃
+  -> 鍚屾缇ょ粍锛?8e9d83a3e3f71aaaaba5504821917d3锛堝悕绉帮細涓秷浣崇編寤鸿鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d83a3e3f71aaaaba5504821917d3 (涓秷浣崇編寤鸿鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d83a3e3f71aaaaba5504821917d3 - 涓秷浣崇編寤鸿鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8e9d83dfaac52d5d521d9f40fdac32d锛堝悕绉帮細绂忓缓鐪佸崥娑﹀伐绋嬪缓璁炬湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d83dfaac52d5d521d9f40fdac32d (绂忓缓鐪佸崥娑﹀伐绋嬪缓璁炬湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d83dfaac52d5d521d9f40fdac32d - 绂忓缓鐪佸崥娑﹀伐绋嬪缓璁炬湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8ebd06bace2fc967aaba50461f92e35锛堝悕绉帮細绂忓缓杩滄仼鏅鸿兘鎶€鏈湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd06bace2fc967aaba50461f92e35 (绂忓缓杩滄仼鏅鸿兘鎶€鏈湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd06bace2fc967aaba50461f92e35 - 绂忓缓杩滄仼鏅鸿兘鎶€鏈湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8ebd072e126535758b797d46d2973fa锛堝悕绉帮細绂忓缓涓囪兘寤鸿鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd072e126535758b797d46d2973fa (绂忓缓涓囪兘寤鸿鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd072e126535758b797d46d2973fa - 绂忓缓涓囪兘寤鸿鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8ebd07734a2f42db4c69784d72b537d锛堝悕绉帮細绂忓窞瀹濋懌婧愭満鐢垫湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd07734a2f42db4c69784d72b537d (绂忓窞瀹濋懌婧愭満鐢垫湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd07734a2f42db4c69784d72b537d - 绂忓窞瀹濋懌婧愭満鐢垫湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8ebd07ae8e3cee0aa4c2e049108d4d2锛堝悕绉帮細绂忓窞杩滆閫氳揪渚涙按璁惧鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd07ae8e3cee0aa4c2e049108d4d2 (绂忓窞杩滆閫氳揪渚涙按璁惧鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd07ae8e3cee0aa4c2e049108d4d2 - 绂忓窞杩滆閫氳揪渚涙按璁惧鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8ebd0992edda5c6135cb4749119e0eb锛堝悕绉帮細鍑岀绂忓窞姘村徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd0992edda5c6135cb4749119e0eb (鍑岀绂忓窞姘村徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd0992edda5c6135cb4749119e0eb - 鍑岀绂忓窞姘村徃
+  -> 鍚屾缇ょ粍锛?8ebd0ad93e8a6980d635524f2b80be3锛堝悕绉帮細铻嶄笢绂忓窞姘村徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd0ad93e8a6980d635524f2b80be3 (铻嶄笢绂忓窞姘村徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd0ad93e8a6980d635524f2b80be3 - 铻嶄笢绂忓窞姘村徃
+  -> 鍚屾缇ょ粍锛?8ebd0c0bd0c2181fed27254fb98fa3a锛堝悕绉帮細寰椾咕绂忓窞姘村徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd0c0bd0c2181fed27254fb98fa3a (寰椾咕绂忓窞姘村徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd0c0bd0c2181fed27254fb98fa3a - 寰椾咕绂忓窞姘村徃
+  -> 鍚屾缇ょ粍锛?8ebd0e6a4fc70fa74449ae4dda82df3锛堝悕绉帮細鏉ュ疂绂忓窞姘村徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd0e6a4fc70fa74449ae4dda82df3 (鏉ュ疂绂忓窞姘村徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd0e6a4fc70fa74449ae4dda82df3 - 鏉ュ疂绂忓窞姘村徃
+  -> 鍚屾缇ょ粍锛?8ebd22cbc6dcebd649ea5e46f4a9bf0锛堝悕绉帮細鑽ｅ彂绂忓窞姘村徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd22cbc6dcebd649ea5e46f4a9bf0 (鑽ｅ彂绂忓窞姘村徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd22cbc6dcebd649ea5e46f4a9bf0 - 鑽ｅ彂绂忓窞姘村徃
+  -> 鍚屾缇ょ粍锛?8ebd2b80cf79de5f5c96794604bcd6a锛堝悕绉帮細绂忓窞鍜屽埄鏃剁鎶€鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2b80cf79de5f5c96794604bcd6a (绂忓窞鍜屽埄鏃剁鎶€鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2b80cf79de5f5c96794604bcd6a - 绂忓窞鍜屽埄鏃剁鎶€鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8ebd2c8026b59f1d3641964f11811c6锛堝悕绉帮細绂忓缓鍒涚洓寤鸿鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2c8026b59f1d3641964f11811c6 (绂忓缓鍒涚洓寤鸿鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2c8026b59f1d3641964f11811c6 - 绂忓缓鍒涚洓寤鸿鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8ebd2cd28fb4823c08b955475fa4838锛堝悕绉帮細绂忓窞鍝佹磥娓呮磥鏈嶅姟鏈夐檺璐ｄ换鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2cd28fb4823c08b955475fa4838 (绂忓窞鍝佹磥娓呮磥鏈嶅姟鏈夐檺璐ｄ换鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2cd28fb4823c08b955475fa4838 - 绂忓窞鍝佹磥娓呮磥鏈嶅姟鏈夐檺璐ｄ换鍏徃
+  -> 鍚屾缇ょ粍锛?8ebd2d1d252f96394886654c51bd9a2锛堝悕绉帮細绂忓缓閾槼姘村姟鏈嶅姟鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2d1d252f96394886654c51bd9a2 (绂忓缓閾槼姘村姟鏈嶅姟鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2d1d252f96394886654c51bd9a2 - 绂忓缓閾槼姘村姟鏈嶅姟鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8ebd2d7fc914c0083cfa9e46e1ab946锛堝悕绉帮細绂忓窞寮哄姏绠￠亾璁惧鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2d7fc914c0083cfa9e46e1ab946 (绂忓窞寮哄姏绠￠亾璁惧鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2d7fc914c0083cfa9e46e1ab946 - 绂忓窞寮哄姏绠￠亾璁惧鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8ebd2e130692a1aa8bd79d4c5b80c9e锛堝悕绉帮細姝ｄ赴闃€闂ㄦ満姊拌澶囷紙绂忓窞锛夋湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2e130692a1aa8bd79d4c5b80c9e (姝ｄ赴闃€闂ㄦ満姊拌澶囷紙绂忓窞锛夋湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2e130692a1aa8bd79d4c5b80c9e - 姝ｄ赴闃€闂ㄦ満姊拌澶囷紙绂忓窞锛夋湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8ebd2e66978e509e08ada94376a737c锛堝悕绉帮細绂忓缓鍦嗘潙姊﹀挩璇㈡湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2e66978e509e08ada94376a737c (绂忓缓鍦嗘潙姊﹀挩璇㈡湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2e66978e509e08ada94376a737c - 绂忓缓鍦嗘潙姊﹀挩璇㈡湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8ebd2ea8ba4dcfc6bd521c41c4a74ba锛堝悕绉帮細绂忓缓鐪佹絿闆呬汉鍔涜祫婧愭湇鍔℃湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2ea8ba4dcfc6bd521c41c4a74ba (绂忓缓鐪佹絿闆呬汉鍔涜祫婧愭湇鍔℃湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2ea8ba4dcfc6bd521c41c4a74ba - 绂忓缓鐪佹絿闆呬汉鍔涜祫婧愭湇鍔℃湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?8ebd2f09310db3d082dd0a4e93892ca锛堝悕绉帮細绂忓窞娴疯繄浜哄姏璧勬簮绠＄悊鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd2f09310db3d082dd0a4e93892ca (绂忓窞娴疯繄浜哄姏璧勬簮绠＄悊鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd2f09310db3d082dd0a4e93892ca - 绂忓窞娴疯繄浜哄姏璧勬簮绠＄悊鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?8ebd328aad448192531b2e4378a0f0e锛堝悕绉帮細绂忔竻甯備簩寤哄缓绛戝伐绋嬫湁闄愬叕鍙哥宸炲垎鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5635d937ed417ca788e54ad687785)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd328aad448192531b2e4378a0f0e (绂忔竻甯備簩寤哄缓绛戝伐绋嬫湁闄愬叕鍙哥宸炲垎鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞姘村徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd328aad448192531b2e4378a0f0e - 绂忔竻甯備簩寤哄缓绛戝伐绋嬫湁闄愬叕鍙哥宸炲垎鍏徃
+  -> 鍚屾缇ょ粍锛?900a13ffcff362b0fc3e8e4db8a5543锛堝悕绉帮細鏇句紵鍗庨」鐩粍锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e563710626c653c4e74bc40a38c116)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1900a13ffcff362b0fc3e8e4db8a5543 (鏇句紵鍗庨」鐩粍) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鍩庡缓闄?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1900a13ffcff362b0fc3e8e4db8a5543 - 鏇句紵鍗庨」鐩粍
+  -> 鍚屾缇ょ粍锛?9112089e43e986d9bfe2764d1cbdb49锛堝悕绉帮細绂忓缓鍗楀墤鍙戝睍鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19112089e43e986d9bfe2764d1cbdb49 (绂忓缓鍗楀墤鍙戝睍鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19112089e43e986d9bfe2764d1cbdb49 - 绂忓缓鍗楀墤鍙戝睍鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?912061263e54f714252a4144adb2f73锛堝悕绉帮細娴嬭瘯缁勭粐锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1912061263e54f714252a4144adb2f73 (娴嬭瘯缁勭粐) parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1912061263e54f714252a4144adb2f73 - 娴嬭瘯缁勭粐
+  -> 鍚屾缇ょ粍锛?91214b95b347e584929a7e47ebb08e6锛堝悕绉帮細绂忓缓鏉ュ疂寤鸿闆嗗洟鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/191214b95b347e584929a7e47ebb08e6 (绂忓缓鏉ュ疂寤鸿闆嗗洟鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/191214b95b347e584929a7e47ebb08e6 - 绂忓缓鏉ュ疂寤鸿闆嗗洟鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?918d9b2f5b947baec40c4247689ca2b锛堝悕绉帮細绂忓缓鍙屽痉锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9b2f5b947baec40c4247689ca2b (绂忓缓鍙屽痉) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9b2f5b947baec40c4247689ca2b - 绂忓缓鍙屽痉
+  -> 鍚屾缇ょ粍锛?918d9c3fca5bfa6ebeae594888b06dc锛堝悕绉帮細涓椊闆呴懌锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9c3fca5bfa6ebeae594888b06dc (涓椊闆呴懌) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9c3fca5bfa6ebeae594888b06dc - 涓椊闆呴懌
+  -> 鍚屾缇ょ粍锛?918d9c7aba89da4f19fd3a47d0a5f84锛堝悕绉帮細涓缓楦胯吘锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9c7aba89da4f19fd3a47d0a5f84 (涓缓楦胯吘) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9c7aba89da4f19fd3a47d0a5f84 - 涓缓楦胯吘
+  -> 鍚屾缇ょ粍锛?918d9c9e05e08e6d514b9948a3a3d45锛堝悕绉帮細涓婃捣榫欓洦锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9c9e05e08e6d514b9948a3a3d45 (涓婃捣榫欓洦) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9c9e05e08e6d514b9948a3a3d45 - 涓婃捣榫欓洦
+  -> 鍚屾缇ょ粍锛?918d9cdf5c32d120eea9774fedbd38d锛堝悕绉帮細婀栧崡澶ч簱锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9cdf5c32d120eea9774fedbd38d (婀栧崡澶ч簱) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9cdf5c32d120eea9774fedbd38d - 婀栧崡澶ч簱
+  -> 鍚屾缇ょ粍锛?918d9cf302fb89604205eb4d669a827锛堝悕绉帮細绂忕澘锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9cf302fb89604205eb4d669a827 (绂忕澘) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9cf302fb89604205eb4d669a827 - 绂忕澘
+  -> 鍚屾缇ょ粍锛?91badc51d7492892880c484733b3b39锛堝悕绉帮細椹鹃┒鐝級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(16f1c1a4a0bfd1e4575dcdf4b1ea2b60)
+  -> 鍚屾缁勭粐: fzswjtOrganization/191badc51d7492892880c484733b3b39 (椹鹃┒鐝? parent=缁煎悎绠＄悊閮?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/191badc51d7492892880c484733b3b39 - 椹鹃┒鐝?
+  -> 鍚屾缇ょ粍锛?91e01fdb9d0bae0e0493234a89bae7a锛堝悕绉帮細鐗圭杞﹁締椹鹃┒鐝級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(16f1c1a4a1a69277ec35e494049ab52a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/191e01fdb9d0bae0e0493234a89bae7a (鐗圭杞﹁締椹鹃┒鐝? parent=瑁呭鏉愭枡閮?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/191e01fdb9d0bae0e0493234a89bae7a - 鐗圭杞﹁締椹鹃┒鐝?
+  -> 鍚屾缇ょ粍锛?929e8adc3a012bbe87e69e4defb4076锛堝悕绉帮細绂忔竻涓滄楂樻柊鍖烘按鍔★級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1929e8adc3a012bbe87e69e4defb4076 (绂忔竻涓滄楂樻柊鍖烘按鍔? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1929e8adc3a012bbe87e69e4defb4076 - 绂忔竻涓滄楂樻柊鍖烘按鍔?
+  -> 鍚屾缇ょ粍锛?929e9343c6b5d1e022dea7409086e41锛堝悕绉帮細姹囧枩楂樻柊鍖烘按鍔★級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1929e9343c6b5d1e022dea7409086e41 (姹囧枩楂樻柊鍖烘按鍔? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1929e9343c6b5d1e022dea7409086e41 - 姹囧枩楂樻柊鍖烘按鍔?
+  -> 鍚屾缇ょ粍锛?929e9f50db4abf3e6079364fd588b31锛堝悕绉帮細瀹忔楂樻柊鍖烘按鍔★級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1929e9f50db4abf3e6079364fd588b31 (瀹忔楂樻柊鍖烘按鍔? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1929e9f50db4abf3e6079364fd588b31 - 瀹忔楂樻柊鍖烘按鍔?
+  -> 鍚屾缇ょ粍锛?92f5cf63a04cb602e4a94140c799001锛堝悕绉帮細绂忓缓鍗撹瘹寤鸿鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5637e95bbe5e442a087e4cc998284)
+  -> 鍚屾缁勭粐: fzswjtOrganization/192f5cf63a04cb602e4a94140c799001 (绂忓缓鍗撹瘹寤鸿鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範婊ㄦ捣姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/192f5cf63a04cb602e4a94140c799001 - 绂忓缓鍗撹瘹寤鸿鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?9425f74a8d003e0e3580aa42d0bf345锛堝悕绉帮細寮哄姏楂樻柊鍖烘按鍔★級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19425f74a8d003e0e3580aa42d0bf345 (寮哄姏楂樻柊鍖烘按鍔? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19425f74a8d003e0e3580aa42d0bf345 - 寮哄姏楂樻柊鍖烘按鍔?
+  -> 鍚屾缇ょ粍锛?9425fde045c1e3712f9e544cc9873c3锛堝悕绉帮細涓囪兘楂樻柊鍖烘按鍔★級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19425fde045c1e3712f9e544cc9873c3 (涓囪兘楂樻柊鍖烘按鍔? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19425fde045c1e3712f9e544cc9873c3 - 涓囪兘楂樻柊鍖烘按鍔?
+  -> 鍚屾缇ょ粍锛?9425ff1abd87ef22ab594a40f7a2d46锛堝悕绉帮細鍏嗕嚎楂樻柊鍖烘按鍔★級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19425ff1abd87ef22ab594a40f7a2d46 (鍏嗕嚎楂樻柊鍖烘按鍔? parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19425ff1abd87ef22ab594a40f7a2d46 - 鍏嗕嚎楂樻柊鍖烘按鍔?
+  -> 鍚屾缇ょ粍锛?9661d83b67489c9dc493fc4197880e1锛堝悕绉帮細绂忔竻浜屽缓锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56383426348ce70f67494ac89056a)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19661d83b67489c9dc493fc4197880e1 (绂忔竻浜屽缓) parent=鍗遍櫓浣滀笟瀛︿範楂樻柊鍖烘按鍔?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19661d83b67489c9dc493fc4197880e1 - 绂忔竻浜屽缓
+  -> 鍚屾缇ょ粍锛?9667670935f4c41c8abcc3415686d79锛堝悕绉帮細闀块缚锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19667670935f4c41c8abcc3415686d79 (闀块缚) parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19667670935f4c41c8abcc3415686d79 - 闀块缚
+  -> 鍚屾缇ょ粍锛?9786eb27371a994a4d0382468c8da70锛堝悕绉帮細娲嬮噷澶栧崗鍗曚綅锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5638e3f58d0f0aea894547b99618e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19786eb27371a994a4d0382468c8da70 (娲嬮噷澶栧崗鍗曚綅) parent=鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19786eb27371a994a4d0382468c8da70 - 娲嬮噷澶栧崗鍗曚綅
+  -> 鍚屾缇ょ粍锛?9786f597d69da6766d2b284355b8754锛堝悕绉帮細绂忓缓涓笣鑱斿悎鐜绉戞妧鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5638e3f58d0f0aea894547b99618e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19786f597d69da6766d2b284355b8754 (绂忓缓涓笣鑱斿悎鐜绉戞妧鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19786f597d69da6766d2b284355b8754 - 绂忓缓涓笣鑱斿悎鐜绉戞妧鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?9786f7c842ace6fc8eece34baf935e6锛堝悕绉帮細绂忓缓杩炲潅娴峰场鐜繚绉戞妧鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5638e3f58d0f0aea894547b99618e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19786f7c842ace6fc8eece34baf935e6 (绂忓缓杩炲潅娴峰场鐜繚绉戞妧鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19786f7c842ace6fc8eece34baf935e6 - 绂忓缓杩炲潅娴峰场鐜繚绉戞妧鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?980c19bb9cf3d05f5031db4cefb613d锛堝悕绉帮細娉楅槼鏂板畤浜哄姏璧勬簮鏈夐檺鍏徃锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5638e3f58d0f0aea894547b99618e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1980c19bb9cf3d05f5031db4cefb613d (娉楅槼鏂板畤浜哄姏璧勬簮鏈夐檺鍏徃) parent=鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1980c19bb9cf3d05f5031db4cefb613d - 娉楅槼鏂板畤浜哄姏璧勬簮鏈夐檺鍏徃
+  -> 鍚屾缇ょ粍锛?996f16f7b64065ac319a86498390261锛堝悕绉帮細娴峰场瀵屾皯鐢熻川妫€鎶€鏈湇鍔℃湁闄愬叕鍙革級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e5638e3f58d0f0aea894547b99618e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1996f16f7b64065ac319a86498390261 (娴峰场瀵屾皯鐢熻川妫€鎶€鏈湇鍔℃湁闄愬叕鍙? parent=鍗遍櫓浣滀笟瀛︿範娴峰场鐜繚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1996f16f7b64065ac319a86498390261 - 娴峰场瀵屾皯鐢熻川妫€鎶€鏈湇鍔℃湁闄愬叕鍙?
+  -> 鍚屾缇ょ粍锛?9a1566523807209161fc8d4d298b844锛堝悕绉帮細绂忓缓寮€灞級锛屽眰绾э細1锛岀埗绾э細瀛樺湪(18e56368cf7552a0b59c1364b41b7e88)
+  -> 鍚屾缁勭粐: fzswjtOrganization/19a1566523807209161fc8d4d298b844 (绂忓缓寮€灞? parent=鍗遍櫓浣滀笟瀛︿範绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/19a1566523807209161fc8d4d298b844 - 绂忓缓寮€灞?
+  -> 鍚屾缇ょ粍锛?8e5b2ffac394eab115b83b4799b027c锛堝悕绉帮細鍑岀锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b2ffac394eab115b83b4799b027c (鍑岀) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b2ffac394eab115b83b4799b027c - 鍑岀
+  -> 鍚屾缇ょ粍锛?8e5b3096c22a17c3d76bfd4cfc85dba锛堝悕绉帮細楦夸笟鐩涳級锛屽眰绾э細2锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b3096c22a17c3d76bfd4cfc85dba (楦夸笟鐩? parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b3096c22a17c3d76bfd4cfc85dba - 楦夸笟鐩?
+  -> 鍚屾缇ょ粍锛?8e5b312601eceaad24c28444b6a4a2d锛堝悕绉帮細鍏嗕嚎锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b312601eceaad24c28444b6a4a2d (鍏嗕嚎) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b312601eceaad24c28444b6a4a2d - 鍏嗕嚎
+  -> 鍚屾缇ょ粍锛?8e5b48ccbcb2244ea736044399a2bb3锛堝悕绉帮細鍑岀锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48ccbcb2244ea736044399a2bb3 (鍑岀) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48ccbcb2244ea736044399a2bb3 - 鍑岀
+  -> 鍚屾缇ょ粍锛?8e5b48cea6e1db870db94b47a4b38a2锛堝悕绉帮細楦夸笟鐩涳級锛屽眰绾э細2锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48cea6e1db870db94b47a4b38a2 (楦夸笟鐩? parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48cea6e1db870db94b47a4b38a2 - 楦夸笟鐩?
+  -> 鍚屾缇ょ粍锛?8e5b48cf2bb13e84b2452c44269b8d2锛堝悕绉帮細鍏嗕嚎锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48cf2bb13e84b2452c44269b8d2 (鍏嗕嚎) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48cf2bb13e84b2452c44269b8d2 - 鍏嗕嚎
+  -> 鍚屾缇ょ粍锛?8e5b48cf96e31bb07a4d03446eaa2b0锛堝悕绉帮細鍚惧叚锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48cf96e31bb07a4d03446eaa2b0 (鍚惧叚) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48cf96e31bb07a4d03446eaa2b0 - 鍚惧叚
+  -> 鍚屾缇ょ粍锛?8e5b48cffb8d92156bfe334ad9a30f6锛堝悕绉帮細姹夋Λ锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48cffb8d92156bfe334ad9a30f6 (姹夋Λ) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48cffb8d92156bfe334ad9a30f6 - 姹夋Λ
+  -> 鍚屾缇ょ粍锛?8e5b48d05ab3e154ded4174258a9168锛堝悕绉帮細璧㈤緳锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d05ab3e154ded4174258a9168 (璧㈤緳) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d05ab3e154ded4174258a9168 - 璧㈤緳
+  -> 鍚屾缇ょ粍锛?8e5b48d0a3ddb919f5b0e847a985d3b锛堝悕绉帮細鏉窞璺ˉ锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d0a3ddb919f5b0e847a985d3b (鏉窞璺ˉ) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d0a3ddb919f5b0e847a985d3b - 鏉窞璺ˉ
+  -> 鍚屾缇ょ粍锛?8e5b48d0fc6f7b9469ba0949d4b8699锛堝悕绉帮細閼嵎锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d0fc6f7b9469ba0949d4b8699 (閼嵎) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d0fc6f7b9469ba0949d4b8699 - 閼嵎
+  -> 鍚屾缇ょ粍锛?8e5b48d15934846c7177354c5b9c7bd锛堝悕绉帮細涓懌锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d15934846c7177354c5b9c7bd (涓懌) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d15934846c7177354c5b9c7bd - 涓懌
+  -> 鍚屾缇ょ粍锛?8e5b48d6ee8ab4a3303a0e4b33a6597锛堝悕绉帮細鏉窞璺ˉ闂戒警姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e56394c3afdcef5f3966c4a56b5f71)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d6ee8ab4a3303a0e4b33a6597 (鏉窞璺ˉ闂戒警姘村姟) parent=闂戒警姘村姟
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d6ee8ab4a3303a0e4b33a6597 - 鏉窞璺ˉ闂戒警姘村姟
+  -> 鍚屾缇ょ粍锛?8e7a3aeae4adc37933ef9646d79c9a7锛堝悕绉帮細绂忔竻浜屽缓绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e7a2ccdc1fe2b45a89b8740baafadc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a3aeae4adc37933ef9646d79c9a7 (绂忔竻浜屽缓绂忓窞鎺掓按) parent=绂忔竻浜屽缓
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a3aeae4adc37933ef9646d79c9a7 - 绂忔竻浜屽缓绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?8e7a3bb3c66f7245c878ef4cbfa11d1锛堝悕绉帮細鏉窞璺ˉ绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e7a39915fbeb748c185254980af411)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a3bb3c66f7245c878ef4cbfa11d1 (鏉窞璺ˉ绂忓窞鎺掓按) parent=鏉窞璺ˉ
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a3bb3c66f7245c878ef4cbfa11d1 - 鏉窞璺ˉ绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?8e7a3c11f40d1fa96649c149f4b5adc锛堝悕绉帮細鍚堥緳寤哄伐娉电珯缁存姢锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e7a39f7d9c83853972d114de2a4be2)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a3c11f40d1fa96649c149f4b5adc (鍚堥緳寤哄伐娉电珯缁存姢) parent=鍚堥緳寤哄伐
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a3c11f40d1fa96649c149f4b5adc - 鍚堥緳寤哄伐娉电珯缁存姢
+  -> 鍚屾缇ょ粍锛?8e7a3c8c85e8223ad35605490b8b5d2锛堝悕绉帮細鍗庡缓绠＄綉缁存姢锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e79f81fda88670fdb7b84479ca58bd)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a3c8c85e8223ad35605490b8b5d2 (鍗庡缓绠＄綉缁存姢) parent=鍗庡缓
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a3c8c85e8223ad35605490b8b5d2 - 鍗庡缓绠＄綉缁存姢
+  -> 鍚屾缇ょ粍锛?8e7a3cfdcf31423fdedfa5408cb2587锛堝悕绉帮細鍋ユ按绠＄綉缁存姢锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e79f96aa10c322d0cd6fa42179673d)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e7a3cfdcf31423fdedfa5408cb2587 (鍋ユ按绠＄綉缁存姢) parent=鍋ユ按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e7a3cfdcf31423fdedfa5408cb2587 - 鍋ユ按绠＄綉缁存姢
+  -> 鍚屾缇ょ粍锛?8e98d969d7dce8930b31a646c6a53c7锛堝悕绉帮細楦垮垱婧愯剦娓╂硥锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5b7bc6adb1641fef68ea447fa00d8)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98d969d7dce8930b31a646c6a53c7 (楦垮垱婧愯剦娓╂硥) parent=绂忓缓鐪侀缚鍒涘缓绛戝伐绋嬫湁闄愬叕鍙?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98d969d7dce8930b31a646c6a53c7 - 楦垮垱婧愯剦娓╂硥
+  -> 鍚屾缇ょ粍锛?8e98db3d200a1a73344d9845f1b2d96锛堝悕绉帮細寰椾咕婧愯剦娓╂硥锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5b7bc834fdf58099f8384d7db3c5d)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98db3d200a1a73344d9845f1b2d96 (寰椾咕婧愯剦娓╂硥) parent=绂忓缓寰椾咕闆嗗洟鏈夐檺璐ｄ换鍏徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98db3d200a1a73344d9845f1b2d96 - 寰椾咕婧愯剦娓╂硥
+  -> 鍚屾缇ょ粍锛?8e98dffbe455975028a8d7466bab55e锛堝悕绉帮細杞诲畨娴峰场鐜繚锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5b65717d23819c0a0480439f8f236)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98dffbe455975028a8d7466bab55e (杞诲畨娴峰场鐜繚) parent=绂忓缓鐪佽交瀹夊伐绋嬪缓璁炬湁闄愬叕鍙?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98dffbe455975028a8d7466bab55e - 杞诲畨娴峰场鐜繚
+  -> 鍚屾缇ょ粍锛?8e98ef002eb5279977b0934828bd2d8锛堝悕绉帮細閲戝畯瀹囩宸炴帓姘达級锛屽眰绾э細2锛岀埗绾э細瀛樺湪(18e79f8dc2e2695e873721447f182794)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e98ef002eb5279977b0934828bd2d8 (閲戝畯瀹囩宸炴帓姘? parent=閲戝畯瀹?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e98ef002eb5279977b0934828bd2d8 - 閲戝畯瀹囩宸炴帓姘?
+  -> 鍚屾缇ょ粍锛?8e9caeb5c0f8b93f8d6b594b5e9d28e锛堝悕绉帮細鏉窞璺ˉ-绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e7a39915fbeb748c185254980af411)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9caeb5c0f8b93f8d6b594b5e9d28e (鏉窞璺ˉ-绂忓窞鎺掓按) parent=鏉窞璺ˉ
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9caeb5c0f8b93f8d6b594b5e9d28e - 鏉窞璺ˉ-绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?8e9ce6655a2364960518b249dbae2a2锛堝悕绉帮細涓滄娴峰场鐜繚锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5b65734a7e64c4b2487e48d696674)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9ce6655a2364960518b249dbae2a2 (涓滄娴峰场鐜繚) parent=绂忔竻甯備笢妤犲缓璁惧伐绋嬫湁闄愬叕鍙哥涓€鍒嗗叕鍙?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9ce6655a2364960518b249dbae2a2 - 涓滄娴峰场鐜繚
+  -> 鍚屾缇ょ粍锛?8e9d7b3cd953954a283afa45619474a锛堝悕绉帮細寮€杈夌宸炴帓姘达級锛屽眰绾э細2锛岀埗绾э細瀛樺湪(18e79f6c67f0c58867488c24eec9d801)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e9d7b3cd953954a283afa45619474a (寮€杈夌宸炴帓姘? parent=寮€杈?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e9d7b3cd953954a283afa45619474a - 寮€杈夌宸炴帓姘?
+  -> 鍚屾缇ょ粍锛?8ebd0dfd0e30f41e16ffd34b64ada66锛堝悕绉帮細鏉ュ疂绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e79fd7f7c81ba72484f8d40a1b17ca)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd0dfd0e30f41e16ffd34b64ada66 (鏉ュ疂绂忓窞鎺掓按) parent=鏉ュ疂
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd0dfd0e30f41e16ffd34b64ada66 - 鏉ュ疂绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?8ebd224ecbfd1f9ea5f0e647919ab66锛堝悕绉帮細鑽ｅ彂婊ㄦ捣姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e9d81cf53e2338e54d0e54804b2c4e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ebd224ecbfd1f9ea5f0e647919ab66 (鑽ｅ彂婊ㄦ捣姘村姟) parent=绂忓缓鑽ｅ彂寤虹瓚宸ョ▼鏈夐檺鍏徃
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ebd224ecbfd1f9ea5f0e647919ab66 - 鑽ｅ彂婊ㄦ捣姘村姟
+  -> 鍚屾缇ょ粍锛?8ec1a13b9ee275378f101b4df199b26锛堝悕绉帮細铻嶄笢绂忓窞鎺掓按锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e7a2c0caea7e4bc2a0275481e8b03b)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18ec1a13b9ee275378f101b4df199b26 (铻嶄笢绂忓窞鎺掓按) parent=铻嶄笢
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18ec1a13b9ee275378f101b4df199b26 - 铻嶄笢绂忓窞鎺掓按
+  -> 鍚屾缇ょ粍锛?918d9b77c125adfc57f9f34942bb61d锛堝悕绉帮細绂忓缓鍙屽痉娌変簳椤剁涓撲笟鍒嗗寘锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(1918d9b2f5b947baec40c4247689ca2b)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9b77c125adfc57f9f34942bb61d (绂忓缓鍙屽痉娌変簳椤剁涓撲笟鍒嗗寘) parent=绂忓缓鍙屽痉
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9b77c125adfc57f9f34942bb61d - 绂忓缓鍙屽痉娌変簳椤剁涓撲笟鍒嗗寘
+  -> 鍚屾缇ょ粍锛?918d9d854dc7bed9fa010945ea96bad锛堝悕绉帮細绂忕澘绠＄綉缁存姢锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(1918d9cf302fb89604205eb4d669a827)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9d854dc7bed9fa010945ea96bad (绂忕澘绠＄綉缁存姢) parent=绂忕澘
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9d854dc7bed9fa010945ea96bad - 绂忕澘绠＄綉缁存姢
+  -> 鍚屾缇ょ粍锛?918d9da75ad58a392b3d18487ab415b锛堝悕绉帮細婀栧崡澶ч簱閫氱敤鐝粍锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(1918d9cdf5c32d120eea9774fedbd38d)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9da75ad58a392b3d18487ab415b (婀栧崡澶ч簱閫氱敤鐝粍) parent=婀栧崡澶ч簱
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9da75ad58a392b3d18487ab415b - 婀栧崡澶ч簱閫氱敤鐝粍
+  -> 鍚屾缇ょ粍锛?918d9dfd5cb38130ef09a5417291e21锛堝悕绉帮細涓婃捣榫欓洦绠＄綉寤鸿锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(1918d9c9e05e08e6d514b9948a3a3d45)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9dfd5cb38130ef09a5417291e21 (涓婃捣榫欓洦绠＄綉寤鸿) parent=涓婃捣榫欓洦
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9dfd5cb38130ef09a5417291e21 - 涓婃捣榫欓洦绠＄綉寤鸿
+  -> 鍚屾缇ょ粍锛?918d9e3dfe07b461266ebe4ea882845锛堝悕绉帮細涓缓楦胯吘娌変簳椤剁涓撲笟鍒嗗寘锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(1918d9c7aba89da4f19fd3a47d0a5f84)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9e3dfe07b461266ebe4ea882845 (涓缓楦胯吘娌変簳椤剁涓撲笟鍒嗗寘) parent=涓缓楦胯吘
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9e3dfe07b461266ebe4ea882845 - 涓缓楦胯吘娌変簳椤剁涓撲笟鍒嗗寘
+  -> 鍚屾缇ょ粍锛?918d9e6e43d3f1a0ff7b794da19fa85锛堝悕绉帮細涓椊闆呴懌娌変簳椤剁涓撲笟鍒嗗寘锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(1918d9c3fca5bfa6ebeae594888b06dc)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918d9e6e43d3f1a0ff7b794da19fa85 (涓椊闆呴懌娌変簳椤剁涓撲笟鍒嗗寘) parent=涓椊闆呴懌
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918d9e6e43d3f1a0ff7b794da19fa85 - 涓椊闆呴懌娌変簳椤剁涓撲笟鍒嗗寘
+  -> 鍚屾缇ょ粍锛?918da1df73fae2e51e249c44bb8f3be锛堝悕绉帮細姘稿瘜娉电珯缁存姢锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e9cb934f2c0f81fabd7ed4870b5c8e)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918da1df73fae2e51e249c44bb8f3be (姘稿瘜娉电珯缁存姢) parent=姘稿瘜
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918da1df73fae2e51e249c44bb8f3be - 姘稿瘜娉电珯缁存姢
+  -> 鍚屾缇ょ粍锛?918da6d17994beb45c0908468785db6锛堝悕绉帮細姹夋Λ閫氱敤鐝粍锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e9c9f75a47bfb80cdff7b49ed9775b)
+  -> 鍚屾缁勭粐: fzswjtOrganization/1918da6d17994beb45c0908468785db6 (姹夋Λ閫氱敤鐝粍) parent=姹夋Λ绂忓窞鎺掓按
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/1918da6d17994beb45c0908468785db6 - 姹夋Λ閫氱敤鐝粍
+  -> 鍚屾缇ょ粍锛?8e5b48d1cd79c08fcf480f409e97630锛堝悕绉帮細鏈轰慨鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48ccbcb2244ea736044399a2bb3)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d1cd79c08fcf480f409e97630 (鏈轰慨鐝? parent=鍑岀
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d1cd79c08fcf480f409e97630 - 鏈轰慨鐝?
+  -> 鍚屾缇ょ粍锛?8e5b48d2442aace19e6470487d8a07c锛堝悕绉帮細姘寸數鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48ccbcb2244ea736044399a2bb3)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d2442aace19e6470487d8a07c (姘寸數鐝? parent=鍑岀
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d2442aace19e6470487d8a07c - 姘寸數鐝?
+  -> 鍚屾缇ょ粍锛?8e5b48d2d2f6a38c1caef24895b1e5f锛堝悕绉帮細姘寸數鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48cea6e1db870db94b47a4b38a2)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d2d2f6a38c1caef24895b1e5f (姘寸數鐝? parent=楦夸笟鐩?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d2d2f6a38c1caef24895b1e5f - 姘寸數鐝?
+  -> 鍚屾缇ょ粍锛?8e5b48d3410fae057d5b204a0284358锛堝悕绉帮細缁存姢鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48cea6e1db870db94b47a4b38a2)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d3410fae057d5b204a0284358 (缁存姢鐝? parent=楦夸笟鐩?
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d3410fae057d5b204a0284358 - 缁存姢鐝?
+  -> 鍚屾缇ょ粍锛?8e5b48d3d8868171d5d76b4a00b8c4a锛堝悕绉帮細鍏嗕嚎闂戒警姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5b48cf2bb13e84b2452c44269b8d2)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d3d8868171d5d76b4a00b8c4a (鍏嗕嚎闂戒警姘村姟) parent=鍏嗕嚎
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d3d8868171d5d76b4a00b8c4a - 鍏嗕嚎闂戒警姘村姟
+  -> 鍚屾缇ょ粍锛?8e5b48d4699179557760a14d6894baa锛堝悕绉帮細鍚惧叚闂戒警姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5b48cf96e31bb07a4d03446eaa2b0)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d4699179557760a14d6894baa (鍚惧叚闂戒警姘村姟) parent=鍚惧叚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d4699179557760a14d6894baa - 鍚惧叚闂戒警姘村姟
+  -> 鍚屾缇ょ粍锛?8e5b48d5089a5f30ab07e14241bd977锛堝悕绉帮細缁存姢鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48cf96e31bb07a4d03446eaa2b0)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d5089a5f30ab07e14241bd977 (缁存姢鐝? parent=鍚惧叚
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d5089a5f30ab07e14241bd977 - 缁存姢鐝?
+  -> 鍚屾缇ょ粍锛?8e5b48d5acf49ce92a9e5c42d9954b6锛堝悕绉帮細姹夋Λ闂戒警姘村姟锛夛紝灞傜骇锛?锛岀埗绾э細瀛樺湪(18e5b48cffb8d92156bfe334ad9a30f6)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d5acf49ce92a9e5c42d9954b6 (姹夋Λ闂戒警姘村姟) parent=姹夋Λ
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d5acf49ce92a9e5c42d9954b6 - 姹夋Λ闂戒警姘村姟
+  -> 鍚屾缇ょ粍锛?8e5b48d614cceca449dbd9451390324锛堝悕绉帮細鏈轰慨鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48d05ab3e154ded4174258a9168)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d614cceca449dbd9451390324 (鏈轰慨鐝? parent=璧㈤緳
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d614cceca449dbd9451390324 - 鏈轰慨鐝?
+  -> 鍚屾缇ょ粍锛?8e5b48d8813d7e68980b9845fb89ed0锛堝悕绉帮細缁存姢鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48d0fc6f7b9469ba0949d4b8699)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d8813d7e68980b9845fb89ed0 (缁存姢鐝? parent=閼嵎
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d8813d7e68980b9845fb89ed0 - 缁存姢鐝?
+  -> 鍚屾缇ょ粍锛?8e5b48d96abf80ff195c7f4304a5722锛堝悕绉帮細姘寸數鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48d15934846c7177354c5b9c7bd)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48d96abf80ff195c7f4304a5722 (姘寸數鐝? parent=涓懌
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48d96abf80ff195c7f4304a5722 - 姘寸數鐝?
+  -> 鍚屾缇ょ粍锛?8e5b48da4c7f99c632104e40e492543锛堝悕绉帮細鏈轰慨鐝級锛屽眰绾э細3锛岀埗绾э細瀛樺湪(18e5b48d15934846c7177354c5b9c7bd)
+  -> 鍚屾缁勭粐: fzswjtOrganization/18e5b48da4c7f99c632104e40e492543 (鏈轰慨鐝? parent=涓懌
+  POST /api/add-group
+    HTTP 200 - 鍝嶅簲闀垮害: 212 瀛楄妭
+      鉁?缁勭粐宸插瓨鍦?璺宠繃鏇存柊): fzswjtOrganization/18e5b48da4c7f99c632104e40e492543 - 鏈轰慨鐝?
+缁勭粐鍚屾瀹屾垚锛屽叡澶勭悊 192 鏉¤褰曘€?
+
+鉁?缁勭粐灞傜骇鍏崇郴宸插鍑哄埌: logs\organization_hierarchy_20251030_083625.csv
+  鍏?192 涓粍缁?
+  鍏朵腑 155 涓湁涓婄骇缁勭粐
+
+姝ｅ湪浠嶤asdoor鍔犺浇鎵€鏈夌粍缁囨槧灏?..
+  GET /api/get-groups?owner=fzswjtOrganization
+    HTTP 200 - 鍝嶅簲闀垮害: 77252 瀛楄妭
+  鉁?宸插姞杞?192 涓粍缁囨槧灏?
+寮€濮嬪悓姝ョ敤鎴蜂俊鎭紝鏃堕棿鑼冨洿锛氬叏閲?
+璀﹀憡: 鏈厤缃?EKP_USER_GROUP_VIEW, 鐢ㄦ埛灏嗕笉浼氳鑷姩娣诲姞鍒颁换浣曠粍缁囥€?
+  -> 鐢ㄦ埛 004d942928a0a733538af8807eb687a8 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a3cfdcf31423fdedfa5408cb2587
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13763899453 (寮犲崕杩? 缁勭粐: [fzswjtOrganization/18e7a3cfdcf31423fdedfa5408cb2587]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 00c156c46b33e640d23bef5b7d9b8322 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e79fd7f7c81ba72484f8d40a1b17ca
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15980613060 (鐢板媷) 缁勭粐: [fzswjtOrganization/18e79fd7f7c81ba72484f8d40a1b17ca]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0105cf66ff511482f07c1f88a25edfdd 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e5b48d2d2f6a38c1caef24895b1e5f
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13609587029 (鍙剁啍) 缁勭粐: [fzswjtOrganization/18e5b48d2d2f6a38c1caef24895b1e5f]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0113687bdd2ef223748bc0ca665cb691 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a3cfdcf31423fdedfa5408cb2587
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/17746093888 (寤栭暱鍙? 缁勭粐: [fzswjtOrganization/18e7a3cfdcf31423fdedfa5408cb2587]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 01567b52acbebb9a0e005deeb42c626e 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9d83618015f4c6bce9ad4d65ba328
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18149532699 (鏋楅敠浜? 缁勭粐: [fzswjtOrganization/18e9d83618015f4c6bce9ad4d65ba328]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 023f8401d241d09f38ba1ee7a72a4960 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e98dffbe455975028a8d7466bab55e
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/17879383658 (鐜嬩笢鐙? 缁勭粐: [fzswjtOrganization/18e98dffbe455975028a8d7466bab55e]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 027e9def53432d87b6e6ef486591ac14 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce2a99a93d3f2dc346e4c039e1ef
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15980611967 (鍗㈠叺) 缁勭粐: [fzswjtOrganization/18e9ce2a99a93d3f2dc346e4c039e1ef]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0348f211cdc5ba4612137f139b62cb03 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e79fd7f7c81ba72484f8d40a1b17ca
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15060182388 (鐜嬩竵寤? 缁勭粐: [fzswjtOrganization/18e79fd7f7c81ba72484f8d40a1b17ca]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0372b4773a8efd2ba7a3a440298e935c 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9c96a5cf15c6387d3c62450d83519
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15359127697 (鐜嬪痉灏? 缁勭粐: [fzswjtOrganization/18e9c96a5cf15c6387d3c62450d83519]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0376370bbc1d10d863dfca5cd5502266 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1918d9da75ad58a392b3d18487ab415b
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15573111492 (椹瀹? 缁勭粐: [fzswjtOrganization/1918d9da75ad58a392b3d18487ab415b]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 03902e080cd96e76840a43f80bfad14d 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a3b406c3e003d1e3b174de4aa19c
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13015740507 (鏉庡鍏? 缁勭粐: [fzswjtOrganization/18e7a3b406c3e003d1e3b174de4aa19c]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 04b276d1620a2296da7376ddf8d8dca3 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9d7bbda69470043a24cf4d4bb7724
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18060608986 (鍙舵棩寮? 缁勭粐: [fzswjtOrganization/18e9d7bbda69470043a24cf4d4bb7724]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 04fe0a948b0f7d1d7ebc00e7903a675d 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e5b48d4699179557760a14d6894baa
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15859821132 (浣曞杽姝? 缁勭粐: [fzswjtOrganization/18e5b48d4699179557760a14d6894baa]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 058834fd8d7953ff0606d35ca35a5209 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce8a6cfccfbef90e025424ab2e95
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13959169514 (鍑屾捣) 缁勭粐: [fzswjtOrganization/18e9ce8a6cfccfbef90e025424ab2e95]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0613b116171c3f86e9379be915a4d9fa 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e56394c3afdcef5f3966c4a56b5f71
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13809531365 (璧靛畧娴? 缁勭粐: [fzswjtOrganization/18e56394c3afdcef5f3966c4a56b5f71]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0674f684cb3b6539dcb93fbbc1bae023 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ceaaf6fe3210ef59c5f4fbf97e66
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13905017994 (璧电嚂鐕? 缁勭粐: [fzswjtOrganization/18e9ceaaf6fe3210ef59c5f4fbf97e66]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 06d4ec84727d6a28ab37a1bcd4edfa41 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce2a99a93d3f2dc346e4c039e1ef
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/17345179005 (鍒樺鑽? 缁勭粐: [fzswjtOrganization/18e9ce2a99a93d3f2dc346e4c039e1ef]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 071053e1f93c3cc69cf40dc4f96365f6 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce6d22ae66e481b366e48bd9d9d5
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13340076178 (鍛ㄥ０瀵? 缁勭粐: [fzswjtOrganization/18e9ce6d22ae66e481b366e48bd9d9d5]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 08b6f8ce25a5bcef8edf416e4b3ce437 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e98ed06992e1c98da2b4a4d8f8760c
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13295949521 (闄堜匠鎷? 缁勭粐: [fzswjtOrganization/18e98ed06992e1c98da2b4a4d8f8760c]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 08dbcc663bbbab99d180381e8f693797 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a2febf4a14f0cea18b64746b2ff2
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15959007141 (鏌冲拰骞? 缁勭粐: [fzswjtOrganization/18e7a2febf4a14f0cea18b64746b2ff2]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0940138692f03d2123beabbecbde220b 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce2699bdc49448335334fca83bf6
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18350057129 (鍒樿緣) 缁勭粐: [fzswjtOrganization/18e9ce2699bdc49448335334fca83bf6]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0951c287ebac00bf8b1e01b30268d81e 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce30a8cab51ad5b4f844ba39d8ec
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18060695328 (鏋楁枌) 缁勭粐: [fzswjtOrganization/18e9ce30a8cab51ad5b4f844ba39d8ec]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 09ab039fa34b79f712529e6f6f0b993a 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1918d9e6e43d3f1a0ff7b794da19fa85
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15506913923 (璐哄牑鍕? 缁勭粐: [fzswjtOrganization/1918d9e6e43d3f1a0ff7b794da19fa85]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0a1e6414ff019cb2526bfd69bfa1969e 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce423bdcce235af902a4455a28a0
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15205026781 (绉﹀簲鏂? 缁勭粐: [fzswjtOrganization/18e9ce423bdcce235af902a4455a28a0]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0aadbe4b4947fbd3494e044d055548ad 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce2da63331fd41d22ca4061b8580
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13235904093 (寮犺€虫槑) 缁勭粐: [fzswjtOrganization/18e9ce2da63331fd41d22ca4061b8580]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0beac326a7df1c8dd7c2980461144912 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce6d22ae66e481b366e48bd9d9d5
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13665027566 (鏉庨噾澶? 缁勭粐: [fzswjtOrganization/18e9ce6d22ae66e481b366e48bd9d9d5]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0c8ec66d4c33a813cf714f547aab2ba0 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e5b48d3410fae057d5b204a0284358
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13665070323 (鏋楅) 缁勭粐: [fzswjtOrganization/18e5b48d3410fae057d5b204a0284358]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0cc982e99613b7aba722b0c2c0ca9fc1 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a2febf4a14f0cea18b64746b2ff2
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18871617305 (濮氬叾蹇? 缁勭粐: [fzswjtOrganization/18e7a2febf4a14f0cea18b64746b2ff2]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0d7529f192872db54bcc814339cdbaa5 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a3bb3c66f7245c878ef4cbfa11d1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18659368112 (鏉庣粛鍒? 缁勭粐: [fzswjtOrganization/18e7a3bb3c66f7245c878ef4cbfa11d1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0dbb6d56ff718fa0e3a825e3faef2f7c 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a3c11f40d1fa96649c149f4b5adc
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15880000065 (榛勬尟鑹? 缁勭粐: [fzswjtOrganization/18e7a3c11f40d1fa96649c149f4b5adc]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 0df7c914166bfa240b63b14d9d726a26 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce6d22ae66e481b366e48bd9d9d5
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18784222554 (鏉庡痉鎴? 缁勭粐: [fzswjtOrganization/18e9ce6d22ae66e481b366e48bd9d9d5]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 1058dca4348c6395aa981bcc0d77d049 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1918d9e3dfe07b461266ebe4ea882845
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/15980636751 (闄堥『鑹? 缁勭粐: [fzswjtOrganization/1918d9e3dfe07b461266ebe4ea882845]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 107491ed646ec2ceb288a1f435d818e2 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ceaaf6fe3210ef59c5f4fbf97e66
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18950239865 (闄堜紭蹇? 缁勭粐: [fzswjtOrganization/18e9ceaaf6fe3210ef59c5f4fbf97e66]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 109ba66ef96fa4a55b581f0bcff2d85c 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ce2da63331fd41d22ca4061b8580
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/19382852946 (鍒橀偟鍛? 缁勭粐: [fzswjtOrganization/18e9ce2da63331fd41d22ca4061b8580]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 1181571c5c771838cd3fdb32c36cf078 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e98da0994df884fd37c4d4adf8dad1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/132461097771 (寤栧厜閾? 缁勭粐: [fzswjtOrganization/18e98da0994df884fd37c4d4adf8dad1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 11abcd3f1b9621f42b4ced3ce6c4a017 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9ceb0809cef40f20d93c455894405
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18850787908 (榛勫織婕? 缁勭粐: [fzswjtOrganization/18e9ceb0809cef40f20d93c455894405]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 11d868f73928ca8dc97d73e0e00d9965 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a3c11f40d1fa96649c149f4b5adc
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13799927938 (闆风埍鏄? 缁勭粐: [fzswjtOrganization/18e7a3c11f40d1fa96649c149f4b5adc]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 1237840dd9a989a92fdd22f03e168d35 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a3bb3c66f7245c878ef4cbfa11d1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18759122634 (鑲栧畾寤? 缁勭粐: [fzswjtOrganization/18e7a3bb3c66f7245c878ef4cbfa11d1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 144de2091932f5ef077a445835cad3e6 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e79f85fe5c7857b24094e4819b72c7
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/18255822985 (鐜嬪姞涓? 缁勭粐: [fzswjtOrganization/18e79f85fe5c7857b24094e4819b72c7]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 1527dd74b19d4b4b9fc2e42e554ec574 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e9d81cf53e2338e54d0e54804b2c4e
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13489906106 (鏋楁槑鏉? 缁勭粐: [fzswjtOrganization/18e9d81cf53e2338e54d0e54804b2c4e]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16571cba444dbb28608fb56a92032f33 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18e7a3b406c3e003d1e3b174de4aa19c
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13950306886 (鏋楀皧鐩? 缁勭粐: [fzswjtOrganization/18e7a3b406c3e003d1e3b174de4aa19c]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 167f876664005f808e2bdf37a81056f4 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1918d9da75ad58a392b3d18487ab415b
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/13548598499 (鍐宄? 缁勭粐: [fzswjtOrganization/1918d9da75ad58a392b3d18487ab415b]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16ef2ecf96b64bac45143ec40a5be334 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 18f5b6c906fabb74b110b6f4e51bc340
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhangjing (寮犵挓) 缁勭粐: [fzswjtOrganization/18f5b6c906fabb74b110b6f4e51bc340]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16ef2ecfc52cc35da8bceba4c51a6f31 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a495ecf0e6b53ea74440d9f478
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/libingqing (鏉庡啺闈? 缁勭粐: [fzswjtOrganization/16f1c1a495ecf0e6b53ea74440d9f478]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16ef2ecfdea2a35058b786e41268439d 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea50771508550dd3a0c462abe30a
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/linrui (鏋楅攼) 缁勭粐: [fzswjtOrganization/1702ea50771508550dd3a0c462abe30a]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16ef2ed009e52a4ea912a9c42c589838 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 191badc51d7492892880c484733b3b39
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/linxi2 (鏋楀笇) 缁勭粐: [fzswjtOrganization/191badc51d7492892880c484733b3b39]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16ef2ed03d019132d07692440ebb5dcb 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702e9983fe4f03c6af31f2432d9ea73
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/chengzhi (绋嬫櫤) 缁勭粐: [fzswjtOrganization/1702e9983fe4f03c6af31f2432d9ea73]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1c88e1d5b3ecb710818f4e8e98e93 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea56b2074b5c6191ef24314bb803
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhengchenghao (閮戞壙娴? 缁勭粐: [fzswjtOrganization/1702ea56b2074b5c6191ef24314bb803]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1cfbae3d40af9307d8bc450494db3 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea50771508550dd3a0c462abe30a
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/linxingwei (鏋楁槦浼? 缁勭粐: [fzswjtOrganization/1702ea50771508550dd3a0c462abe30a]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1cfbae7bd75e9045f2d64fe4ae5bc 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea50771508550dd3a0c462abe30a
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/qianyong999 (閽辨案) 缁勭粐: [fzswjtOrganization/1702ea50771508550dd3a0c462abe30a]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063e4e555604e67fd442ec8bfda 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a492fd930d29dd4d2431f925ed
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhangchenyan (寮犻檲鐞? 缁勭粐: [fzswjtOrganization/16f1c1a492fd930d29dd4d2431f925ed]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063ebc318b7078a33f4d5e874ee 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a492fd930d29dd4d2431f925ed
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/linwenyao (鏋楁枃鐟? 缁勭粐: [fzswjtOrganization/16f1c1a492fd930d29dd4d2431f925ed]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063edb85fe202ee2ea4a5ebf1e2 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a492fd930d29dd4d2431f925ed
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/linwei2 (鏋楃幃) 缁勭粐: [fzswjtOrganization/16f1c1a492fd930d29dd4d2431f925ed]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063f0abc08701e5e9d45959a319 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a493ff7d63d4310f1409f8c158
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/yuanfang (鍘熸柟) 缁勭粐: [fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063f3934522305a75f4c10b65a3 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a493ff7d63d4310f1409f8c158
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/linjinyan (鏋楀┃鐕? 缁勭粐: [fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063f688eeeffa0c21845a697496 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a493ff7d63d4310f1409f8c158
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/niruiyi (鍊澘姣? 缁勭粐: [fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063f87646e4852120f43ef8020b 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a493ff7d63d4310f1409f8c158
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/jiangying (姹熻嫳) 缁勭粐: [fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063fb60abf9154d6fb4162bd17d 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea56b2074b5c6191ef24314bb803
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhengliang (閮戜寒) 缁勭粐: [fzswjtOrganization/1702ea56b2074b5c6191ef24314bb803]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d063fd502cbaa4e301147bfb9b80 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a493ff7d63d4310f1409f8c158
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/linguangxiong (鏋楀厜闆? 缁勭粐: [fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064014074870d801c04956b22a7 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a493ff7d63d4310f1409f8c158
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/chenshuhuai (闄堜功鎬€) 缁勭粐: [fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064042f399cc64100e4914824b1 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a493ff7d63d4310f1409f8c158
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhoujianan (鍛ㄤ匠鑾? 缁勭粐: [fzswjtOrganization/16f1c1a493ff7d63d4310f1409f8c158]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0640628ccef4afcf2c4730b5f2b 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702e970dbe674ab7d79320474c9644d
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/liuletian (鍒樹箰澶? 缁勭粐: [fzswjtOrganization/1702e970dbe674ab7d79320474c9644d]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064091a68a4e0181674e5298cc3 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a4a0bfd1e4575dcdf4b1ea2b60
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/dongfei (钁ｉ潪) 缁勭粐: [fzswjtOrganization/16f1c1a4a0bfd1e4575dcdf4b1ea2b60]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d06418a06342570dcf24966891fc 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a495ecf0e6b53ea74440d9f478
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/laimaoshun (璧栬寕椤? 缁勭粐: [fzswjtOrganization/16f1c1a495ecf0e6b53ea74440d9f478]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064227765426f62e9b45b5b1ce6 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49add8c3c620535d42cdbd7a6
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/gaolinhang (楂樻灄鑸? 缁勭粐: [fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064246fcb27fd749f84b46a31a6 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49710197e91a393841508bb01
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/chenfeng (闄堢兘) 缁勭粐: [fzswjtOrganization/16f1c1a49710197e91a393841508bb01]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0642754969d65f4dd34d4d93374 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49710197e91a393841508bb01
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/yaojiandong (濮氬缓涓? 缁勭粐: [fzswjtOrganization/16f1c1a49710197e91a393841508bb01]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0642c3114a2926a2424aacb46f3 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/sunshan (瀛欑強) 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0642f20f12b0eaf7244768a671e 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/wangyong1 (鐜嬫案) 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064311313530d521cb490bb802e 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea594c72ddec7866ff74fa6b3937
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/lishengping (鏉庣敓骞? 缁勭粐: [fzswjtOrganization/1702ea594c72ddec7866ff74fa6b3937]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064340beda54c8e6f44b77a4956 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhaozhirong (璧典箣鑽? 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d06435f8898537b8fdf463ca4945 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/wangyimin (鐜嬬泭姘? 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d06438ec95c4e8ba0754aaa9f720 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/ousheng (娆у湥) 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0643ad576e8ffa98b740a9908a5 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/lijinquan (鏉庨敠閾? 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0643dc4e91e1a629e24e5497de4 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/litian (鏉庡ぉ) 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d06440b937ebf08b5e84a2d9b4c7 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/chenlirong3 (闄堣崝姒? 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d06443a6e7cc6675ce34ea7a8630 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhangxingfu (寮犳槦绂? 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0644691c82cef89ac24d4c8ab62 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhengcongqian (閮戣仾鍊? 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0644d6d5d2ed2f8ca04e9caa7fc 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhengminmin (閮戞晱闂? 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0645056dffec596f714107b7e17 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea5397ada9df93bf9534b438ebf9
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/guoxiaoqin (閮皬閽? 缁勭粐: [fzswjtOrganization/1702ea5397ada9df93bf9534b438ebf9]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064524c71d9877589c4260b30bd 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a499d2a79baaa29974096aa1f1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/wuyan (鍚寸劙) 缁勭粐: [fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064553d8393da82e7f4344aee01 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a499d2a79baaa29974096aa1f1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/liangxuezhen (姊侀洩鐝? 缁勭粐: [fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0645a12c78d1a383044e68aba9f 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a499d2a79baaa29974096aa1f1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/tangqiurong (鍞愮姒? 缁勭粐: [fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0645d0f043554fa8b947adad782 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a499d2a79baaa29974096aa1f1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/wangmeilin (姹編鏋? 缁勭粐: [fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0645ff84713a48aff44abbb128c 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a499d2a79baaa29974096aa1f1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/huangyuan (榛勫厓) 缁勭粐: [fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d06464d2f835316f5df40878817d 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a499d2a79baaa29974096aa1f1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/chenxinhang (闄堟鏉? 缁勭粐: [fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d06468cb079941369ac44dda2671 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a499d2a79baaa29974096aa1f1
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/lizhaoe (鏉庢嫑濞? 缁勭粐: [fzswjtOrganization/16f1c1a499d2a79baaa29974096aa1f1]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0646ab5a2e6d37aaca4f8b995e7 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49add8c3c620535d42cdbd7a6
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/chenlingyun (闄堝噷浜? 缁勭粐: [fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064709e57ff49a3eda4977a79fa 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49add8c3c620535d42cdbd7a6
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/lindanbing (鏋椾腹鏂? 缁勭粐: [fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064728e1b7a4c8a71a484eb4f8b 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49add8c3c620535d42cdbd7a6
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/baizequn (鐧芥辰缇? 缁勭粐: [fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064758f07a8a22a0034ab1abd79 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49add8c3c620535d42cdbd7a6
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhangjiangan (寮犲缓骞? 缁勭粐: [fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d064777a8bc18ac2e9749eea45ec 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49add8c3c620535d42cdbd7a6
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhengzhangmin (閮戠珷鏁? 缁勭粐: [fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0647a6d5b61de0ab0b4e3eab613 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 1702ea56b2074b5c6191ef24314bb803
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhangweibin (寮犵倻褰? 缁勭粐: [fzswjtOrganization/1702ea56b2074b5c6191ef24314bb803]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+  -> 鐢ㄦ埛 16f1d0647d576c33da965254e25a20d3 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a49add8c3c620535d42cdbd7a6
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/zhangchenyuan (寮犻檲鍦? 缁勭粐: [fzswjtOrganization/16f1c1a49add8c3c620535d42cdbd7a6]
+  POST /api/add-user

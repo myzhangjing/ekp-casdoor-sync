@@ -1,0 +1,11 @@
+{
+  "name": "sync-casdoor-playwright",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node create_app_users.js"
+  },
+  "dependencies": {
+    "playwright": "^1.37.0"
+  }
+}

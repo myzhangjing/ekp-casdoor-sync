@@ -1,0 +1,38 @@
+﻿C:\Users\ThinkPad\Desktop\VSCOD\SyncEkpToCasdoor\SyncEkpToCasdoor.csproj : warning NU1603: SyncEkpToCasdoor 渚濊禆浜?Casdoor.Client (>= 1.1.3)锛屼絾娌℃湁鎵惧埌 Casdoor.Client 1.1.3銆傚凡鏀逛负瑙ｆ瀽 Casdoor.Client 1.2.0銆?
+C:\Users\ThinkPad\Desktop\VSCOD\SyncEkpToCasdoor\SyncEkpToCasdoor.csproj : warning NU1603: SyncEkpToCasdoor 渚濊禆浜?Casdoor.Client (>= 1.1.3)锛屼絾娌℃湁鎵惧埌 Casdoor.Client 1.1.3銆傚凡鏀逛负瑙ｆ瀽 Casdoor.Client 1.2.0銆?
+EKP -> Casdoor 鍚屾绋嬪簭鍚姩銆?
+寮€濮嬪悓姝ョ粍缁囩粨鏋勶紝鏃堕棿鑼冨洿锛?025-10-30T00:25:35.8981359Z
+缁勭粐鍚屾瀹屾垚锛屽叡澶勭悊 0 鏉¤褰曘€?
+
+鉁?缁勭粐灞傜骇鍏崇郴宸插鍑哄埌: logs\organization_hierarchy_20251030_082754.csv
+  鍏?0 涓粍缁?
+  鍏朵腑 0 涓湁涓婄骇缁勭粐
+
+姝ｅ湪浠嶤asdoor鍔犺浇鎵€鏈夌粍缁囨槧灏?..
+  GET /api/get-groups?owner=fzswjtOrganization
+    HTTP 200 - 鍝嶅簲闀垮害: 77252 瀛楄妭
+  鉁?宸插姞杞?192 涓粍缁囨槧灏?
+寮€濮嬪悓姝ョ敤鎴蜂俊鎭紝鏃堕棿鑼冨洿锛?025-10-30T00:25:36.6828888Z
+璀﹀憡: 鏈厤缃?EKP_USER_GROUP_VIEW, 鐢ㄦ埛灏嗕笉浼氳鑷姩娣诲姞鍒颁换浣曠粍缁囥€?
+  -> 鐢ㄦ埛 16f1d06518ec8ebae96cd234a32ac46d 鏈湪鎴愬憳鍏崇郴瑙嗗浘涓壘鍒? 鍥為€€浣跨敤鍏堕儴闂↖D: 16f1c1a4a2aa9f389dbf3fd493a8342e
+  -> 鍚屾鐢ㄦ埛: fzswjtOrganization/linfang1 (鏋楄姵) 缁勭粐: [fzswjtOrganization/16f1c1a4a2aa9f389dbf3fd493a8342e]
+  POST /api/add-user
+    HTTP 200 - 鍝嶅簲闀垮害: 136 瀛楄妭
+      鉁?鐢ㄦ埛宸插瓨鍦? 灏濊瘯鏇存柊...
+  POST /api/update-user
+    HTTP 200 - 鍝嶅簲闀垮害: 151 瀛楄妭
+      鈿?鏇存柊鐢ㄦ埛澶辫触: The user: app/fzcsps-app doesn't exist
+鐢ㄦ埛鍚屾瀹屾垚锛屽叡澶勭悊 1 鏉¤褰曘€?
+鎴愬憳鍏崇郴鍚屾姝ラ宸插悎骞跺埌鐢ㄦ埛鍚屾涓紝姝ゆ楠ゅ皢琚烦杩囥€?
+  POST /api/update-enforcer
+    HTTP 200 - 鍝嶅簲闀垮害: 1952 瀛楄妭
+    璀﹀憡: 鏈嶅姟鍣ㄨ繑鍥?HTML 鑰岄潪 JSON (鍓?00瀛楃): 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>beego application error</title>
+    <style>
+        html, body, body * {padding: 0; 
+    璀﹀憡: 鍒锋柊鎵ц鍣?built-in/user-enforcer-built-in 澶辫触: 鏈嶅姟鍣ㄨ繑鍥濰TML,闈為鏈熺殑JSON鍝嶅簲
+鍚屾娴佺▼缁撴潫锛屾鏌ョ偣宸插啓鍏ワ細sync_state.json

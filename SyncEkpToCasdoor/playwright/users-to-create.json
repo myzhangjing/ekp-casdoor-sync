@@ -1,0 +1,9 @@
+[
+  {
+    "owner": "app",
+    "name": "app-built-in",
+    "displayName": "app-built-in",
+    "password": "P@ssw0rd!",
+    "email": "app-built-in@example.local"
+  }
+]

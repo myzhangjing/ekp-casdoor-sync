@@ -1,0 +1,16 @@
+{
+  "Ekp": {
+    "ConnectionString": "Server=<EKP_HOST>,<PORT>;Database=ekp;User Id=<USER>;Password=<PASSWORD>;TrustServerCertificate=True;"
+  },
+  "Casdoor": {
+  "Endpoint": "http://sso.fzcsps.com",
+    "ClientId": "aecd00a352e5c560ffe6",
+    "ClientSecret": "<DO_NOT_COMMIT_SECRET>",
+    "Organization": "fzswjtOrganization",
+    "Application": "<OPTIONAL_APP_NAME>"
+  },
+  "DefaultOwner": "built-in",
+  "MinimalMode": false,
+  "MembershipViewName": "vw_user_group_view",
+  "StateFilePath": "sync_state.json"
+}

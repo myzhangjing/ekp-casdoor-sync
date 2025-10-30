@@ -1,0 +1,3 @@
+$html = Get-Content 'C:\Users\ThinkPad\Desktop\VSCOD\SyncEkpToCasdoor\logs\casdoor_login_page.html' -Raw
+if ($null -eq $html) { Write-Error 'login page missing'; exit 1 }
+if ($html -match '/static/js/(?<fn>main\.[a-z0-9]+\.js)') { $fn = $Matches['fn']; $url = "http://sso.fzcsps.com/static/js/$fn"; Write-Output "GET $url"; $out = "C:\Users\ThinkPad\Desktop\VSCOD\SyncEkpToCasdoor\logs\$fn"; Invoke-WebRequest -Uri $url -UseBasicParsing -OutFile $out -ErrorAction Stop; Write-Output "Saved to $out" } else { Write-Error 'main JS not found in login page' }
