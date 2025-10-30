@@ -136,3 +136,23 @@ cd "c:\Users\ThinkPad\Desktop\VSCOD\SyncEkpToCasdoor"
 2. **CSV编码**: 所有CSV文件使用UTF-8编码,支持中文
 3. **成员格式**: 成员列表使用分号(;)分隔
 4. **手动配置**: 由于API限制,组织成员必须手动配置
+
+Server:    npm.fzcsps.com,11433
+Database:  ekp
+Username:  xxzx
+Password:  sosy3080@sohu.com
+
+Host:      172.16.10.110
+Port:      3306
+Database:  casdoor
+Username:  root
+Password:  zhangjing
+
+Endpoint:       http://172.16.10.110:8000
+Client ID:      aecd00a352e5c560ffe6
+Client Secret:  4402518b20dd191b8b48d6240bc786a4f847899a
+Default Owner:  fzswjtOrganization
+
+URL:      http://172.16.10.110:8000
+用户名:   admin
+密码:     123

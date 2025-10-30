@@ -22,6 +22,7 @@ WITH person_info AS (
         p.fd_email AS Email,
         p.fd_mobile_no AS MobileNo,
         p.fd_sex AS Sex,
+        p.fd_password AS PasswordMd5,
         e.fd_create_time AS CreatedTime,
         e.fd_alter_time AS UpdatedTime,
                 -- 选择部门ID: 仅返回 org_type=2 的部门
@@ -99,7 +100,8 @@ SELECT
      WHERE fd_id = dc.CompanyId) AS company_name,
     dc.DeptName AS affiliation,  -- 简化为部门名称
     CAST(N'fzswjtOrganization' AS nvarchar(100)) AS owner,
-    NULL AS type
+    NULL AS type,
+    p.PasswordMd5 AS password_md5
 FROM person_info p
 LEFT JOIN dept_company dc ON p.DeptId = dc.DeptId
 WHERE dc.CompanyId IN ('16f1c1a4910426f41649fd14862b99a1', '18e389224b660b4d67413f8466285581');
@@ -188,8 +190,8 @@ valid_depts AS (
       )
 )
 SELECT DISTINCT
-    p.LoginName AS user_id,
-    apd.DeptId AS group_id
+    p.LoginName AS username,
+    apd.DeptId AS dept_id
 FROM person p
 INNER JOIN all_person_dept apd ON p.PersonId = apd.PersonId
 INNER JOIN valid_depts vd ON apd.DeptId = vd.DeptId;

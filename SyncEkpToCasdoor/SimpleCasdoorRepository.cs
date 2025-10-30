@@ -47,25 +47,18 @@ internal sealed class SimpleCasdoorRepository : ICasdoorRepository
     public void UpsertGroup(EkpGroup g)
     {
         var owner = string.IsNullOrWhiteSpace(g.Owner) ? _defaultOwner : g.Owner.Trim();
-        // 若父组织为空，则按用户需求：默认将 parentId 设置为 owner，确保UI能渲染出树
-        var effectiveParentId = string.IsNullOrWhiteSpace(g.ParentId) ? owner : g.ParentId;
+        // 修复: Casdoor 的分级依赖 parentId 递归，应当使用父级的 name 作为 parentId
+        // 根节点的 parentId 设为 owner，确保顶层节点可见
+        string parentIdForApi = string.IsNullOrWhiteSpace(g.ParentId) ? owner : g.ParentId; // Casdoor 接口期望 parentId=父级的 name，根节点为 owner
         
         // 先记录层级关系(用于导出),必须在检查之前就记录
         _groupHierarchy[g.Id] = (g.DisplayName, g.ParentId, null);
         
         // 处理父组织ID - 使用视图中的parent_id字段
-        string? parentName = null;
-        if (!string.IsNullOrWhiteSpace(g.ParentId))
+        string? parentName = parentIdForApi; // 与 parentId 一致，便于排查
+        if (!string.IsNullOrWhiteSpace(g.ParentId) && _groupHierarchy.TryGetValue(g.ParentId!, out var parentInfo))
         {
-            // 直接使用父组织ID构建完整名称,不再检查_syncedGroupIds
-            // 因为Program.cs中已经按层级排序(ComputeDepth),父组织一定先被同步
-            parentName = $"{owner}/{g.ParentId}";
-            
-            // 更新显示名称
-            if (_groupHierarchy.TryGetValue(g.ParentId, out var parentInfo))
-            {
-                _groupHierarchy[g.Id] = (g.DisplayName, g.ParentId, parentInfo.DisplayName);
-            }
+            _groupHierarchy[g.Id] = (g.DisplayName, g.ParentId, parentInfo.DisplayName);
         }
         
         var parentDisplayInfo = _groupHierarchy[g.Id].ParentDisplayName ?? g.ParentId ?? "无";
@@ -77,8 +70,8 @@ internal sealed class SimpleCasdoorRepository : ICasdoorRepository
             owner, 
             name = g.Id,                    // 使用 EKP ID 作为 Casdoor name
             displayName = g.DisplayName,    // 显示名称
-            parentName,                     // 可选：显示用途
-            parentId = effectiveParentId,   // 关键：为空时回退为 owner，保证UI树可渲染
+            parentName,                     // 可选：显示用途（owner/name）
+            parentId = parentIdForApi,      // 关键：父级用父组织的 name（不带 owner）
             type = g.Type,                  // 组织类型
             isEnabled = g.IsEnabled,        // 是否启用
             key = g.DeptId                  // EKP 部门ID存到 key 字段
@@ -110,7 +103,7 @@ internal sealed class SimpleCasdoorRepository : ICasdoorRepository
                     name = g.Id,
                     displayName = g.DisplayName,
                     parentName,
-                    parentId = effectiveParentId,
+                    parentId = parentIdForApi,
                     type = g.Type,
                     isEnabled = g.IsEnabled,
                     key = g.DeptId
@@ -211,7 +204,7 @@ internal sealed class SimpleCasdoorRepository : ICasdoorRepository
         
         Console.WriteLine($"  -> 同步用户: {targetOwner}/{userName} ({u.DisplayName}){groupsInfo}");
 
-        // 构建用户数据,直接包含groups
+        // 构建用户数据,直接包含groups和password
         var userData = new 
         { 
             owner = targetOwner, 
@@ -225,7 +218,8 @@ internal sealed class SimpleCasdoorRepository : ICasdoorRepository
             type = u.Type,
             tag = u.Department,
             affiliation = u.CompanyName,
-            groups = casdoorGroups ?? Array.Empty<string>()
+            groups = casdoorGroups ?? Array.Empty<string>(),
+            password = u.PasswordMd5  // MD5密码哈希
         };
         
         var createResp = PostAsync("/api/add-user", userData).GetAwaiter().GetResult();

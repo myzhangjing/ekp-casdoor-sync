@@ -1,28 +1,75 @@
-# .NET / VS / VSCode
+## .NET Build Artifacts
 bin/
 obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.deps.json
+*.runtimeconfig.json
+
+## Visual Studio / Rider / VSCode
 .vs/
+.vscode/
+.idea/
 *.user
 *.suo
 *.userprefs
+*.sln.docstates
 *.orig
-*.tmp
-*.log
-logs/
 launchSettings.json
 
-# OS
+## Temporary / Log Files
+*.tmp
+*.temp
+*.log
+logs/
+*.bak
+
+## OS Files
 Thumbs.db
 .DS_Store
+desktop.ini
 
-# Tooling
+## Node / NPM (if any)
 node_modules/
+package-lock.json
 
-# Local state
+## Runtime State & Backups
 sync_state.json
-SyncEkpToCasdoor/sync_state.json
+sync_state.json.*
+*.json.bak
 
-# Secrets (do NOT commit)
+## Configuration Files with Secrets
+sync_config.json
+test_config.json
+appsettings.*.json
+!appsettings.json.example
+
+## Secrets & Environment (NEVER COMMIT)
 *.secret
+*.pfx
+*.p12
 .env
 .env.*
+!.env.example
+
+## Test / Coverage Reports
+TestResults/
+coverage/
+*.trx
+*.coverage
+
+## CSV / Excel Exports (if large)
+*.csv
+!docs/**/*.csv
+*.xlsx
+
+## Package Cache
+packages/
+.nuget/
+
+## Playwright / Automation
+playwright/.auth/
+playwright-report/
+test-results/
