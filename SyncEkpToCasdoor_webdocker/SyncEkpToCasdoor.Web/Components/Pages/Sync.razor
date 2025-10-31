@@ -1,0 +1,223 @@
+@page "/sync"
+@using SyncEkpToCasdoor.Web.Services
+@inject ISyncService SyncService
+@rendermode InteractiveServer
+
+<PageTitle>同步管理</PageTitle>
+
+<h1>EKP 到 Casdoor 同步管理</h1>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>同步操作</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" @onclick="PerformFullSync" disabled="@isRunning">
+                        @if (isRunning && syncType == "full")
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        全量同步
+                    </button>
+                    <button class="btn btn-secondary" @onclick="PerformIncrementalSync" disabled="@isRunning">
+                        @if (isRunning && syncType == "incremental")
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        增量同步
+                    </button>
+                    <button class="btn btn-info" @onclick="ApplyOptimizedViews" disabled="@isRunning">
+                        应用优化视图
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>同步状态</h5>
+            </div>
+            <div class="card-body">
+                @if (syncState != null)
+                {
+                    <dl class="row">
+                        <dt class="col-sm-6">最后全量同步:</dt>
+                        <dd class="col-sm-6">@(syncState.LastFullSync?.ToString("yyyy-MM-dd HH:mm:ss") ?? "从未执行")</dd>
+                        
+                        <dt class="col-sm-6">最后增量同步:</dt>
+                        <dd class="col-sm-6">@(syncState.LastIncrementalSync?.ToString("yyyy-MM-dd HH:mm:ss") ?? "从未执行")</dd>
+                        
+                        <dt class="col-sm-6">当前状态:</dt>
+                        <dd class="col-sm-6">
+                            @if (syncState.IsRunning)
+                            {
+                                <span class="badge bg-warning">运行中</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">空闲</span>
+                            }
+                        </dd>
+                    </dl>
+                }
+                else
+                {
+                    <p class="text-muted">加载中...</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (syncResult != null)
+{
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert @(syncResult.Success ? "alert-success" : "alert-danger")" role="alert">
+                <h5 class="alert-heading">@(syncResult.Success ? "✓" : "✗") @syncResult.Message</h5>
+                <hr>
+                <p class="mb-0">
+                    <strong>开始时间:</strong> @syncResult.StartTime.ToString("yyyy-MM-dd HH:mm:ss")<br>
+                    <strong>结束时间:</strong> @syncResult.EndTime.ToString("yyyy-MM-dd HH:mm:ss")<br>
+                    <strong>耗时:</strong> @((syncResult.EndTime - syncResult.StartTime).TotalSeconds.ToString("F2")) 秒<br>
+                    @if (syncResult.UsersProcessed > 0)
+                    {
+                        <text><strong>处理用户:</strong> @syncResult.UsersProcessed<br></text>
+                    }
+                    @if (syncResult.OrganizationsProcessed > 0)
+                    {
+                        <text><strong>处理组织:</strong> @syncResult.OrganizationsProcessed<br></text>
+                    }
+                </p>
+                @if (syncResult.Errors.Any())
+                {
+                    <hr>
+                    <h6>错误详情:</h6>
+                    <pre class="mb-0" style="max-height: 300px; overflow-y: auto;">@string.Join("\n", syncResult.Errors)</pre>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>用户查询</h5>
+            </div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="输入用户名或姓名" @bind="searchUserName">
+                    <button class="btn btn-outline-secondary" type="button" @onclick="SearchUser">查询</button>
+                </div>
+                
+                @if (searchedUser != null)
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <dl class="row mb-0">
+                                <dt class="col-sm-3">用户名:</dt>
+                                <dd class="col-sm-9">@searchedUser.Username</dd>
+                                
+                                <dt class="col-sm-3">显示名:</dt>
+                                <dd class="col-sm-9">@searchedUser.DisplayName</dd>
+                                
+                                <dt class="col-sm-3">部门:</dt>
+                                <dd class="col-sm-9">@searchedUser.Affiliation</dd>
+                                
+                                <dt class="col-sm-3">公司:</dt>
+                                <dd class="col-sm-9">@searchedUser.CompanyName</dd>
+                                
+                                <dt class="col-sm-3">组织:</dt>
+                                <dd class="col-sm-9">@searchedUser.Owner</dd>
+                            </dl>
+                        </div>
+                    </div>
+                }
+                else if (!string.IsNullOrEmpty(searchUserName) && searchPerformed)
+                {
+                    <div class="alert alert-warning">未找到用户</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private SyncState? syncState;
+    private SyncResult? syncResult;
+    private UserInfo? searchedUser;
+    private string searchUserName = "";
+    private bool searchPerformed = false;
+    private bool isRunning = false;
+    private string syncType = "";
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshState();
+    }
+    
+    private async Task RefreshState()
+    {
+        syncState = await SyncService.GetSyncStateAsync();
+    }
+    
+    private async Task PerformFullSync()
+    {
+        isRunning = true;
+        syncType = "full";
+        syncResult = null;
+        StateHasChanged();
+        
+        syncResult = await SyncService.SyncAllAsync();
+        
+        isRunning = false;
+        await RefreshState();
+        StateHasChanged();
+    }
+    
+    private async Task PerformIncrementalSync()
+    {
+        isRunning = true;
+        syncType = "incremental";
+        syncResult = null;
+        StateHasChanged();
+        
+        syncResult = await SyncService.SyncIncrementalAsync();
+        
+        isRunning = false;
+        await RefreshState();
+        StateHasChanged();
+    }
+    
+    private async Task ApplyOptimizedViews()
+    {
+        isRunning = true;
+        StateHasChanged();
+        
+        var success = await SyncService.ApplyOptimizedViewsAsync();
+        syncResult = new SyncResult
+        {
+            Success = success,
+            Message = success ? "视图优化已应用" : "视图优化失败",
+            StartTime = DateTime.Now,
+            EndTime = DateTime.Now
+        };
+        
+        isRunning = false;
+        StateHasChanged();
+    }
+    
+    private async Task SearchUser()
+    {
+        searchPerformed = true;
+        searchedUser = await SyncService.PeekUserAsync(searchUserName);
+        StateHasChanged();
+    }
+}

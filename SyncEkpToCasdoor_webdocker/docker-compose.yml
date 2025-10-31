@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  sync-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: syncekp-web
+    ports:
+      - "8080:8080"
+    environment:
+      # EKP 数据库连接配置
+      - EkpConnection=Server=npm.fzcsps.com,11433;Database=ekp;User Id=xxzx;Password=sosy3080@sohu.com;Encrypt=False;TrustServerCertificate=True
+      
+      # Casdoor 配置
+      - Casdoor__Endpoint=http://sso.fzcsps.com
+      - Casdoor__ClientId=aecd00a352e5c560ffe6
+      - Casdoor__ClientSecret=8e7e0c2f3cb7d4aa81b0bd7c42c83e7c4dbb6e5e
+      - Casdoor__OrganizationName=fzswjtOrganization
+      - Casdoor__ApplicationName=SyncEkpToCasdoor
+      
+      # ASP.NET Core 配置
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+      
+      # 日志级别
+      - Logging__LogLevel__Default=Information
+      - Logging__LogLevel__Microsoft.AspNetCore=Warning
+    
+    volumes:
+      # 持久化同步状态文件
+      - ./data/sync_state.json:/app/sync_state.json
+      - ./logs:/app/logs
+    
+    restart: unless-stopped
+    
+    networks:
+      - sync-network
+
+networks:
+  sync-network:
+    driver: bridge
+
+volumes:
+  sync-data:

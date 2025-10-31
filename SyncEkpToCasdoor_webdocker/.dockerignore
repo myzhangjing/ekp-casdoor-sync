@@ -1,0 +1,13 @@
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/*.user
+**/logs
+**/data
+.git
+.gitignore
+.dockerignore
+docker-compose*.yml
+README.md
+*.md
