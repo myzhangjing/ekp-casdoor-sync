@@ -116,6 +116,10 @@ SyncEkpToCasdoor/
   - [技术实现总结](docs/ui/数据查看模块总结.md)
 - **控制台工具**：[SyncEkpToCasdoor/README.md](SyncEkpToCasdoor/README.md)
 - **脚本使用**：[scripts/README.md](scripts/README.md)
+- **监控指南**：
+  - [如何检查定时同步](docs/monitoring/如何检查定时同步是否执行.md)
+  - [监控完整方案](docs/monitoring/定时同步监控指南.md)
+  - [双次执行问题修复](docs/monitoring/修复说明-两次操作问题.md)
 - **变更记录**：[CHANGELOG.md](CHANGELOG.md)
 - **贡献指南**：[CONTRIBUTING.md](CONTRIBUTING.md)
 
@@ -175,6 +179,41 @@ dotnet run --project SyncEkpToCasdoor -- apply-views
 界面会在运行目录生成 `sync_config.json`，包含上述所有配置。
 
 **⚠️ 注意**：配置文件包含敏感信息，请勿提交到版本控制。
+
+## 📊 定时同步与监控
+
+### 配置定时任务
+
+使用 Windows 任务计划程序设置每日自动同步：
+
+```powershell
+# 示例：每天凌晨 1:07 执行增量同步
+# 1. 打开任务计划程序：taskschd.msc
+# 2. 创建基本任务："EKP-Casdoor-DailySync"
+# 3. 触发器：每日 01:07:00
+# 4. 操作：PowerShell.exe -ExecutionPolicy Bypass -File "C:\path\to\scripts\run-sync.ps1"
+# 5. 设置：以最高权限运行，无论用户是否登录都要运行
+```
+
+### 监控同步执行
+
+**快速检查脚本**（一键查看同步状态）：
+
+```powershell
+# 检查最近同步状态
+.\scripts\check-sync-status.ps1
+```
+
+**手动检查方法**：
+
+1. **查看状态文件**：`sync_state.json`（记录最后执行时间）
+2. **查看日志**：`logs/sync_YYYYMMDD_HHmmss.log`（每次执行生成新文件）
+3. **检查任务历史**：任务计划程序 → 查看任务运行历史
+4. **验证数据**：WPF 界面"数据查看"页面比对数据差异
+
+📖 **详细监控指南**：
+- [如何检查定时同步是否执行](docs/monitoring/如何检查定时同步是否执行.md)（快速参考）
+- [定时同步监控指南](docs/monitoring/定时同步监控指南.md)（完整方案）
 
 ## 🧪 测试
 

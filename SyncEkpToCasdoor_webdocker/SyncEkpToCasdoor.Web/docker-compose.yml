@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  syncekp-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: syncekp-casdoor-web
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:9000
+    volumes:
+      - ./logs:/app/logs
+      - ./sync_state.json:/app/sync_state.json
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

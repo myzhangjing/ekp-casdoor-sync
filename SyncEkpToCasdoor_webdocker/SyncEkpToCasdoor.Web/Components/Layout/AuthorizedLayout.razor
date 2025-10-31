@@ -1,0 +1,18 @@
+@using Microsoft.AspNetCore.Components.Authorization
+@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            @Body
+        </Authorized>
+        <NotAuthorized>
+            @{
+                // 重定向到登录页面
+                Navigation.NavigateTo("/login", true);
+            }
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>

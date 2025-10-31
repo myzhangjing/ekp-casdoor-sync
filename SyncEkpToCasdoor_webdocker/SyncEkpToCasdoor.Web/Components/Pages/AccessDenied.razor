@@ -1,0 +1,71 @@
+@page "/access-denied"
+
+<PageTitle>访问被拒绝</PageTitle>
+
+<div class="access-denied-container">
+    <div class="access-denied-box">
+        <div class="text-center">
+            <div class="icon-container mb-4">
+                <i class="bi bi-shield-x" style="font-size: 5rem; color: #dc3545;"></i>
+            </div>
+            
+            <h1 class="mb-3">访问被拒绝</h1>
+            
+            <div class="alert alert-danger">
+                <h5>权限不足</h5>
+                <p class="mb-0">
+                    只有 <strong>built-in</strong> 组织的用户才能访问此系统。
+                    <br />
+                    您当前的账户不符合访问条件。
+                </p>
+            </div>
+
+            <div class="mt-4">
+                <a href="/logout" class="btn btn-primary me-2">
+                    <i class="bi bi-box-arrow-right"></i>
+                    返回登录
+                </a>
+                <a href="http://sso.fzcsps.com" class="btn btn-outline-secondary">
+                    <i class="bi bi-house"></i>
+                    前往 Casdoor
+                </a>
+            </div>
+
+            <div class="mt-4 text-muted">
+                <small>
+                    如有疑问，请联系系统管理员
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .access-denied-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+
+    .access-denied-box {
+        width: 100%;
+        max-width: 600px;
+        background: white;
+        padding: 3rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon-container {
+        animation: shake 0.5s;
+    }
+
+    @@keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        75% { transform: translateX(10px); }
+    }
+</style>

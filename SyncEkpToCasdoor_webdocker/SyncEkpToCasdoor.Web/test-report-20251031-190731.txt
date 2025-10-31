@@ -1,0 +1,14 @@
+﻿Automated Test Report
+Generated: 2025-10-31 19:07:31
+========================================
+
+Statistics:
+- Total: 17
+- Passed: 10
+- Failed: 7
+- Warnings: 5
+- Success Rate: 58.82%
+
+Environment:
+- Application URL: http://localhost:5233
+- Casdoor URL: http://sso.fzcsps.com

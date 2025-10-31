@@ -1,0 +1,32 @@
+﻿Full Integration Test Report
+Generated: 2025-10-31 19:10:53
+========================================
+
+Test Statistics:
+- Total Tests: 9
+- Passed: 8
+- Failed: 1
+- Success Rate: 88.89%
+
+Test Environment:
+- Application URL: http://localhost:5233
+- Casdoor URL: http://sso.fzcsps.com
+- Test Username: admin
+
+Test Scope:
+1. Application availability
+2. Login page rendering
+3. OAuth challenge initiation
+4. Casdoor authentication
+5. OAuth callback handling
+6. Authenticated access
+7. Scheduled task configuration
+8. Logout functionality
+9. Performance benchmarks
+
+Recommendations:
+- Review logs for any errors
+- Test scheduled sync after enabling in config
+- Monitor performance metrics
+- Verify all authentication flows
+

@@ -1,0 +1,56 @@
+@using SyncEkpToCasdoor.Web.Services
+
+<div style="margin-left: @(Level * 20)px;" class="mb-1">
+    <div class="d-flex align-items-center">
+        @if (Organization.Children.Any())
+        {
+            <button class="btn btn-sm btn-link p-0 me-2" @onclick="ToggleExpand">
+                @(Organization.IsExpanded ? "➖" : "➕")
+            </button>
+        }
+        else
+        {
+            <span class="me-2" style="width: 24px; display: inline-block;">•</span>
+        }
+        
+        <span class="fw-bold">@Organization.Name</span>
+        
+        @if (!string.IsNullOrEmpty(Organization.Id))
+        {
+            <span class="badge bg-secondary ms-2">ID: @Organization.Id</span>
+        }
+        
+        @if (Organization.UserCount > 0)
+        {
+            <span class="badge bg-primary ms-2">@Organization.UserCount 人</span>
+        }
+    </div>
+    
+    @if (Organization.IsExpanded && Organization.Children.Any())
+    {
+        @foreach (var child in Organization.Children)
+        {
+            <OrgTreeNode Organization="@child" Level="@(Level + 1)" />
+        }
+    }
+</div>
+
+@code {
+    [Parameter] public OrganizationNode Organization { get; set; } = null!;
+    [Parameter] public int Level { get; set; }
+    
+    private void ToggleExpand()
+    {
+        Organization.IsExpanded = !Organization.IsExpanded;
+    }
+    
+    public class OrganizationNode
+    {
+        public string Id { get; set; } = "";
+        public string Name { get; set; } = "";
+        public string? ParentId { get; set; }
+        public int UserCount { get; set; }
+        public List<OrganizationNode> Children { get; set; } = new();
+        public bool IsExpanded { get; set; } = false;
+    }
+}

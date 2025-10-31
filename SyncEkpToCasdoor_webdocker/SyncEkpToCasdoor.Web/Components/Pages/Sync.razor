@@ -15,22 +15,37 @@
             </div>
             <div class="card-body">
                 <div class="d-grid gap-2">
+                    <button class="btn btn-success" @onclick="TestConnections" disabled="@isRunning">
+                        @if (isRunning && syncType == "test")
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        🔌 测试连接
+                    </button>
+                    <button class="btn btn-warning" @onclick="PreviewSync" disabled="@isRunning">
+                        @if (isRunning && syncType == "preview")
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        👁️ 预览同步
+                    </button>
+                    <hr>
                     <button class="btn btn-primary" @onclick="PerformFullSync" disabled="@isRunning">
                         @if (isRunning && syncType == "full")
                         {
                             <span class="spinner-border spinner-border-sm me-2"></span>
                         }
-                        全量同步
+                        ▶️ 全量同步
                     </button>
                     <button class="btn btn-secondary" @onclick="PerformIncrementalSync" disabled="@isRunning">
                         @if (isRunning && syncType == "incremental")
                         {
                             <span class="spinner-border spinner-border-sm me-2"></span>
                         }
-                        增量同步
+                        ⏩ 增量同步
                     </button>
                     <button class="btn btn-info" @onclick="ApplyOptimizedViews" disabled="@isRunning">
-                        应用优化视图
+                        🔧 应用优化视图
                     </button>
                 </div>
             </div>
@@ -73,6 +88,127 @@
         </div>
     </div>
 </div>
+
+@if (connectionTestResult != null)
+{
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card @(connectionTestResult.EkpConnected ? "border-success" : "border-danger")">
+                <div class="card-header">
+                    <h6 class="mb-0">EKP 数据库连接</h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">
+                        <span class="badge @(connectionTestResult.EkpConnected ? "bg-success" : "bg-danger")">
+                            @(connectionTestResult.EkpConnected ? "✓ 已连接" : "✗ 连接失败")
+                        </span>
+                    </p>
+                    <p class="mb-1">@connectionTestResult.EkpMessage</p>
+                    @if (connectionTestResult.EkpConnected)
+                    {
+                        <small class="text-muted">
+                            用户视图: @connectionTestResult.EkpUsersCount 条 | 
+                            组织视图: @connectionTestResult.EkpOrgsCount 条
+                        </small>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card @(connectionTestResult.CasdoorConnected ? "border-success" : "border-danger")">
+                <div class="card-header">
+                    <h6 class="mb-0">Casdoor API 连接</h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">
+                        <span class="badge @(connectionTestResult.CasdoorConnected ? "bg-success" : "bg-danger")">
+                            @(connectionTestResult.CasdoorConnected ? "✓ 已连接" : "✗ 连接失败")
+                        </span>
+                    </p>
+                    <p class="mb-1">@connectionTestResult.CasdoorMessage</p>
+                    @if (connectionTestResult.CasdoorConnected)
+                    {
+                        <small class="text-muted">
+                            Endpoint: @connectionTestResult.CasdoorEndpoint<br>
+                            Owner: @connectionTestResult.CasdoorOwner<br>
+                            用户: @connectionTestResult.CasdoorUsersCount 个 | 
+                            组: @connectionTestResult.CasdoorGroupsCount 个
+                        </small>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (syncPreview != null)
+{
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card @(syncPreview.Success ? "border-info" : "border-danger")">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">👁️ 同步预览 - @syncPreview.GeneratedAt.ToString("yyyy-MM-dd HH:mm:ss")</h5>
+                </div>
+                <div class="card-body">
+                    @if (syncPreview.Success)
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>📁 组织变更</h6>
+                                <ul class="list-unstyled">
+                                    <li><span class="badge bg-primary">@syncPreview.OrgsToCreate</span> 个组织将被创建</li>
+                                    <li><span class="badge bg-warning text-dark">@syncPreview.OrgsToUpdate</span> 个组织将被更新</li>
+                                    <li><span class="badge bg-secondary">@syncPreview.OrgsInCasdoorOnly</span> 个组织仅在 Casdoor（不处理）</li>
+                                </ul>
+                                @if (syncPreview.OrgCreateSamples.Any())
+                                {
+                                    <details>
+                                        <summary class="text-muted small" style="cursor: pointer;">查看创建示例 (前 @syncPreview.OrgCreateSamples.Count 个)</summary>
+                                        <ul class="small mt-2">
+                                            @foreach (var org in syncPreview.OrgCreateSamples)
+                                            {
+                                                <li>@org</li>
+                                            }
+                                        </ul>
+                                    </details>
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <h6>👤 用户变更</h6>
+                                <ul class="list-unstyled">
+                                    <li><span class="badge bg-primary">@syncPreview.UsersToCreate</span> 个用户将被创建</li>
+                                    <li><span class="badge bg-warning text-dark">@syncPreview.UsersToUpdate</span> 个用户将被更新</li>
+                                    <li><span class="badge bg-secondary">@syncPreview.UsersInCasdoorOnly</span> 个用户仅在 Casdoor（不处理）</li>
+                                </ul>
+                                @if (syncPreview.UserCreateSamples.Any())
+                                {
+                                    <details>
+                                        <summary class="text-muted small" style="cursor: pointer;">查看创建示例 (前 @syncPreview.UserCreateSamples.Count 个)</summary>
+                                        <ul class="small mt-2">
+                                            @foreach (var user in syncPreview.UserCreateSamples)
+                                            {
+                                                <li>@user</li>
+                                            }
+                                        </ul>
+                                    </details>
+                                }
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="mb-0 text-muted">
+                            <strong>总结:</strong> 将创建 @(syncPreview.OrgsToCreate + syncPreview.UsersToCreate) 个对象，
+                            更新 @(syncPreview.OrgsToUpdate + syncPreview.UsersToUpdate) 个对象
+                        </p>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger mb-0">@syncPreview.Message</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 @if (syncResult != null)
 {
@@ -149,9 +285,70 @@
     </div>
 </div>
 
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">📜 实时同步日志 (最近50条)</h5>
+            </div>
+            <div class="card-body p-0">
+                <div style="max-height: 400px; overflow-y: auto; font-family: 'Courier New', monospace; font-size: 0.85rem;">
+                    @if (syncLogs.Any())
+                    {
+                        <table class="table table-sm table-hover mb-0">
+                            <thead class="table-light sticky-top">
+                                <tr>
+                                    <th style="width: 150px;">时间</th>
+                                    <th style="width: 80px;">级别</th>
+                                    <th>消息</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var log in syncLogs)
+                                {
+                                    var levelClass = log.Level switch
+                                    {
+                                        "Error" => "table-danger",
+                                        "Warning" => "table-warning",
+                                        _ => ""
+                                    };
+                                    <tr class="@levelClass">
+                                        <td class="text-muted small">@log.Timestamp.ToString("HH:mm:ss.fff")</td>
+                                        <td>
+                                            <span class="badge @(log.Level == "Error" ? "bg-danger" : log.Level == "Warning" ? "bg-warning" : "bg-info")">
+                                                @log.Level
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @log.Message
+                                            @if (!string.IsNullOrEmpty(log.Details))
+                                            {
+                                                <br />
+                                                <small class="text-muted">@log.Details</small>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="p-3 text-center text-muted">
+                            暂无日志，执行同步操作后将显示实时日志
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @code {
     private SyncState? syncState;
     private SyncResult? syncResult;
+    private ConnectionTestResult? connectionTestResult;
+    private SyncPreview? syncPreview;
     private UserInfo? searchedUser;
     private string searchUserName = "";
     private bool searchPerformed = false;
@@ -166,6 +363,32 @@
     private async Task RefreshState()
     {
         syncState = await SyncService.GetSyncStateAsync();
+    }
+    
+    private async Task TestConnections()
+    {
+        isRunning = true;
+        syncType = "test";
+        connectionTestResult = null;
+        StateHasChanged();
+        
+        connectionTestResult = await SyncService.TestConnectionsAsync();
+        
+        isRunning = false;
+        StateHasChanged();
+    }
+    
+    private async Task PreviewSync()
+    {
+        isRunning = true;
+        syncType = "preview";
+        syncPreview = null;
+        StateHasChanged();
+        
+        syncPreview = await SyncService.PreviewSyncAsync();
+        
+        isRunning = false;
+        StateHasChanged();
     }
     
     private async Task PerformFullSync()
@@ -219,5 +442,24 @@
         searchPerformed = true;
         searchedUser = await SyncService.PeekUserAsync(searchUserName);
         StateHasChanged();
+    }
+    
+    private List<SyncLog> syncLogs = new();
+    private System.Threading.Timer? logRefreshTimer;
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // 每2秒刷新一次日志
+        logRefreshTimer = new System.Threading.Timer(async _ => 
+        {
+            syncLogs = await SyncService.GetSyncLogsAsync(50);
+            await InvokeAsync(StateHasChanged);
+        }, null, TimeSpan.Zero, TimeSpan.FromSeconds(2));
+    }
+    
+    public void Dispose()
+    {
+        logRefreshTimer?.Dispose();
     }
 }

@@ -1,0 +1,559 @@
+@page "/schedule"
+@using SyncEkpToCasdoor.Web.Services
+@inject ISyncService SyncService
+@rendermode InteractiveServer
+
+<PageTitle>定时任务</PageTitle>
+
+<h1>⏰ 定时同步任务</h1>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">📅 任务列表</h5>
+            </div>
+            <div class="card-body">
+                @if (tasks.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>任务名称</th>
+                                    <th>任务类型</th>
+                                    <th>执行时间</th>
+                                    <th>状态</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var task in tasks)
+                                {
+                                    <tr>
+                                        <td>
+                                            <strong>@task.Name</strong>
+                                            @if (!string.IsNullOrEmpty(task.Description))
+                                            {
+                                                <br />
+                                                <small class="text-muted">@task.Description</small>
+                                            }
+                                        </td>
+                                        <td>
+                                            <span class="badge @(task.SyncType == "full" ? "bg-primary" : "bg-secondary")">
+                                                @(task.SyncType == "full" ? "全量同步" : "增量同步")
+                                            </span>
+                                            @if (!string.IsNullOrEmpty(task.CompanyId))
+                                            {
+                                                <br />
+                                                <small class="text-muted">公司: @task.CompanyId</small>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (task.ScheduleType == "cron")
+                                            {
+                                                <span class="badge bg-info">Cron</span>
+                                                <br />
+                                                <code class="small">@task.CronExpression</code>
+                                            }
+                                            else if (task.ScheduleType == "interval")
+                                            {
+                                                <span class="badge bg-warning">间隔</span>
+                                                <br />
+                                                <small>每 @task.IntervalMinutes 分钟</small>
+                                            }
+                                            else if (task.ScheduleType == "daily")
+                                            {
+                                                <span class="badge bg-success">每日</span>
+                                                <br />
+                                                <small>@task.DailyTime</small>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (task.Enabled)
+                                            {
+                                                <span class="badge bg-success">启用</span>
+                                                @if (task.LastRunTime.HasValue)
+                                                {
+                                                    <br />
+                                                    <small class="text-muted">
+                                                        上次: @task.LastRunTime.Value.ToString("MM-dd HH:mm")
+                                                    </small>
+                                                }
+                                                @if (task.NextRunTime.HasValue)
+                                                {
+                                                    <br />
+                                                    <small class="text-success">
+                                                        下次: @task.NextRunTime.Value.ToString("MM-dd HH:mm")
+                                                    </small>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary">禁用</span>
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-outline-primary" 
+                                                        @onclick="() => EditTask(task)"
+                                                        title="编辑">
+                                                    ✏️
+                                                </button>
+                                                <button class="btn @(task.Enabled ? "btn-outline-warning" : "btn-outline-success")" 
+                                                        @onclick="() => ToggleTask(task.Id)"
+                                                        title="@(task.Enabled ? "禁用" : "启用")">
+                                                    @(task.Enabled ? "⏸️" : "▶️")
+                                                </button>
+                                                <button class="btn btn-outline-info" 
+                                                        @onclick="() => RunTaskNow(task.Id)"
+                                                        disabled="@isRunning"
+                                                        title="立即执行">
+                                                    ⚡
+                                                </button>
+                                                <button class="btn btn-outline-danger" 
+                                                        @onclick="() => DeleteTask(task.Id)"
+                                                        title="删除">
+                                                    🗑️
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <strong>ℹ️</strong> 暂无定时任务，请点击右侧"添加任务"按钮创建。
+                    </div>
+                }
+            </div>
+        </div>
+        
+        @if (executionResult != null)
+        {
+            <div class="alert @(executionResult.Success ? "alert-success" : "alert-danger") mt-4">
+                <h6>@executionResult.TaskName - 执行结果</h6>
+                <p class="mb-0">@executionResult.Message</p>
+                @if (executionResult.Details.Any())
+                {
+                    <hr />
+                    <ul class="mb-0">
+                        @foreach (var detail in executionResult.Details)
+                        {
+                            <li>@detail</li>
+                        }
+                    </ul>
+                }
+            </div>
+        }
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header @(editingTask == null ? "bg-success" : "bg-warning") text-white">
+                <h5 class="mb-0">@(editingTask == null ? "➕ 添加任务" : "✏️ 编辑任务")</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">任务名称 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" @bind="taskName" placeholder="例如：每日凌晨全量同步">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">任务描述</label>
+                    <textarea class="form-control" @bind="taskDescription" rows="2" placeholder="可选"></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">同步类型 <span class="text-danger">*</span></label>
+                    <select class="form-select" @bind="syncType">
+                        <option value="full">全量同步</option>
+                        <option value="incremental">增量同步</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">同步范围</label>
+                    <select class="form-select" @bind="syncScope" @bind:after="OnSyncScopeChanged">
+                        <option value="all">全部公司</option>
+                        <option value="company">指定公司</option>
+                    </select>
+                </div>
+                
+                @if (syncScope == "company")
+                {
+                    <div class="mb-3">
+                        <label class="form-label">选择公司</label>
+                        <select class="form-select" @bind="selectedCompanyId">
+                            <option value="">-- 请选择 --</option>
+                            @foreach (var company in companies)
+                            {
+                                <option value="@company.Id">@company.Name</option>
+                            }
+                        </select>
+                    </div>
+                }
+                
+                <div class="mb-3">
+                    <label class="form-label">调度类型 <span class="text-danger">*</span></label>
+                    <select class="form-select" @bind="scheduleType">
+                        <option value="daily">每日定时</option>
+                        <option value="interval">固定间隔</option>
+                        <option value="cron">Cron表达式</option>
+                    </select>
+                </div>
+                
+                @if (scheduleType == "daily")
+                {
+                    <div class="mb-3">
+                        <label class="form-label">执行时间</label>
+                        <input type="text" class="form-control" @bind="dailyTimeStr" placeholder="HH:mm (例如: 02:00)">
+                        <small class="form-text text-muted">每天在指定时间执行，格式: HH:mm</small>
+                    </div>
+                }
+                else if (scheduleType == "interval")
+                {
+                    <div class="mb-3">
+                        <label class="form-label">间隔时间（分钟）</label>
+                        <input type="number" class="form-control" @bind="intervalMinutes" min="5" max="1440">
+                        <small class="form-text text-muted">最小5分钟，最大24小时</small>
+                    </div>
+                }
+                else if (scheduleType == "cron")
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Cron表达式</label>
+                        <input type="text" class="form-control" @bind="cronExpression" placeholder="0 0 2 * * ?">
+                        <small class="form-text text-muted">
+                            示例：<br />
+                            0 0 2 * * ? - 每天凌晨2点<br />
+                            0 0 */6 * * ? - 每6小时<br />
+                            0 30 8 * * 1-5 - 工作日早上8:30
+                        </small>
+                    </div>
+                }
+                
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" @bind="taskEnabled" id="taskEnabled">
+                    <label class="form-check-label" for="taskEnabled">
+                        创建后立即启用
+                    </label>
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button class="btn @(editingTask == null ? "btn-success" : "btn-warning")" 
+                            @onclick="SaveTask"
+                            disabled="@(!CanSaveTask)">
+                        💾 @(editingTask == null ? "添加任务" : "保存修改")
+                    </button>
+                    @if (editingTask != null)
+                    {
+                        <button class="btn btn-secondary" @onclick="CancelEdit">
+                            取消编辑
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h6 class="mb-0">💡 使用提示</h6>
+            </div>
+            <div class="card-body">
+                <small>
+                    <ul class="mb-0">
+                        <li>定时任务在应用重启后会自动恢复</li>
+                        <li>建议增量同步间隔短，全量同步频率低</li>
+                        <li>避免在业务高峰期执行同步</li>
+                        <li>可以禁用任务而不删除配置</li>
+                        <li>立即执行不影响定时计划</li>
+                    </ul>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<ScheduledTask> tasks = new();
+    private List<CompanyInfo> companies = new();
+    
+    // 表单字段
+    private ScheduledTask? editingTask;
+    private string taskName = "";
+    private string taskDescription = "";
+    private string syncType = "full";
+    private string syncScope = "all";
+    private string selectedCompanyId = "";
+    private string scheduleType = "daily";
+    private string dailyTime = "02:00";
+    private string dailyTimeStr = "02:00";  // input type="time"绑定用
+    private int intervalMinutes = 60;
+    private string cronExpression = "0 0 2 * * ?";
+    private bool taskEnabled = true;
+    
+    private bool isRunning = false;
+    private TaskExecutionResult? executionResult;
+    
+    private bool CanSaveTask => !string.IsNullOrWhiteSpace(taskName) && 
+                                (syncScope != "company" || !string.IsNullOrEmpty(selectedCompanyId));
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTasks();
+        await LoadCompanies();
+    }
+    
+    private async Task LoadTasks()
+    {
+        // TODO: 从数据库或配置加载任务
+        await Task.CompletedTask;
+        
+        // 示例数据
+        tasks = new List<ScheduledTask>
+        {
+            new ScheduledTask
+            {
+                Id = "1",
+                Name = "每日凌晨全量同步",
+                Description = "每天凌晨2点执行全量同步",
+                SyncType = "full",
+                ScheduleType = "daily",
+                DailyTime = "02:00",
+                Enabled = true,
+                LastRunTime = DateTime.Now.AddHours(-20),
+                NextRunTime = DateTime.Now.Date.AddDays(1).AddHours(2)
+            },
+            new ScheduledTask
+            {
+                Id = "2",
+                Name = "每小时增量同步",
+                Description = "每小时执行一次增量同步",
+                SyncType = "incremental",
+                ScheduleType = "interval",
+                IntervalMinutes = 60,
+                Enabled = true,
+                LastRunTime = DateTime.Now.AddMinutes(-15),
+                NextRunTime = DateTime.Now.AddMinutes(45)
+            }
+        };
+    }
+    
+    private async Task LoadCompanies()
+    {
+        try
+        {
+            companies = await SyncService.GetCompaniesAsync();
+        }
+        catch
+        {
+            companies = new List<CompanyInfo>();
+        }
+    }
+    
+    private void OnSyncScopeChanged()
+    {
+        if (syncScope == "all")
+        {
+            selectedCompanyId = "";
+        }
+    }
+    
+    private void EditTask(ScheduledTask task)
+    {
+        editingTask = task;
+        taskName = task.Name;
+        taskDescription = task.Description;
+        syncType = task.SyncType;
+        syncScope = string.IsNullOrEmpty(task.CompanyId) ? "all" : "company";
+        selectedCompanyId = task.CompanyId ?? "";
+        scheduleType = task.ScheduleType;
+        dailyTime = task.DailyTime ?? "02:00";
+        dailyTimeStr = task.DailyTime ?? "02:00";
+        intervalMinutes = task.IntervalMinutes;
+        cronExpression = task.CronExpression ?? "";
+        taskEnabled = task.Enabled;
+    }
+    
+    private void CancelEdit()
+    {
+        editingTask = null;
+        ResetForm();
+    }
+    
+    private async Task SaveTask()
+    {
+        var task = editingTask ?? new ScheduledTask { Id = Guid.NewGuid().ToString() };
+        
+        task.Name = taskName;
+        task.Description = taskDescription;
+        task.SyncType = syncType;
+        task.CompanyId = syncScope == "company" ? selectedCompanyId : null;
+        task.ScheduleType = scheduleType;
+        task.DailyTime = scheduleType == "daily" ? dailyTimeStr : null;
+        task.IntervalMinutes = scheduleType == "interval" ? intervalMinutes : 0;
+        task.CronExpression = scheduleType == "cron" ? cronExpression : null;
+        task.Enabled = taskEnabled;
+        
+        // 计算下次运行时间
+        task.NextRunTime = CalculateNextRunTime(task);
+        
+        if (editingTask == null)
+        {
+            tasks.Add(task);
+        }
+        
+        // TODO: 保存到数据库或配置
+        await Task.CompletedTask;
+        
+        ResetForm();
+        editingTask = null;
+        StateHasChanged();
+    }
+    
+    private DateTime? CalculateNextRunTime(ScheduledTask task)
+    {
+        var now = DateTime.Now;
+        
+        if (task.ScheduleType == "daily")
+        {
+            var time = TimeSpan.Parse(task.DailyTime ?? "02:00");
+            var next = now.Date.Add(time);
+            if (next <= now)
+                next = next.AddDays(1);
+            return next;
+        }
+        else if (task.ScheduleType == "interval")
+        {
+            return now.AddMinutes(task.IntervalMinutes);
+        }
+        else if (task.ScheduleType == "cron")
+        {
+            // TODO: 解析Cron表达式
+            return now.AddHours(1);
+        }
+        
+        return null;
+    }
+    
+    private void ResetForm()
+    {
+        taskName = "";
+        taskDescription = "";
+        syncType = "full";
+        syncScope = "all";
+        selectedCompanyId = "";
+        scheduleType = "daily";
+        dailyTime = "02:00";
+        dailyTimeStr = "02:00";
+        intervalMinutes = 60;
+        cronExpression = "";
+        taskEnabled = true;
+    }
+    
+    private async Task ToggleTask(string taskId)
+    {
+        var task = tasks.FirstOrDefault(t => t.Id == taskId);
+        if (task != null)
+        {
+            task.Enabled = !task.Enabled;
+            // TODO: 保存到数据库
+            await Task.CompletedTask;
+            StateHasChanged();
+        }
+    }
+    
+    private async Task DeleteTask(string taskId)
+    {
+        tasks.RemoveAll(t => t.Id == taskId);
+        // TODO: 从数据库删除
+        await Task.CompletedTask;
+        StateHasChanged();
+    }
+    
+    private async Task RunTaskNow(string taskId)
+    {
+        var task = tasks.FirstOrDefault(t => t.Id == taskId);
+        if (task == null) return;
+        
+        isRunning = true;
+        executionResult = null;
+        StateHasChanged();
+        
+        try
+        {
+            SyncResult result;
+            if (string.IsNullOrEmpty(task.CompanyId))
+            {
+                result = task.SyncType == "full" 
+                    ? await SyncService.SyncAllAsync()
+                    : await SyncService.SyncIncrementalAsync();
+            }
+            else
+            {
+                result = await SyncService.SyncByCompanyAsync(task.CompanyId, task.SyncType == "incremental");
+            }
+            
+            task.LastRunTime = DateTime.Now;
+            task.NextRunTime = CalculateNextRunTime(task);
+            
+            executionResult = new TaskExecutionResult
+            {
+                TaskName = task.Name,
+                Success = result.Success,
+                Message = result.Message,
+                Details = new List<string>
+                {
+                    $"处理用户: {result.UsersProcessed}",
+                    $"处理组织: {result.OrganizationsProcessed}",
+                    $"耗时: {(result.EndTime - result.StartTime).TotalSeconds:F2}秒"
+                }
+            };
+        }
+        catch (Exception ex)
+        {
+            executionResult = new TaskExecutionResult
+            {
+                TaskName = task.Name,
+                Success = false,
+                Message = $"执行失败: {ex.Message}",
+                Details = new List<string>()
+            };
+        }
+        finally
+        {
+            isRunning = false;
+            StateHasChanged();
+        }
+    }
+    
+    // DTO 类
+    private class ScheduledTask
+    {
+        public string Id { get; set; } = "";
+        public string Name { get; set; } = "";
+        public string Description { get; set; } = "";
+        public string SyncType { get; set; } = "full"; // full or incremental
+        public string? CompanyId { get; set; }
+        public string ScheduleType { get; set; } = "daily"; // daily, interval, cron
+        public string? DailyTime { get; set; }
+        public int IntervalMinutes { get; set; }
+        public string? CronExpression { get; set; }
+        public bool Enabled { get; set; }
+        public DateTime? LastRunTime { get; set; }
+        public DateTime? NextRunTime { get; set; }
+    }
+    
+    private class TaskExecutionResult
+    {
+        public string TaskName { get; set; } = "";
+        public bool Success { get; set; }
+        public string Message { get; set; } = "";
+        public List<string> Details { get; set; } = new();
+    }
+}

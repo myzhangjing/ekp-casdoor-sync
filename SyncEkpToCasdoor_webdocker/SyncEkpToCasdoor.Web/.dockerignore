@@ -1,0 +1,13 @@
+# .dockerignore - 排除不必要的文件
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.log
+logs/
+.git/
+.gitignore
+README.md
+*.md
+.vscode/

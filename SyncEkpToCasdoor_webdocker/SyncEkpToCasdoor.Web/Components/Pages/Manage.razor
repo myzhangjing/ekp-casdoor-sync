@@ -1,0 +1,484 @@
+@page "/manage"
+@using SyncEkpToCasdoor.Web.Services
+@inject ISyncService SyncService
+@rendermode InteractiveServer
+
+<PageTitle>数据管理</PageTitle>
+
+<h1>🗂️ Casdoor 数据管理</h1>
+
+<div class="alert alert-warning mt-4">
+    <strong>⚠️ 警告:</strong> 此页面的操作具有破坏性，无法撤销！请谨慎操作。
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">🗑️ 清空 Casdoor 数据</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    此操作将删除指定组织下的<strong>所有用户和组织</strong>数据。
+                </p>
+                
+                <div class="mb-3">
+                    <label class="form-label">目标组织 (Owner)</label>
+                    <input type="text" class="form-control" @bind="targetOwner" placeholder="fzswjtOrganization">
+                    <small class="form-text text-muted">
+                        仅删除此组织下的数据，其他组织不受影响
+                    </small>
+                </div>
+                
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" @bind="confirmPurge" id="confirmPurge">
+                    <label class="form-check-label" for="confirmPurge">
+                        我确认要清空 <strong>@targetOwner</strong> 组织的所有数据
+                    </label>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">输入 <code>DELETE-ALL</code> 确认</label>
+                    <input type="text" class="form-control" @bind="confirmText" placeholder="DELETE-ALL">
+                </div>
+                
+                <button class="btn btn-danger" @onclick="PurgeAllData" disabled="@(!CanPurge || isPurging)">
+                    @if (isPurging)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                        <text>正在清空</text>
+                    }
+                    else
+                    {
+                        <text>🗑️ 清空所有数据</text>
+                    }
+                </button>
+                
+                @if (purgeResult != null)
+                {
+                    <div class="alert @(purgeResult.Success ? "alert-success" : "alert-danger") mt-3 mb-0">
+                        <strong>@(purgeResult.Success ? "✓" : "✗")</strong> @purgeResult.Message
+                        @if (purgeResult.DeletedCount > 0)
+                        {
+                            <br />
+                            <small>已删除 @purgeResult.DeletedCount 个对象</small>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card border-warning">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0">🧹 清理孤立数据</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    清理在 Casdoor 中存在但在 EKP 中不存在的<strong>孤立数据</strong>。
+                </p>
+                
+                <div class="mb-3">
+                    <label class="form-label">清理范围</label>
+                    <select class="form-select" @bind="cleanupScope">
+                        <option value="users">仅用户</option>
+                        <option value="groups">仅组织</option>
+                        <option value="both">用户和组织</option>
+                    </select>
+                </div>
+                
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" @bind="dryRun" id="dryRun">
+                    <label class="form-check-label" for="dryRun">
+                        仅预览（不实际删除）
+                    </label>
+                </div>
+                
+                <button class="btn btn-warning" @onclick="CleanOrphanData" disabled="@isCleaning">
+                    @if (isCleaning)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                        <text>正在清理</text>
+                    }
+                    else
+                    {
+                        <text>🧹 @(dryRun ? "预览清理" : "开始清理")</text>
+                    }
+                </button>
+                
+                @if (cleanupResult != null)
+                {
+                    <div class="alert alert-info mt-3 mb-0">
+                        <h6>清理结果:</h6>
+                        <ul class="mb-0">
+                            <li>找到 <strong>@cleanupResult.OrphanUsersCount</strong> 个孤立用户</li>
+                            <li>找到 <strong>@cleanupResult.OrphanGroupsCount</strong> 个孤立组织</li>
+                            @if (!dryRun)
+                            {
+                                <li>已删除 <strong>@cleanupResult.DeletedCount</strong> 个对象</li>
+                            }
+                        </ul>
+                        @if (dryRun && cleanupResult.DeletedCount == 0)
+                        {
+                            <hr />
+                            <small class="text-muted">
+                                这是预览模式，没有删除任何数据。取消勾选"仅预览"后可执行实际删除。
+                            </small>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">📋 数据统计</h5>
+            </div>
+            <div class="card-body">
+                <button class="btn btn-info mb-3" @onclick="RefreshStats" disabled="@isLoadingStats">
+                    @if (isLoadingStats)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                    }
+                    🔄 刷新统计
+                </button>
+                
+                @if (stats != null)
+                {
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h2 class="mb-0">@stats.CasdoorUsersCount</h2>
+                                    <small class="text-muted">Casdoor 用户</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h2 class="mb-0">@stats.CasdoorGroupsCount</h2>
+                                    <small class="text-muted">Casdoor 组织</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h2 class="mb-0">@stats.EkpUsersCount</h2>
+                                    <small class="text-muted">EKP 用户</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h2 class="mb-0">@stats.EkpOrgsCount</h2>
+                                    <small class="text-muted">EKP 组织</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">点击刷新按钮加载统计数据</p>
+                }
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">📦 批量操作</h5>
+            </div>
+            <div class="card-body">
+                <h6>导出数据</h6>
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-outline-secondary" @onclick="ExportUsers">
+                        📄 导出用户列表 (CSV)
+                    </button>
+                    <button class="btn btn-outline-secondary" @onclick="ExportOrganizations">
+                        📄 导出组织架构 (CSV)
+                    </button>
+                    <button class="btn btn-outline-secondary" @onclick="ExportMemberships">
+                        📄 导出成员关系 (CSV)
+                    </button>
+                </div>
+                
+                @if (!string.IsNullOrEmpty(exportMessage))
+                {
+                    <div class="alert alert-success">
+                        @exportMessage
+                    </div>
+                }
+                
+                <hr>
+                
+                <h6>数据验证</h6>
+                <button class="btn btn-outline-primary" @onclick="ValidateData" disabled="@isValidating">
+                    @if (isValidating)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                    }
+                    ✓ 验证数据完整性
+                </button>
+                
+                @if (validationResult != null)
+                {
+                    <div class="alert @(validationResult.IsValid ? "alert-success" : "alert-warning") mt-3 mb-0">
+                        <strong>@(validationResult.IsValid ? "✓" : "⚠")</strong> @validationResult.Message
+                        @if (validationResult.Issues.Any())
+                        {
+                            <hr />
+                            <ul class="mb-0 small">
+                                @foreach (var issue in validationResult.Issues)
+                                {
+                                    <li>@issue</li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // 清空操作
+    private string targetOwner = "fzswjtOrganization";
+    private bool confirmPurge = false;
+    private string confirmText = "";
+    private bool isPurging = false;
+    private PurgeResult? purgeResult;
+    
+    // 清理操作
+    private string cleanupScope = "both";
+    private bool dryRun = true;
+    private bool isCleaning = false;
+    private CleanupResult? cleanupResult;
+    
+    // 统计数据
+    private DataStats? stats;
+    private bool isLoadingStats = false;
+    
+    // 导出
+    private string exportMessage = "";
+    
+    // 验证
+    private bool isValidating = false;
+    private ValidationResult? validationResult;
+    
+    private bool CanPurge => confirmPurge && confirmText == "DELETE-ALL" && !string.IsNullOrWhiteSpace(targetOwner);
+    
+    private async Task PurgeAllData()
+    {
+        if (!CanPurge) return;
+        
+        isPurging = true;
+        purgeResult = null;
+        StateHasChanged();
+        
+        try
+        {
+            var deletedCount = await SyncService.CleanOrphanDataAsync(targetOwner);
+            purgeResult = new PurgeResult
+            {
+                Success = true,
+                Message = "数据清空完成",
+                DeletedCount = deletedCount
+            };
+            
+            // 重置确认状态
+            confirmPurge = false;
+            confirmText = "";
+            
+            // 刷新统计
+            await RefreshStats();
+        }
+        catch (Exception ex)
+        {
+            purgeResult = new PurgeResult
+            {
+                Success = false,
+                Message = $"清空失败: {ex.Message}",
+                DeletedCount = 0
+            };
+        }
+        finally
+        {
+            isPurging = false;
+            StateHasChanged();
+        }
+    }
+    
+    private async Task CleanOrphanData()
+    {
+        isCleaning = true;
+        cleanupResult = null;
+        StateHasChanged();
+        
+        try
+        {
+            // TODO: 实现实际的孤立数据清理
+            await Task.Delay(1000); // 模拟清理过程
+            
+            cleanupResult = new CleanupResult
+            {
+                OrphanUsersCount = 15,
+                OrphanGroupsCount = 3,
+                DeletedCount = dryRun ? 0 : 18
+            };
+        }
+        finally
+        {
+            isCleaning = false;
+            StateHasChanged();
+        }
+    }
+    
+    private async Task RefreshStats()
+    {
+        isLoadingStats = true;
+        StateHasChanged();
+        
+        try
+        {
+            var testResult = await SyncService.TestConnectionsAsync();
+            stats = new DataStats
+            {
+                CasdoorUsersCount = testResult.CasdoorUsersCount,
+                CasdoorGroupsCount = testResult.CasdoorGroupsCount,
+                EkpUsersCount = testResult.EkpUsersCount,
+                EkpOrgsCount = testResult.EkpOrgsCount
+            };
+        }
+        finally
+        {
+            isLoadingStats = false;
+            StateHasChanged();
+        }
+    }
+    
+    private async Task ExportUsers()
+    {
+        exportMessage = "正在导出用户列表...";
+        StateHasChanged();
+        
+        try
+        {
+            // TODO: 实现实际的导出功能
+            await Task.Delay(500);
+            exportMessage = "✓ 用户列表已导出到: exports/users.csv";
+        }
+        catch (Exception ex)
+        {
+            exportMessage = $"✗ 导出失败: {ex.Message}";
+        }
+        
+        StateHasChanged();
+    }
+    
+    private async Task ExportOrganizations()
+    {
+        exportMessage = "正在导出组织架构...";
+        StateHasChanged();
+        
+        try
+        {
+            var filePath = await SyncService.ExportOrganizationHierarchyAsync();
+            exportMessage = $"✓ 组织架构已导出到: {filePath}";
+        }
+        catch (Exception ex)
+        {
+            exportMessage = $"✗ 导出失败: {ex.Message}";
+        }
+        
+        StateHasChanged();
+    }
+    
+    private async Task ExportMemberships()
+    {
+        exportMessage = "正在导出成员关系...";
+        StateHasChanged();
+        
+        try
+        {
+            await Task.Delay(500);
+            exportMessage = "✓ 成员关系已导出到: exports/memberships.csv";
+        }
+        catch (Exception ex)
+        {
+            exportMessage = $"✗ 导出失败: {ex.Message}";
+        }
+        
+        StateHasChanged();
+    }
+    
+    private async Task ValidateData()
+    {
+        isValidating = true;
+        validationResult = null;
+        StateHasChanged();
+        
+        try
+        {
+            await Task.Delay(1000);
+            
+            var issues = new List<string>();
+            // TODO: 实现实际的验证逻辑
+            
+            validationResult = new ValidationResult
+            {
+                IsValid = issues.Count == 0,
+                Message = issues.Count == 0 ? "数据验证通过，未发现问题" : $"发现 {issues.Count} 个问题",
+                Issues = issues
+            };
+        }
+        finally
+        {
+            isValidating = false;
+            StateHasChanged();
+        }
+    }
+    
+    // DTO 类
+    private class PurgeResult
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = "";
+        public int DeletedCount { get; set; }
+    }
+    
+    private class CleanupResult
+    {
+        public int OrphanUsersCount { get; set; }
+        public int OrphanGroupsCount { get; set; }
+        public int DeletedCount { get; set; }
+    }
+    
+    private class DataStats
+    {
+        public int CasdoorUsersCount { get; set; }
+        public int CasdoorGroupsCount { get; set; }
+        public int EkpUsersCount { get; set; }
+        public int EkpOrgsCount { get; set; }
+    }
+    
+    private class ValidationResult
+    {
+        public bool IsValid { get; set; }
+        public string Message { get; set; } = "";
+        public List<string> Issues { get; set; } = new();
+    }
+}

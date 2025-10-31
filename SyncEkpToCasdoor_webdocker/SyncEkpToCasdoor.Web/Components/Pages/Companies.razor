@@ -1,0 +1,296 @@
+@page "/companies"
+@using SyncEkpToCasdoor.Web.Services
+@inject ISyncService SyncService
+@rendermode InteractiveServer
+
+<PageTitle>公司同步</PageTitle>
+
+<h1>🏢 按公司同步</h1>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">选择公司进行同步</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="搜索公司名称..." @bind="searchText" @bind:event="oninput">
+                            <button class="btn btn-outline-secondary" @onclick="LoadCompanies">
+                                🔍 搜索
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <button class="btn btn-info" @onclick="LoadCompanies" disabled="@isLoading">
+                            @if (isLoading)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            🔄 刷新公司列表
+                        </button>
+                    </div>
+                </div>
+                
+                @if (isLoading)
+                {
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">加载中...</span>
+                        </div>
+                        <p class="mt-2 text-muted">正在加载公司列表...</p>
+                    </div>
+                }
+                else if (companies.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>公司名称</th>
+                                    <th class="text-center">用户数</th>
+                                    <th class="text-center">部门数</th>
+                                    <th class="text-center">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var company in FilteredCompanies)
+                                {
+                                    <tr>
+                                        <td>
+                                            <strong>@company.Name</strong>
+                                            <br />
+                                            <small class="text-muted">ID: @company.Id</small>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-primary">@company.UserCount</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-secondary">@company.DeptCount</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-success me-2" 
+                                                    @onclick="() => SyncCompany(company.Id, false)"
+                                                    disabled="@(isSyncing || currentSyncCompanyId == company.Id)">
+                                                @if (currentSyncCompanyId == company.Id)
+                                                {
+                                                    <span class="spinner-border spinner-border-sm me-1"></span>
+                                                }
+                                                ▶️ 全量同步
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" 
+                                                    @onclick="() => SyncCompany(company.Id, true)"
+                                                    disabled="@(isSyncing || currentSyncCompanyId == company.Id)">
+                                                ⏩ 增量同步
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-3 text-muted">
+                        <small>
+                            显示 @FilteredCompanies.Count() / @companies.Count 个公司
+                        </small>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <strong>ℹ️</strong> 未找到公司数据。请点击"刷新公司列表"加载数据。
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (syncResult != null)
+{
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert @(syncResult.Success ? "alert-success" : "alert-danger") alert-dismissible fade show">
+                <h5 class="alert-heading">
+                    @(syncResult.Success ? "✓" : "✗") @syncResult.Message
+                </h5>
+                <hr>
+                <dl class="row mb-0">
+                    <dt class="col-sm-3">公司:</dt>
+                    <dd class="col-sm-9">@currentCompanyName</dd>
+                    
+                    <dt class="col-sm-3">开始时间:</dt>
+                    <dd class="col-sm-9">@syncResult.StartTime.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+                    
+                    <dt class="col-sm-3">结束时间:</dt>
+                    <dd class="col-sm-9">@syncResult.EndTime.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+                    
+                    <dt class="col-sm-3">耗时:</dt>
+                    <dd class="col-sm-9">@((syncResult.EndTime - syncResult.StartTime).TotalSeconds.ToString("F2")) 秒</dd>
+                    
+                    @if (syncResult.UsersProcessed > 0)
+                    {
+                        <dt class="col-sm-3">处理用户:</dt>
+                        <dd class="col-sm-9">@syncResult.UsersProcessed</dd>
+                    }
+                    
+                    @if (syncResult.OrganizationsProcessed > 0)
+                    {
+                        <dt class="col-sm-3">处理组织:</dt>
+                        <dd class="col-sm-9">@syncResult.OrganizationsProcessed</dd>
+                    }
+                </dl>
+                
+                @if (syncResult.Errors.Any())
+                {
+                    <hr>
+                    <h6>错误详情:</h6>
+                    <pre class="mb-0" style="max-height: 200px; overflow-y: auto;">@string.Join("\n", syncResult.Errors)</pre>
+                }
+                
+                <button type="button" class="btn-close" @onclick="ClearSyncResult"></button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">📊 同步统计</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h3 class="mb-0">@companies.Count</h3>
+                                <small class="text-muted">总公司数</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h3 class="mb-0">@companies.Sum(c => c.UserCount)</h3>
+                                <small class="text-muted">总用户数</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h3 class="mb-0">@companies.Sum(c => c.DeptCount)</h3>
+                                <small class="text-muted">总部门数</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h3 class="mb-0">@syncedCompaniesCount</h3>
+                                <small class="text-muted">已同步公司</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<CompanyInfo> companies = new();
+    private string searchText = "";
+    private bool isLoading = false;
+    private bool isSyncing = false;
+    private string currentSyncCompanyId = "";
+    private string currentCompanyName = "";
+    private SyncResult? syncResult;
+    private int syncedCompaniesCount = 0;
+    
+    private IEnumerable<CompanyInfo> FilteredCompanies
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(searchText))
+                return companies;
+            
+            return companies.Where(c => 
+                c.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                c.Id.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+        }
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCompanies();
+    }
+    
+    private async Task LoadCompanies()
+    {
+        isLoading = true;
+        StateHasChanged();
+        
+        try
+        {
+            companies = await SyncService.GetCompaniesAsync();
+        }
+        catch (Exception ex)
+        {
+            // TODO: 显示错误消息
+            Console.WriteLine($"加载公司列表失败: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+    
+    private async Task SyncCompany(string companyId, bool incremental)
+    {
+        if (isSyncing) return;
+        
+        isSyncing = true;
+        currentSyncCompanyId = companyId;
+        var company = companies.FirstOrDefault(c => c.Id == companyId);
+        currentCompanyName = company?.Name ?? companyId;
+        syncResult = null;
+        StateHasChanged();
+        
+        try
+        {
+            syncResult = await SyncService.SyncByCompanyAsync(companyId, incremental);
+            if (syncResult.Success)
+            {
+                syncedCompaniesCount++;
+            }
+        }
+        catch (Exception ex)
+        {
+            syncResult = new SyncResult
+            {
+                Success = false,
+                Message = $"同步失败: {ex.Message}",
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now
+            };
+        }
+        finally
+        {
+            isSyncing = false;
+            currentSyncCompanyId = "";
+            StateHasChanged();
+        }
+    }
+    
+    private void ClearSyncResult()
+    {
+        syncResult = null;
+    }
+}

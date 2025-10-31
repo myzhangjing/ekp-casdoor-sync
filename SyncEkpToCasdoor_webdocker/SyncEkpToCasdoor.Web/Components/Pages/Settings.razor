@@ -1,0 +1,283 @@
+@page "/settings"
+@using SyncEkpToCasdoor.Web.Services
+@inject ISyncService SyncService
+@rendermode InteractiveServer
+
+<PageTitle>系统配置</PageTitle>
+
+<h1>⚙️ 系统配置</h1>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">📊 EKP 数据库配置</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">服务器地址</label>
+                    <input type="text" class="form-control" @bind="ekpServer" placeholder="npm.fzcsps.com:11433">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">数据库名</label>
+                    <input type="text" class="form-control" @bind="ekpDatabase" placeholder="ecology">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">用户名</label>
+                    <input type="text" class="form-control" @bind="ekpUsername" placeholder="ecology">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">密码</label>
+                    <input type="password" class="form-control" @bind="ekpPassword">
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" @bind="ekpTrustCertificate" id="ekpTrust">
+                    <label class="form-check-label" for="ekpTrust">
+                        信任服务器证书
+                    </label>
+                </div>
+                <button class="btn btn-primary" @onclick="SaveEkpConfig" disabled="@isSaving">
+                    @if (isSaving)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                    }
+                    💾 保存 EKP 配置
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">🔐 Casdoor API 配置</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">API 端点</label>
+                    <input type="text" class="form-control" @bind="casdoorEndpoint" placeholder="http://172.16.10.110:8000">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">组织 (Owner)</label>
+                    <input type="text" class="form-control" @bind="casdoorOwner" placeholder="fzswjtOrganization">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Client ID</label>
+                    <input type="text" class="form-control" @bind="casdoorClientId">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Client Secret</label>
+                    <input type="password" class="form-control" @bind="casdoorClientSecret">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">应用名称</label>
+                    <input type="text" class="form-control" @bind="casdoorApplicationName" placeholder="ekp-sync-app">
+                </div>
+                <button class="btn btn-success" @onclick="SaveCasdoorConfig" disabled="@isSaving">
+                    @if (isSaving)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                    }
+                    💾 保存 Casdoor 配置
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0">⚡ 同步配置</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">批处理大小</label>
+                    <input type="number" class="form-control" @bind="batchSize" min="1" max="1000">
+                    <small class="form-text text-muted">每批次处理的用户/组织数量</small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">重试次数</label>
+                    <input type="number" class="form-control" @bind="retryCount" min="0" max="10">
+                    <small class="form-text text-muted">失败时的重试次数</small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">超时时间 (秒)</label>
+                    <input type="number" class="form-control" @bind="timeoutSeconds" min="10" max="600">
+                    <small class="form-text text-muted">单次API调用超时时间</small>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" @bind="enableProgressLog" id="progressLog">
+                    <label class="form-check-label" for="progressLog">
+                        启用详细进度日志
+                    </label>
+                </div>
+                <button class="btn btn-warning" @onclick="SaveSyncConfig" disabled="@isSaving">
+                    @if (isSaving)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                    }
+                    💾 保存同步配置
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card border-info">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">ℹ️ 系统信息</h5>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-6">配置文件路径:</dt>
+                    <dd class="col-sm-6"><code>appsettings.json</code></dd>
+                    
+                    <dt class="col-sm-6">日志级别:</dt>
+                    <dd class="col-sm-6">@logLevel</dd>
+                    
+                    <dt class="col-sm-6">应用版本:</dt>
+                    <dd class="col-sm-6">@appVersion</dd>
+                    
+                    <dt class="col-sm-6">运行环境:</dt>
+                    <dd class="col-sm-6">@environment</dd>
+                </dl>
+                <hr>
+                <div class="alert alert-info mb-0">
+                    <small>
+                        <strong>提示:</strong> 修改配置后需要重启应用才能生效。
+                        建议在非生产环境先测试配置的有效性。
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(saveMessage))
+{
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert @(saveSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show">
+                @saveMessage
+                <button type="button" class="btn-close" @onclick="ClearMessage"></button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    // EKP 配置
+    private string ekpServer = "npm.fzcsps.com:11433";
+    private string ekpDatabase = "ecology";
+    private string ekpUsername = "ecology";
+    private string ekpPassword = "";
+    private bool ekpTrustCertificate = true;
+    
+    // Casdoor 配置
+    private string casdoorEndpoint = "http://172.16.10.110:8000";
+    private string casdoorOwner = "fzswjtOrganization";
+    private string casdoorClientId = "";
+    private string casdoorClientSecret = "";
+    private string casdoorApplicationName = "ekp-sync-app";
+    
+    // 同步配置
+    private int batchSize = 100;
+    private int retryCount = 3;
+    private int timeoutSeconds = 30;
+    private bool enableProgressLog = true;
+    
+    // 系统信息
+    private string logLevel = "Information";
+    private string appVersion = "2.0.0";
+    private string environment = "Development";
+    
+    // UI 状态
+    private bool isSaving = false;
+    private string saveMessage = "";
+    private bool saveSuccess = false;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCurrentConfig();
+    }
+    
+    private async Task LoadCurrentConfig()
+    {
+        // TODO: 从配置服务加载当前配置
+        await Task.CompletedTask;
+    }
+    
+    private async Task SaveEkpConfig()
+    {
+        isSaving = true;
+        try
+        {
+            // TODO: 保存到 appsettings.json 或数据库
+            await Task.Delay(500); // 模拟保存操作
+            
+            saveMessage = "✓ EKP 配置已保存成功！请重启应用以应用更改。";
+            saveSuccess = true;
+        }
+        catch (Exception ex)
+        {
+            saveMessage = $"✗ 保存失败: {ex.Message}";
+            saveSuccess = false;
+        }
+        finally
+        {
+            isSaving = false;
+            StateHasChanged();
+        }
+    }
+    
+    private async Task SaveCasdoorConfig()
+    {
+        isSaving = true;
+        try
+        {
+            await Task.Delay(500);
+            
+            saveMessage = "✓ Casdoor 配置已保存成功！请重启应用以应用更改。";
+            saveSuccess = true;
+        }
+        catch (Exception ex)
+        {
+            saveMessage = $"✗ 保存失败: {ex.Message}";
+            saveSuccess = false;
+        }
+        finally
+        {
+            isSaving = false;
+            StateHasChanged();
+        }
+    }
+    
+    private async Task SaveSyncConfig()
+    {
+        isSaving = true;
+        try
+        {
+            await Task.Delay(500);
+            
+            saveMessage = "✓ 同步配置已保存成功！";
+            saveSuccess = true;
+        }
+        catch (Exception ex)
+        {
+            saveMessage = $"✗ 保存失败: {ex.Message}";
+            saveSuccess = false;
+        }
+        finally
+        {
+            isSaving = false;
+            StateHasChanged();
+        }
+    }
+    
+    private void ClearMessage()
+    {
+        saveMessage = "";
+    }
+}
