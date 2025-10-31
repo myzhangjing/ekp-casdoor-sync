@@ -17,6 +17,20 @@ internal static class Program
 
         try
         {
+            // 解析带参数的调试命令（必须尽早处理）
+            string? GetArgValue(string flag)
+            {
+                for (int i = 0; i < args.Length; i++)
+                {
+                    if (string.Equals(args[i], flag, StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (i + 1 < args.Length) return args[i + 1];
+                        return null;
+                    }
+                }
+                return null;
+            }
+
             // 修复视图命令（仅需EKP连接字符串）
             if (args.Contains("--fix-view", StringComparer.OrdinalIgnoreCase))
             {
@@ -45,6 +59,28 @@ internal static class Program
                 if (string.IsNullOrWhiteSpace(connStr))
                     throw new InvalidOperationException("缺少必要环境变量：EKP_SQLSERVER_CONN");
                 PeekOrgView(connStr);
+                return 0;
+            }
+
+            // 查看用户视图中的指定用户（按用户名或显示名模糊查询）
+            var peekUserKey = GetArgValue("--peek-user");
+            if (!string.IsNullOrWhiteSpace(peekUserKey))
+            {
+                var connStr = Environment.GetEnvironmentVariable("EKP_SQLSERVER_CONN");
+                if (string.IsNullOrWhiteSpace(connStr))
+                    throw new InvalidOperationException("缺少必要环境变量：EKP_SQLSERVER_CONN");
+                PeekUserView(connStr, peekUserKey!);
+                return 0;
+            }
+
+            // 查看成员关系视图中某一用户的组织列表
+            var peekMemberUser = GetArgValue("--peek-membership");
+            if (!string.IsNullOrWhiteSpace(peekMemberUser))
+            {
+                var connStr = Environment.GetEnvironmentVariable("EKP_SQLSERVER_CONN");
+                if (string.IsNullOrWhiteSpace(connStr))
+                    throw new InvalidOperationException("缺少必要环境变量：EKP_SQLSERVER_CONN");
+                PeekMembershipView(connStr, peekMemberUser!);
                 return 0;
             }
 
@@ -159,6 +195,72 @@ internal static class Program
             Console.Error.WriteLine($"同步失败：{ex.Message}");
             Console.Error.WriteLine(ex);
             return 1;
+        }
+    }
+
+    private static void PeekUserView(string connectionString, string keyword)
+    {
+        using var conn = new SqlConnection(connectionString);
+        conn.Open();
+
+        Console.WriteLine($"查询 vw_casdoor_users_sync 中的用户，关键字: {keyword}");
+
+        // 支持精确用户名匹配或显示名模糊匹配
+        var sql = @"
+SELECT TOP 50 id, username, display_name, email, phone, dept_id, company_name, affiliation, owner, type, updated_at
+FROM vw_casdoor_users_sync WITH (NOLOCK)
+WHERE username = @kw OR id = @kw OR display_name LIKE @like
+ORDER BY updated_at DESC, id;";
+
+        using var cmd = new SqlCommand(sql, conn) { CommandTimeout = 60 };
+        cmd.Parameters.AddWithValue("@kw", keyword);
+        cmd.Parameters.AddWithValue("@like", "%" + keyword + "%");
+
+        using var reader = cmd.ExecuteReader();
+        var found = 0;
+        Console.WriteLine("结果: id | username | display_name | dept_id | company_name | affiliation | owner | updated_at");
+        while (reader.Read())
+        {
+            found++;
+            var id = reader.IsDBNull(0) ? "" : reader.GetString(0);
+            var username = reader.IsDBNull(1) ? "" : reader.GetString(1);
+            var disp = reader.IsDBNull(2) ? "" : reader.GetString(2);
+            var dept = reader.IsDBNull(5) ? "" : reader.GetString(5);
+            var comp = reader.IsDBNull(6) ? "" : reader.GetString(6);
+            var aff = reader.IsDBNull(7) ? "" : reader.GetString(7);
+            var owner = reader.IsDBNull(8) ? "" : reader.GetString(8);
+            var updated = reader.IsDBNull(10) ? "" : reader.GetDateTime(10).ToString("o");
+            Console.WriteLine($"  {id} | {username} | {disp} | {dept} | {comp} | {aff} | {owner} | {updated}");
+        }
+
+        if (found == 0)
+        {
+            Console.WriteLine("未在视图中找到匹配的用户。可能原因：\n- 用户未设置登录名(fd_login_name)\n- 用户未关联有效部门\n- 部门不在目标公司层级下\n- 视图未更新或过滤条件不匹配\n- 本次为增量同步且该用户近期未更新");
+        }
+    }
+
+    private static void PeekMembershipView(string connectionString, string username)
+    {
+        using var conn = new SqlConnection(connectionString);
+        conn.Open();
+
+        Console.WriteLine($"查询 vw_user_group_membership 中 {username} 的组织信息...");
+        var sql = @"SELECT username, dept_id FROM vw_user_group_membership WHERE username=@u";
+        using var cmd = new SqlCommand(sql, conn) { CommandTimeout = 60 };
+        cmd.Parameters.AddWithValue("@u", username);
+
+        using var reader = cmd.ExecuteReader();
+        var count = 0;
+        while (reader.Read())
+        {
+            count++;
+            var u = reader.IsDBNull(0) ? "" : reader.GetString(0);
+            var dept = reader.IsDBNull(1) ? "" : reader.GetString(1);
+            Console.WriteLine($"  {u} -> dept_id={dept}");
+        }
+        if (count == 0)
+        {
+            Console.WriteLine("未在成员关系视图中找到记录，程序将回退尝试使用用户的 dept_id。若 dept_id 也缺失，则用户将无组织。\n请核对：\n- 该用户是否有岗位/部门关系\n- 该部门是否在目标公司树内\n- 视图 vw_user_group_membership 是否存在且列名为 username, dept_id");
         }
     }
 
@@ -623,20 +725,20 @@ WITH person_info AS (
         COALESCE(
             (
                 SELECT TOP 1 CASE 
-                    WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = pe.fd_parentorgid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN pe.fd_parentorgid
+                    WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = e.fd_parentid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN e.fd_parentid
+                    WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = e.fd_parentorgid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN e.fd_parentorgid
+                    ELSE NULL END
+            ),
+            (
+                SELECT TOP 1 CASE 
                     WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = pe.fd_parentid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN pe.fd_parentid
+                    WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = pe.fd_parentorgid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN pe.fd_parentorgid
                     ELSE NULL END
                 FROM dbo.sys_org_post_person spp
                 INNER JOIN dbo.sys_org_element pe ON pe.fd_id = spp.fd_postid
                 WHERE spp.fd_personid = e.fd_id 
                     AND pe.fd_org_type = 4
                     AND pe.fd_is_available = 1
-            ),
-            (
-                SELECT TOP 1 CASE 
-                    WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = e.fd_parentorgid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN e.fd_parentorgid
-                    WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = e.fd_parentid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN e.fd_parentid
-                    ELSE NULL END
             )
         ) AS DeptId
     FROM dbo.sys_org_element e
@@ -718,8 +820,8 @@ post_dept AS (
     SELECT DISTINCT
         spp.fd_personid AS PersonId,
         CASE 
-            WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = pe.fd_parentorgid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN pe.fd_parentorgid
             WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = pe.fd_parentid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN pe.fd_parentid
+            WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = pe.fd_parentorgid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN pe.fd_parentorgid
             ELSE NULL 
         END AS DeptId
     FROM dbo.sys_org_post_person spp
@@ -731,8 +833,8 @@ person_dept AS (
     SELECT DISTINCT
         e.fd_id AS PersonId,
         CASE 
-            WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = e.fd_parentorgid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN e.fd_parentorgid
             WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = e.fd_parentid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN e.fd_parentid
+            WHEN EXISTS (SELECT 1 FROM dbo.sys_org_element d WHERE d.fd_id = e.fd_parentorgid AND d.fd_org_type = 2 AND d.fd_is_available = 1) THEN e.fd_parentorgid
             ELSE NULL 
         END AS DeptId
     FROM dbo.sys_org_element e
@@ -1481,6 +1583,10 @@ internal sealed class SyncService
             {
                 Console.WriteLine($"  -> 用户 {user.Id} 未在成员关系视图中找到, 回退使用其部门ID: {user.DeptId}");
                 groupIds = new List<string> { user.DeptId };
+            }
+            else if ((groupIds is null || groupIds.Count == 0) && string.IsNullOrWhiteSpace(user.DeptId))
+            {
+                Console.WriteLine($"  -> 警告: 用户 {user.Id} ({user.DisplayName}) 未找到任何组织信息（成员视图无记录，且用户dept_id为空）。将创建用户但不添加到任何组织。");
             }
             
             _casdoor.UpsertUser(user, owner, _config.ForceOwnerRefresh, groupIds);
