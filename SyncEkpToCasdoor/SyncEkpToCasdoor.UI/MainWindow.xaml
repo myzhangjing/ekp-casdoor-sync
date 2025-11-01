@@ -695,6 +695,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 
                 <materialDesign:PackIcon Grid.Column="0" 
@@ -710,6 +711,19 @@
                             IsIndeterminate="True" 
                             Width="100"
                             Visibility="{Binding IsTesting, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                
+                <!-- 当前登录用户 -->
+                <StackPanel Grid.Column="3" 
+                           Orientation="Horizontal" 
+                           Margin="20,0,0,0"
+                           x:Name="UserInfoPanel">
+                    <materialDesign:PackIcon Kind="Account" 
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,5,0"/>
+                    <TextBlock x:Name="UserDisplayNameText"
+                              VerticalAlignment="Center"
+                              FontWeight="Bold"/>
+                </StackPanel>
             </Grid>
         </materialDesign:ColorZone>
     </Grid>

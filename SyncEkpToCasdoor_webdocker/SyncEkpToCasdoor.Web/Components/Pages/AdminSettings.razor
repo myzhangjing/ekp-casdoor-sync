@@ -1,0 +1,280 @@
+@page "/admin/settings"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Administrator")]
+@inject NavigationManager Navigation
+@inject IHttpClientFactory HttpFactory
+
+<PageTitle>系统配置 - 特权管理</PageTitle>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>
+                    <i class="bi bi-gear-fill text-danger"></i>
+                    系统配置管理
+                </h2>
+                <span class="badge bg-danger">特权模式</span>
+            </div>
+
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle-fill"></i>
+                    @successMessage
+                    <button type="button" class="btn-close" @onclick="() => successMessage = null"></button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    @errorMessage
+                    <button type="button" class="btn-close" @onclick="() => errorMessage = null"></button>
+                </div>
+            }
+
+            <!-- 域名配置 -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-globe"></i>
+                        域名与协议配置
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">系统域名</label>
+                            <input type="text" class="form-control" @bind="domain" placeholder="例如: syncas.fzcsps.com" />
+                            <div class="form-text">应用的访问域名，用于构建OAuth回调URL</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">访问协议</label>
+                            <select class="form-select" @bind="protocol">
+                                <option value="http">HTTP</option>
+                                <option value="https">HTTPS</option>
+                            </select>
+                            <div class="form-text">生产环境建议使用HTTPS</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">自动生成的回调URL</label>
+                        <input type="text" class="form-control" value="@($"{protocol}://{domain}/callback")" readonly />
+                        <div class="form-text text-warning">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            请确保此URL已在Casdoor应用配置中添加
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 特权密码配置 -->
+            <div class="card mb-4">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-shield-lock-fill"></i>
+                        特权登录密码
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">当前密码</label>
+                            <input type="password" class="form-control" @bind="currentPassword" placeholder="输入当前密码以验证" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">新密码</label>
+                            <input type="password" class="form-control" @bind="newPassword" placeholder="输入新密码" />
+                        </div>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i>
+                        <strong>提示：</strong>修改密码后，需要使用新密码重新登录特权模式
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用户访问控制 -->
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="bi bi-people-fill"></i>
+                        用户访问控制
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">允许访问的用户列表</label>
+                        <textarea class="form-control" rows="4" @bind="allowedUsers" 
+                                  placeholder="每行一个用户名或邮箱，留空表示允许所有用户&#10;例如：&#10;admin@example.com&#10;user1&#10;user2"></textarea>
+                        <div class="form-text">
+                            通过SSO登录的用户需要在此列表中才能访问系统。留空表示不限制（允许所有用户）。
+                        </div>
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <strong>注意：</strong>特权登录不受此限制影响
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-secondary" @onclick="LoadSettings" disabled="@isSaving">
+                            <i class="bi bi-arrow-clockwise"></i>
+                            重新加载
+                        </button>
+                        <div>
+                            <button class="btn btn-outline-danger me-2" @onclick="CancelEdit">
+                                <i class="bi bi-x-circle"></i>
+                                取消
+                            </button>
+                            <button class="btn btn-success" @onclick="SaveAllSettings" disabled="@isSaving">
+                                @if (isSaving)
+                                {
+                                    <span class="spinner-border spinner-border-sm me-2"></span>
+                                }
+                                <i class="bi bi-check-circle"></i>
+                                保存所有配置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+    .alert {
+        border-radius: 8px;
+    }
+
+    .form-control, .form-select {
+        border-radius: 6px;
+    }
+
+    .btn {
+        border-radius: 6px;
+    }
+</style>
+
+@code {
+    private string domain = "";
+    private string protocol = "http";
+    private string currentPassword = "";
+    private string newPassword = "";
+    private string allowedUsers = "";
+    
+    private string? successMessage = null;
+    private string? errorMessage = null;
+    private bool isSaving = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadSettings();
+    }
+
+    private async Task LoadSettings()
+    {
+        try
+        {
+            var client = HttpFactory.CreateClient("WithCookies");
+            var response = await client.GetFromJsonAsync<ApiResponse>("/api/config/settings");
+            if (response?.Success == true && response.Data != null)
+            {
+                domain = response.Data.TryGetValue("Domain", out var d) ? d : "syncas.fzcsps.com";
+                protocol = response.Data.TryGetValue("Protocol", out var p) ? p : "http";
+                allowedUsers = response.Data.TryGetValue("AllowedUsers", out var u) ? u : "";
+            }
+            
+            successMessage = null;
+            errorMessage = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"加载配置失败: {ex.Message}";
+        }
+    }
+
+    private async Task SaveAllSettings()
+    {
+        errorMessage = null;
+        successMessage = null;
+        isSaving = true;
+
+        try
+        {
+            // 验证域名
+            if (string.IsNullOrWhiteSpace(domain))
+            {
+                errorMessage = "域名不能为空";
+                return;
+            }
+
+            var request = new
+            {
+                Domain = domain.Trim(),
+                Protocol = protocol,
+                CurrentPassword = currentPassword,
+                NewPassword = newPassword,
+                AllowedUsers = allowedUsers?.Trim() ?? ""
+            };
+
+            var client = HttpFactory.CreateClient("WithCookies");
+            var response = await client.PostAsJsonAsync("/api/config/settings", request);
+            var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+
+            if (response.IsSuccessStatusCode && result?.Success == true)
+            {
+                successMessage = result.Message;
+                
+                // 清空密码字段
+                currentPassword = "";
+                newPassword = "";
+            }
+            else
+            {
+                errorMessage = result?.Message ?? "保存失败";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"保存配置失败: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private void CancelEdit()
+    {
+        Navigation.NavigateTo("/");
+    }
+
+    private class ApiResponse
+    {
+        public bool Success { get; set; }
+        public Dictionary<string, string>? Data { get; set; }
+    }
+
+    private class ApiMessageResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = "";
+    }
+}

@@ -461,6 +461,13 @@ public class DataViewService
                 }
             }
 
+            // 等待 Casdoor 完成用户删除的索引更新
+            if (deletedUsers > 0)
+            {
+                Console.WriteLine($"[清空] 等待2秒，确保 Casdoor 完成索引更新...");
+                await Task.Delay(2000);
+            }
+
             // 2. 删除所有群组 (除了根组织)
             var orgs = await GetCasdoorOrganizationsAsync(config);
             Console.WriteLine($"[清空] 找到 {orgs.Count} 个群组");
@@ -481,6 +488,13 @@ public class DataViewService
                     System.Diagnostics.Debug.WriteLine(errorMsg);
                     // 继续删除其他群组,不中断
                 }
+            }
+
+            // 最后再等待一次，确保所有删除操作完成
+            if (deletedOrgs > 0)
+            {
+                Console.WriteLine($"[清空] 等待2秒，确保所有删除操作完成...");
+                await Task.Delay(2000);
             }
         }
         catch (Exception ex)

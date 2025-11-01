@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{FBF36B00-0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncEkpToCasdoor.UI", "SyncEkpToCasdoor\SyncEkpToCasdoor.UI\SyncEkpToCasdoor.UI.csproj", "{3B439C2C-D5E6-469B-87FC-AE2AF4AB90CE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyncEkpToCasdoor_webdocker", "SyncEkpToCasdoor_webdocker", "{174A7407-2795-197D-2941-77C19FF5EBAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncEkpToCasdoor.Web", "SyncEkpToCasdoor_webdocker\SyncEkpToCasdoor.Web\SyncEkpToCasdoor.Web.csproj", "{3790F38B-C7BA-4F88-A23B-F67354905EAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,12 +47,25 @@ Global
 		{3B439C2C-D5E6-469B-87FC-AE2AF4AB90CE}.Release|x64.Build.0 = Release|Any CPU
 		{3B439C2C-D5E6-469B-87FC-AE2AF4AB90CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{3B439C2C-D5E6-469B-87FC-AE2AF4AB90CE}.Release|x86.Build.0 = Release|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Debug|x64.Build.0 = Debug|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Debug|x86.Build.0 = Debug|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Release|x64.ActiveCfg = Release|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Release|x64.Build.0 = Release|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Release|x86.ActiveCfg = Release|Any CPU
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3B439C2C-D5E6-469B-87FC-AE2AF4AB90CE} = {FBF36B00-0A44-3030-D009-A31EC24BC0E4}
+		{3790F38B-C7BA-4F88-A23B-F67354905EAC} = {174A7407-2795-197D-2941-77C19FF5EBAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26140AC8-7ABC-4926-A468-74A033938609}

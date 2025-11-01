@@ -1,0 +1,493 @@
+@page "/sync-logs"
+@inject IHttpClientFactory HttpFactory
+@inject NavigationManager Navigation
+
+<PageTitle>同步日志</PageTitle>
+
+<h1>📝 同步日志</h1>
+
+@if (isLoading)
+{
+    <div class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">加载中...</span>
+        </div>
+        <p class="mt-2">正在加载日志...</p>
+    </div>
+}
+else
+{
+    <!-- 统计卡片 -->
+    @if (summary != null)
+    {
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">总同步次数</h5>
+                        <h2 class="text-primary">@summary.TotalSyncs</h2>
+                        <small class="text-muted">最近24小时</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">成功</h5>
+                        <h2 class="text-success">@summary.SuccessfulSyncs</h2>
+                        <small class="text-muted">@GetSuccessRate(summary)%</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">失败</h5>
+                        <h2 class="text-danger">@summary.FailedSyncs</h2>
+                        <small class="text-muted">部分成功: @summary.PartialSuccessSyncs</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">平均耗时</h5>
+                        <h2 class="text-info">@FormatDuration(summary.AverageDurationMs)</h2>
+                        <small class="text-muted">@(summary.LastSyncTime?.ToString("MM-dd HH:mm") ?? "无")</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- 日志列表 -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">🕒 同步历史</h5>
+            <div>
+                <button class="btn btn-sm btn-outline-secondary me-2" @onclick="RefreshLogs">
+                    <i class="bi bi-arrow-clockwise"></i> 刷新
+                </button>
+                <select class="form-select form-select-sm d-inline-block w-auto" @onchange="OnPageSizeChange">
+                    <option value="20" selected>显示 20 条</option>
+                    <option value="50">显示 50 条</option>
+                    <option value="100">显示 100 条</option>
+                </select>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            @if (logs == null || !logs.Any())
+            {
+                <div class="text-center py-5 text-muted">
+                    <i class="bi bi-inbox" style="font-size: 3rem;"></i>
+                    <p class="mt-3">暂无同步日志</p>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>时间</th>
+                                <th>类型</th>
+                                <th>状态</th>
+                                <th>公司数</th>
+                                <th>用户/部门</th>
+                                <th>耗时</th>
+                                <th>触发者</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var log in logs)
+                            {
+                                <tr>
+                                    <td>
+                                        <small>@log.StartTime.ToString("yyyy-MM-dd")</small><br>
+                                        <strong>@log.StartTime.ToString("HH:mm:ss")</strong>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-@GetSyncTypeBadge(log.SyncType)">
+                                            @GetSyncTypeText(log.SyncType)
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-@GetStatusBadge(log.Status)">
+                                            @GetStatusIcon(log.Status) @GetStatusText(log.Status)
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <strong>@log.Statistics.SuccessfulCompanies</strong> / @log.Statistics.TotalCompanies
+                                        @if (log.Statistics.FailedCompanies > 0)
+                                        {
+                                            <small class="text-danger">(失败: @log.Statistics.FailedCompanies)</small>
+                                        }
+                                    </td>
+                                    <td>
+                                        <small>
+                                            用户: @log.Statistics.TotalUsers<br>
+                                            部门: @log.Statistics.TotalDepartments
+                                        </small>
+                                    </td>
+                                    <td>@FormatDuration(log.DurationMs)</td>
+                                    <td>@log.TriggeredBy</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" @onclick="() => ViewDetails(log.Id)">
+                                            <i class="bi bi-eye"></i> 详情
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!-- 日志详情模态框 -->
+@if (selectedLog != null)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        📋 同步日志详情 - @selectedLog.Id
+                    </h5>
+                    <button type="button" class="btn-close" @onclick="CloseDetails"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- 基本信息 -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6>基本信息</h6>
+                            <table class="table table-sm table-bordered">
+                                <tr>
+                                    <th width="120">日志ID</th>
+                                    <td><code>@selectedLog.Id</code></td>
+                                </tr>
+                                <tr>
+                                    <th>同步类型</th>
+                                    <td>
+                                        <span class="badge bg-@GetSyncTypeBadge(selectedLog.SyncType)">
+                                            @GetSyncTypeText(selectedLog.SyncType)
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>开始时间</th>
+                                    <td>@selectedLog.StartTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                                </tr>
+                                <tr>
+                                    <th>结束时间</th>
+                                    <td>@(selectedLog.EndTime?.ToString("yyyy-MM-dd HH:mm:ss") ?? "进行中")</td>
+                                </tr>
+                                <tr>
+                                    <th>耗时</th>
+                                    <td><strong>@FormatDuration(selectedLog.DurationMs)</strong></td>
+                                </tr>
+                                <tr>
+                                    <th>触发者</th>
+                                    <td>@selectedLog.TriggeredBy</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>同步统计</h6>
+                            <table class="table table-sm table-bordered">
+                                <tr>
+                                    <th width="120">目标公司</th>
+                                    <td>@selectedLog.Statistics.TotalCompanies 个</td>
+                                </tr>
+                                <tr>
+                                    <th>成功/失败</th>
+                                    <td>
+                                        <span class="text-success">✓ @selectedLog.Statistics.SuccessfulCompanies</span> /
+                                        <span class="text-danger">✗ @selectedLog.Statistics.FailedCompanies</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>同步部门</th>
+                                    <td>@selectedLog.Statistics.TotalDepartments 个</td>
+                                </tr>
+                                <tr>
+                                    <th>同步用户</th>
+                                    <td>@selectedLog.Statistics.TotalUsers 个</td>
+                                </tr>
+                                <tr>
+                                    <th>新增/更新组织</th>
+                                    <td>
+                                        <span class="text-success">+@selectedLog.Statistics.NewOrganizations</span> /
+                                        <span class="text-primary">~@selectedLog.Statistics.UpdatedOrganizations</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>新增/更新用户</th>
+                                    <td>
+                                        <span class="text-success">+@selectedLog.Statistics.NewUsers</span> /
+                                        <span class="text-primary">~@selectedLog.Statistics.UpdatedUsers</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(selectedLog.ErrorMessage))
+                    {
+                        <div class="alert alert-danger">
+                            <strong>错误信息：</strong> @selectedLog.ErrorMessage
+                        </div>
+                    }
+
+                    <!-- 目标公司列表 -->
+                    @if (selectedLog.CompanyIds.Any())
+                    {
+                        <h6>目标公司列表</h6>
+                        <div class="mb-3">
+                            @foreach (var companyId in selectedLog.CompanyIds)
+                            {
+                                <span class="badge bg-secondary me-1">@companyId</span>
+                            }
+                        </div>
+                    }
+
+                    <!-- 详细日志 -->
+                    <h6>详细日志 (@selectedLog.Entries.Count 条)</h6>
+                    <div class="log-entries" style="max-height: 400px; overflow-y: auto; font-family: 'Consolas', monospace; font-size: 0.85rem;">
+                        @foreach (var entry in selectedLog.Entries)
+                        {
+                            <div class="log-entry mb-2 p-2 border-start border-@GetLevelColor(entry.Level) border-3" style="background-color: #f8f9fa;">
+                                <div class="d-flex justify-content-between">
+                                    <span>
+                                        <span class="badge bg-@GetLevelColor(entry.Level)">@entry.Level</span>
+                                        <strong>[@entry.Step]</strong>
+                                        @if (!string.IsNullOrEmpty(entry.CompanyId))
+                                        {
+                                            <span class="text-muted">(公司: @entry.CompanyId)</span>
+                                        }
+                                    </span>
+                                    <small class="text-muted">@entry.Timestamp.ToString("HH:mm:ss.fff")</small>
+                                </div>
+                                <div class="mt-1">@entry.Message</div>
+                                @if (!string.IsNullOrEmpty(entry.Details))
+                                {
+                                    <details class="mt-1">
+                                        <summary class="text-muted" style="cursor: pointer;">查看详情</summary>
+                                        <pre class="mt-2 p-2 bg-white border rounded" style="font-size: 0.75rem;">@entry.Details</pre>
+                                    </details>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="CloseDetails">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private bool isLoading = true;
+    private List<SyncLog>? logs;
+    private SyncLogSummary? summary;
+    private SyncLog? selectedLog;
+    private int pageSize = 20;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        isLoading = true;
+        try
+        {
+            var client = HttpFactory.CreateClient("WithCookies");
+
+            // 加载摘要
+            var summaryResponse = await client.GetFromJsonAsync<ApiResponse<SyncLogSummary>>("/api/synclogs/summary");
+            if (summaryResponse?.Success == true)
+            {
+                summary = summaryResponse.Data;
+            }
+
+            // 加载日志列表
+            var logsResponse = await client.GetFromJsonAsync<ApiResponse<List<SyncLog>>>($"/api/synclogs?count={pageSize}");
+            if (logsResponse?.Success == true)
+            {
+                logs = logsResponse.Data;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"加载日志失败: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task RefreshLogs()
+    {
+        await LoadData();
+    }
+
+    private async Task OnPageSizeChange(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out var newSize))
+        {
+            pageSize = newSize;
+            await LoadData();
+        }
+    }
+
+    private async Task ViewDetails(string logId)
+    {
+        try
+        {
+            var client = HttpFactory.CreateClient("WithCookies");
+            var response = await client.GetFromJsonAsync<ApiResponse<SyncLog>>($"/api/synclogs/{logId}");
+            if (response?.Success == true)
+            {
+                selectedLog = response.Data;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"加载日志详情失败: {ex.Message}");
+        }
+    }
+
+    private void CloseDetails()
+    {
+        selectedLog = null;
+    }
+
+    private string GetSyncTypeBadge(string type) => type switch
+    {
+        "Scheduled" => "primary",
+        "Manual" => "info",
+        "OnDemand" => "warning",
+        _ => "secondary"
+    };
+
+    private string GetSyncTypeText(string type) => type switch
+    {
+        "Scheduled" => "⏰ 定时",
+        "Manual" => "👤 手动",
+        "OnDemand" => "⚡ 按需",
+        _ => type
+    };
+
+    private string GetStatusBadge(string status) => status switch
+    {
+        "Success" => "success",
+        "Failed" => "danger",
+        "PartialSuccess" => "warning",
+        "Running" => "info",
+        _ => "secondary"
+    };
+
+    private string GetStatusIcon(string status) => status switch
+    {
+        "Success" => "✓",
+        "Failed" => "✗",
+        "PartialSuccess" => "⚠",
+        "Running" => "⟳",
+        _ => "?"
+    };
+
+    private string GetStatusText(string status) => status switch
+    {
+        "Success" => "成功",
+        "Failed" => "失败",
+        "PartialSuccess" => "部分成功",
+        "Running" => "运行中",
+        _ => status
+    };
+
+    private string GetLevelColor(string level) => level switch
+    {
+        "Error" => "danger",
+        "Warning" => "warning",
+        "Info" => "primary",
+        _ => "secondary"
+    };
+
+    private string FormatDuration(long ms)
+    {
+        if (ms < 1000) return $"{ms}ms";
+        if (ms < 60000) return $"{ms / 1000.0:F1}s";
+        return $"{ms / 60000.0:F1}min";
+    }
+
+    private int GetSuccessRate(SyncLogSummary summary)
+    {
+        if (summary.TotalSyncs == 0) return 0;
+        return (int)((double)summary.SuccessfulSyncs / summary.TotalSyncs * 100);
+    }
+
+    private class ApiResponse<T>
+    {
+        public bool Success { get; set; }
+        public T? Data { get; set; }
+    }
+
+    private class SyncLog
+    {
+        public string Id { get; set; } = "";
+        public DateTime StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
+        public long DurationMs { get; set; }
+        public string SyncType { get; set; } = "";
+        public string Status { get; set; } = "";
+        public List<string> CompanyIds { get; set; } = new();
+        public SyncStatistics Statistics { get; set; } = new();
+        public string? ErrorMessage { get; set; }
+        public List<SyncLogEntry> Entries { get; set; } = new();
+        public string TriggeredBy { get; set; } = "";
+    }
+
+    private class SyncStatistics
+    {
+        public int TotalCompanies { get; set; }
+        public int SuccessfulCompanies { get; set; }
+        public int FailedCompanies { get; set; }
+        public int TotalDepartments { get; set; }
+        public int TotalUsers { get; set; }
+        public int NewOrganizations { get; set; }
+        public int UpdatedOrganizations { get; set; }
+        public int NewUsers { get; set; }
+        public int UpdatedUsers { get; set; }
+        public int SkippedRecords { get; set; }
+    }
+
+    private class SyncLogEntry
+    {
+        public DateTime Timestamp { get; set; }
+        public string Level { get; set; } = "";
+        public string? CompanyId { get; set; }
+        public string Step { get; set; } = "";
+        public string Message { get; set; } = "";
+        public string? Details { get; set; }
+    }
+
+    private class SyncLogSummary
+    {
+        public int TotalSyncs { get; set; }
+        public int SuccessfulSyncs { get; set; }
+        public int FailedSyncs { get; set; }
+        public int PartialSuccessSyncs { get; set; }
+        public int TotalUsers { get; set; }
+        public int TotalDepartments { get; set; }
+        public DateTime? LastSyncTime { get; set; }
+        public long AverageDurationMs { get; set; }
+    }
+}

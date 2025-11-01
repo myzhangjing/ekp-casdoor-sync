@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncEkpToCasdoor.Web", "SyncEkpToCasdoor.Web\SyncEkpToCasdoor.Web.csproj", "{0FB534D9-2F04-3670-EFF3-E9C89B76AC56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncTester", "SyncTester\SyncTester.csproj", "{90739B30-3A1C-A746-D163-FF557279F9D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FB534D9-2F04-3670-EFF3-E9C89B76AC56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB534D9-2F04-3670-EFF3-E9C89B76AC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB534D9-2F04-3670-EFF3-E9C89B76AC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB534D9-2F04-3670-EFF3-E9C89B76AC56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90739B30-3A1C-A746-D163-FF557279F9D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90739B30-3A1C-A746-D163-FF557279F9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90739B30-3A1C-A746-D163-FF557279F9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90739B30-3A1C-A746-D163-FF557279F9D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A836F1F-7752-4F02-8FEB-1288A6A09610}
+	EndGlobalSection
+EndGlobal

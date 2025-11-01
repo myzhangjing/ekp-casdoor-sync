@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: syncekp-web
     ports:
-      - "8080:8080"
+      - "8800:9000"
     environment:
       # EKP 数据库连接配置
       - EkpConnection=Server=npm.fzcsps.com,11433;Database=ekp;User Id=xxzx;Password=sosy3080@sohu.com;Encrypt=False;TrustServerCertificate=True
@@ -21,7 +21,7 @@ services:
       
       # ASP.NET Core 配置
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://+:8080
+      - ASPNETCORE_URLS=http://+:9000
       
       # 日志级别
       - Logging__LogLevel__Default=Information
@@ -31,6 +31,14 @@ services:
       # 持久化同步状态文件
       - ./data/sync_state.json:/app/sync_state.json
       - ./logs:/app/logs
+      # 持久化同步日志
+      - ./sync_logs:/app/sync_logs
+      # 持久化 Data Protection keys (解决 OAuth 和 Cookie 问题)
+      - ./keys:/app/keys
+      # 持久化配置文件 (用于特权配置保存)
+      - ./config/appsettings.Production.json:/app/appsettings.Production.json
+      # 持久化系统配置文件 (用于系统配置保存)
+      - ./config/appsettings.json:/app/appsettings.json
     
     restart: unless-stopped
     

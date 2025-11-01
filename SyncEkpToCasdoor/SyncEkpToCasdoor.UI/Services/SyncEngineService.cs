@@ -237,30 +237,47 @@ public class SyncEngineService
     {
         OnLogReceived(line, LogLevel.Info);
 
-        // 解析输出行，提取进度信息
-        if (line.Contains("组织") && line.Contains("更新"))
+        // 精确解析同步完成的输出行
+        // 格式: "组织同步完成，共处理 123 条记录。"
+        if (line.Contains("组织同步完成，共处理") && line.Contains("条记录"))
         {
-            result.OrganizationCount++;
+            var match = System.Text.RegularExpressions.Regex.Match(line, @"共处理\s+(\d+)\s+条记录");
+            if (match.Success && int.TryParse(match.Groups[1].Value, out int count))
+            {
+                result.OrganizationCount = count;
+                OnProgressChanged(50, $"组织同步完成: {count} 条");
+            }
         }
-        else if (line.Contains("用户") && line.Contains("更新"))
+        // 格式: "用户同步完成，共处理 456 条记录。"
+        else if (line.Contains("用户同步完成，共处理") && line.Contains("条记录"))
         {
-            result.UserCount++;
+            var match = System.Text.RegularExpressions.Regex.Match(line, @"共处理\s+(\d+)\s+条记录");
+            if (match.Success && int.TryParse(match.Groups[1].Value, out int count))
+            {
+                result.UserCount = count;
+                OnProgressChanged(90, $"用户同步完成: {count} 条");
+            }
         }
-        else if (line.Contains("成功"))
+        // 其他进度提示
+        else if (line.Contains("开始同步组织结构"))
         {
-            result.SuccessCount++;
+            OnProgressChanged(10, "正在同步组织结构...");
         }
-        else if (line.Contains("失败") || line.Contains("错误"))
+        else if (line.Contains("开始同步用户信息"))
+        {
+            OnProgressChanged(60, "正在同步用户信息...");
+        }
+        else if (line.Contains("失败") || line.Contains("错误") || line.Contains("异常"))
         {
             result.ErrorCount++;
         }
 
-        // 计算进度（简单估算）
+        // 计算总进度
         var totalItems = result.OrganizationCount + result.UserCount;
         if (totalItems > 0)
         {
-            var progress = Math.Min(95, (totalItems * 100) / Math.Max(result.TotalEstimated, totalItems));
-            OnProgressChanged(progress, $"已处理 {totalItems} 项");
+            var progress = Math.Min(95, 50 + (result.UserCount > 0 ? 40 : 0));
+            OnProgressChanged(progress, $"已处理: 组织 {result.OrganizationCount} / 用户 {result.UserCount}");
         }
     }
 

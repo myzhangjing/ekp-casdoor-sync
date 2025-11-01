@@ -15,16 +15,19 @@ namespace SyncEkpToCasdoor.Web.Services
         private readonly ILogger<ScheduledSyncService> _logger;
         private readonly IConfiguration _configuration;
         private readonly ISyncService _syncService;
+        private readonly ISyncLogService _syncLogService;
         private Timer? _timer;
 
         public ScheduledSyncService(
             ILogger<ScheduledSyncService> logger,
             IConfiguration configuration,
-            ISyncService syncService)
+            ISyncService syncService,
+            ISyncLogService syncLogService)
         {
             _logger = logger;
             _configuration = configuration;
             _syncService = syncService;
+            _syncLogService = syncLogService;
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -52,6 +55,9 @@ namespace SyncEkpToCasdoor.Web.Services
 
         private async Task DoWork(CancellationToken cancellationToken)
         {
+            Models.SyncLog? syncLog = null;
+            var statistics = new Models.SyncStatistics();
+            
             try
             {
                 _logger.LogInformation("定时同步任务开始执行 - {Time}", DateTime.Now);
@@ -63,28 +69,56 @@ namespace SyncEkpToCasdoor.Web.Services
                     return;
                 }
 
-                var companies = companyIds.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                _logger.LogInformation("准备同步 {Count} 个公司", companies.Length);
+                var companies = companyIds.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(c => c.Trim())
+                    .ToList();
+                
+                // 创建同步日志
+                syncLog = _syncLogService.CreateLog("Scheduled", companies, "System");
+                statistics.TotalCompanies = companies.Count;
+
+                _logger.LogInformation("准备同步 {Count} 个公司", companies.Count);
+                _syncLogService.AddEntry(syncLog, "Info", "Prepare", $"准备同步 {companies.Count} 个公司");
 
                 foreach (var companyId in companies)
                 {
                     try
                     {
-                        _logger.LogInformation("开始同步公司: {CompanyId}", companyId.Trim());
-                        await _syncService.SyncCompanyAsync(companyId.Trim(), cancellationToken);
-                        _logger.LogInformation("公司 {CompanyId} 同步完成", companyId.Trim());
+                        _logger.LogInformation("开始同步公司: {CompanyId}", companyId);
+                        _syncLogService.AddEntry(syncLog, "Info", "SyncCompany", $"开始同步公司", companyId);
+                        
+                        await _syncService.SyncCompanyAsync(companyId, cancellationToken);
+                        
+                        statistics.SuccessfulCompanies++;
+                        _logger.LogInformation("公司 {CompanyId} 同步完成", companyId);
+                        _syncLogService.AddEntry(syncLog, "Info", "SyncCompany", $"公司同步完成", companyId);
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex, "同步公司 {CompanyId} 失败", companyId.Trim());
+                        statistics.FailedCompanies++;
+                        _logger.LogError(ex, "同步公司 {CompanyId} 失败", companyId);
+                        _syncLogService.AddEntry(syncLog, "Error", "SyncCompany", 
+                            $"公司同步失败: {ex.Message}", companyId, ex.StackTrace);
                     }
                 }
 
                 _logger.LogInformation("定时同步任务完成 - {Time}", DateTime.Now);
+                
+                // 完成日志
+                if (syncLog != null)
+                {
+                    await _syncLogService.CompleteLogAsync(syncLog, statistics);
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "定时同步任务执行失败");
+                
+                // 记录失败日志
+                if (syncLog != null)
+                {
+                    await _syncLogService.FailLogAsync(syncLog, ex.Message, statistics);
+                }
             }
         }
 

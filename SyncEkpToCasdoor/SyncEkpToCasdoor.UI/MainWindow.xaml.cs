@@ -36,6 +36,31 @@ public partial class MainWindow : Window
             EkpPasswordBox.Password = viewModel.Configuration.EkpPassword;
             CasdoorSecretBox.Password = viewModel.Configuration.CasdoorClientSecret;
             CasdoorDbPasswordBox.Password = viewModel.Configuration.CasdoorDbPassword;
+            
+            // 显示当前登录用户
+            UpdateUserInfo();
         };
+    }
+
+    /// <summary>
+    /// 更新用户信息显示
+    /// </summary>
+    private void UpdateUserInfo()
+    {
+        var displayName = Application.Current.Properties["UserDisplayName"] as string;
+        var userName = Application.Current.Properties["UserName"] as string;
+
+        if (!string.IsNullOrEmpty(displayName))
+        {
+            UserDisplayNameText.Text = displayName;
+        }
+        else if (!string.IsNullOrEmpty(userName))
+        {
+            UserDisplayNameText.Text = userName;
+        }
+        else
+        {
+            UserDisplayNameText.Text = "已登录";
+        }
     }
 }

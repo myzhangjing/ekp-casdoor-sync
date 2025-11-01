@@ -139,19 +139,46 @@ internal sealed class SimpleCasdoorRepository : ICasdoorRepository
     public void LoadCasdoorGroupMapping()
     {
         Console.WriteLine("\n正在从Casdoor加载所有组织映射...");
+        Console.WriteLine("  等待2秒，确保Casdoor完成组织索引...");
+        System.Threading.Thread.Sleep(2000); // 等待Casdoor索引更新
         
         _casdoorGroupMapping = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         
-        var resp = GetAsync($"/api/get-groups?owner={Uri.EscapeDataString(_defaultOwner)}").GetAwaiter().GetResult();
+        // 尝试最多3次，确保能获取到完整的组织列表
+        int maxRetries = 3;
+        int retryCount = 0;
+        JsonElement? resp = null;
         
-        if (!resp.HasValue || !resp.Value.TryGetProperty("data", out var data) || data.ValueKind != JsonValueKind.Array)
+        while (retryCount < maxRetries)
+        {
+            resp = GetAsync($"/api/get-groups?owner={Uri.EscapeDataString(_defaultOwner)}").GetAwaiter().GetResult();
+            
+            if (resp.HasValue && resp.Value.TryGetProperty("data", out var data) && data.ValueKind == JsonValueKind.Array)
+            {
+                var groupCount = data.GetArrayLength();
+                if (groupCount > 0 || retryCount >= maxRetries - 1)
+                {
+                    Console.WriteLine($"  ✓ 从Casdoor获取到 {groupCount} 个组织（尝试 {retryCount + 1}/{maxRetries}）");
+                    break;
+                }
+            }
+            
+            retryCount++;
+            if (retryCount < maxRetries)
+            {
+                Console.WriteLine($"  ⚠ 第 {retryCount} 次尝试未获取到组织，1秒后重试...");
+                System.Threading.Thread.Sleep(1000);
+            }
+        }
+        
+        if (!resp.HasValue || !resp.Value.TryGetProperty("data", out var finalData) || finalData.ValueKind != JsonValueKind.Array)
         {
             Console.WriteLine("  ⚠ 无法从Casdoor获取组织列表");
             return;
         }
 
         int count = 0;
-        foreach (var group in data.EnumerateArray())
+        foreach (var group in finalData.EnumerateArray())
         {
             if (group.TryGetProperty("owner", out var ownerProp) &&
                 group.TryGetProperty("name", out var nameProp))

@@ -116,7 +116,37 @@ dotnet run --project SyncEkpToCasdoor.csproj -- apply-views
 
 ---
 
-## 🔍 字段映射
+## �️ 诊断与排查命令
+
+为快速定位“某个用户未同步/未入组”的问题，新增了以下只读诊断命令（需要设置 EKP 连接字符串）：
+
+- 查看用户是否出现在用户视图中（支持用户名精确匹配或显示名模糊匹配）：
+
+```powershell
+# 先设置连接串
+$env:EKP_SQLSERVER_CONN = "Server=...;Database=ekp;User Id=...;Password=...;TrustServerCertificate=True;"
+
+# 关键字可以是登录名(=id/username)或中文显示名的一部分
+dotnet run --project .\SyncEkpToCasdoor.csproj -- --peek-user 张璟
+# 或
+.\bin\Release\net8.0\SyncEkpToCasdoor.exe --peek-user 张璟
+```
+
+- 查看某用户在成员关系视图中的部门列表（用于确认组装配来源）：
+
+```powershell
+dotnet run --project .\SyncEkpToCasdoor.csproj -- --peek-membership zhangjing
+# 或
+.\bin\Release\net8.0\SyncEkpToCasdoor.exe --peek-membership zhangjing
+```
+
+输出将包含用户的 dept_id、company_name、affiliation、owner 以及更新时间，常见缺失原因会在无结果时给出提示。
+
+提示：增量同步时，若用户的 updated_at 较早且未变化，将不会被本次同步覆盖；可将 `SYNC_SINCE_UTC` 置空或设为较早时间以强制全量同步。
+
+---
+
+## �🔍 字段映射
 
 ### Casdoor Group（组织）
 | Casdoor 字段 | EKP 来源 | 说明 |

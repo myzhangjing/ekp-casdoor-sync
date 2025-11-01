@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特权登录测试</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .test-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-card">
+        <h1>🔐 特权登录黑盒测试</h1>
+        
+        <div class="test-section">
+            <h3>测试配置</h3>
+            <p><strong>服务器:</strong> http://syncas.fzcsps.com</p>
+            <p><strong>测试账号:</strong> admin</p>
+            <p><strong>测试密码:</strong> sosy3080@sohu.com</p>
+        </div>
+
+        <div>
+            <button onclick="runTest1()">测试1: API登录</button>
+            <button onclick="runTest2()">测试2: 错误密码</button>
+            <button onclick="runTest3()">测试3: 完整流程</button>
+            <button onclick="runTest4()">测试4: 访问受保护页面</button>
+            <button onclick="clearResults()">清除结果</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const baseUrl = 'http://syncas.fzcsps.com';
+        const resultsDiv = document.getElementById('results');
+
+        function addResult(title, message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = `<strong>${title}</strong><br>${message}`;
+            resultsDiv.appendChild(div);
+        }
+
+        function clearResults() {
+            resultsDiv.innerHTML = '';
+        }
+
+        async function runTest1() {
+            addResult('测试1开始', 'API登录测试...', 'info');
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/admin-login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'sosy3080@sohu.com'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    addResult('测试1通过 ✅', 
+                        `状态码: ${response.status}<br>` +
+                        `响应: ${JSON.stringify(data, null, 2)}<br>` +
+                        `Cookie已设置: ${document.cookie ? '是' : '否'}`, 
+                        'success');
+                } else {
+                    addResult('测试1失败 ❌', 
+                        `状态码: ${response.status}<br>` +
+                        `响应: ${JSON.stringify(data, null, 2)}`, 
+                        'error');
+                }
+            } catch (error) {
+                addResult('测试1错误 ❌', error.message, 'error');
+            }
+        }
+
+        async function runTest2() {
+            addResult('测试2开始', '测试错误密码...', 'info');
+            
+            try {
+                const response = await fetch(`${baseUrl}/api/admin-login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'wrongpassword'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (response.status === 401 && !data.success) {
+                    addResult('测试2通过 ✅', 
+                        `正确返回401错误<br>` +
+                        `消息: ${data.message}`, 
+                        'success');
+                } else {
+                    addResult('测试2失败 ❌', 
+                        `应该返回401，实际: ${response.status}<br>` +
+                        `响应: ${JSON.stringify(data, null, 2)}`, 
+                        'error');
+                }
+            } catch (error) {
+                addResult('测试2错误 ❌', error.message, 'error');
+            }
+        }
+
+        async function runTest3() {
+            addResult('测试3开始', '完整登录流程测试...', 'info');
+            
+            try {
+                // 步骤1: 登录
+                const loginResponse = await fetch(`${baseUrl}/api/admin-login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'sosy3080@sohu.com'
+                    })
+                });
+
+                const loginData = await loginResponse.json();
+                
+                if (!loginResponse.ok || !loginData.success) {
+                    addResult('测试3失败 ❌', `登录失败: ${loginData.message}`, 'error');
+                    return;
+                }
+
+                // 步骤2: 访问主页
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const homeResponse = await fetch(`${baseUrl}/`, {
+                    credentials: 'include'
+                });
+
+                const homeHtml = await homeResponse.text();
+                
+                const hasLogout = homeHtml.includes('登出') || homeHtml.includes('logout');
+                const hasAdminMenu = homeHtml.includes('特权配置');
+                
+                if (hasLogout && hasAdminMenu) {
+                    addResult('测试3通过 ✅', 
+                        `登录成功并访问主页<br>` +
+                        `包含登出按钮: ${hasLogout}<br>` +
+                        `包含特权菜单: ${hasAdminMenu}`, 
+                        'success');
+                } else {
+                    addResult('测试3部分通过 ⚠️', 
+                        `登录成功但页面内容异常<br>` +
+                        `包含登出按钮: ${hasLogout}<br>` +
+                        `包含特权菜单: ${hasAdminMenu}`, 
+                        'error');
+                }
+            } catch (error) {
+                addResult('测试3错误 ❌', error.message, 'error');
+            }
+        }
+
+        async function runTest4() {
+            addResult('测试4开始', '测试访问受保护页面...', 'info');
+            
+            try {
+                // 先登录
+                const loginResponse = await fetch(`${baseUrl}/api/admin-login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'sosy3080@sohu.com'
+                    })
+                });
+
+                const loginData = await loginResponse.json();
+                
+                if (!loginResponse.ok || !loginData.success) {
+                    addResult('测试4失败 ❌', `登录失败: ${loginData.message}`, 'error');
+                    return;
+                }
+
+                // 访问特权配置页面
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const settingsResponse = await fetch(`${baseUrl}/admin/settings`, {
+                    credentials: 'include'
+                });
+
+                if (settingsResponse.ok) {
+                    const settingsHtml = await settingsResponse.text();
+                    const hasSettings = settingsHtml.includes('特权配置');
+                    
+                    if (hasSettings) {
+                        addResult('测试4通过 ✅', 
+                            `成功访问特权配置页面<br>` +
+                            `状态码: ${settingsResponse.status}`, 
+                            'success');
+                    } else {
+                        addResult('测试4部分通过 ⚠️', 
+                            `可以访问但内容不符<br>` +
+                            `状态码: ${settingsResponse.status}`, 
+                            'error');
+                    }
+                } else {
+                    addResult('测试4失败 ❌', 
+                        `无法访问特权配置页面<br>` +
+                        `状态码: ${settingsResponse.status}`, 
+                        'error');
+                }
+            } catch (error) {
+                addResult('测试4错误 ❌', error.message, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

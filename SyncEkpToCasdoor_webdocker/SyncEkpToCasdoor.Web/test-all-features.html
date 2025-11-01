@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全功能验证测试</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        .result-box {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .result-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .result-error {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .result-info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        .result-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-card">
+            <h1 class="mb-4">
+                <i class="bi bi-check-circle-fill text-success"></i>
+                系统全功能验证测试
+            </h1>
+            
+            <div class="alert alert-info">
+                <strong>测试环境:</strong> http://syncas.fzcsps.com<br>
+                <strong>测试账号:</strong> admin / sosy3080@sohu.com
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <button class="btn btn-primary w-100" onclick="testAdminLogin()">
+                        <i class="bi bi-shield-lock"></i> 测试特权登录
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-success w-100" onclick="testNavIcons()">
+                        <i class="bi bi-list"></i> 检查导航图标
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-warning w-100" onclick="testConfigSave()">
+                        <i class="bi bi-save"></i> 测试配置保存
+                    </button>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <button class="btn btn-info w-100" onclick="runAllTests()">
+                        <i class="bi bi-play-circle"></i> 运行所有测试
+                    </button>
+                </div>
+            </div>
+
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        const baseUrl = 'http://syncas.fzcsps.com';
+        const resultsDiv = document.getElementById('results');
+
+        function addResult(title, message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `result-box result-${type}`;
+            div.innerHTML = `
+                <strong><i class="bi bi-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info-circle'}"></i> ${title}</strong><br>
+                ${message}
+            `;
+            resultsDiv.appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function clearResults() {
+            resultsDiv.innerHTML = '';
+        }
+
+        async function testAdminLogin() {
+            clearResults();
+            addResult('测试1: 特权登录', '开始测试...', 'info');
+
+            try {
+                const response = await fetch(`${baseUrl}/api/admin-login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'sosy3080@sohu.com'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    addResult('✅ 特权登录成功', 
+                        `状态码: ${response.status}<br>` +
+                        `消息: ${data.message}<br>` +
+                        `Cookie已设置`, 
+                        'success');
+
+                    // 测试访问主页
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    const homeResponse = await fetch(`${baseUrl}/`, { credentials: 'include' });
+                    const homeHtml = await homeResponse.text();
+                    
+                    if (homeHtml.includes('特权配置')) {
+                        addResult('✅ 特权菜单显示正常', '登录后可以看到特权配置菜单', 'success');
+                    } else {
+                        addResult('⚠️ 特权菜单未显示', '可能需要刷新页面', 'warning');
+                    }
+                } else {
+                    addResult('❌ 登录失败', `${data.message}`, 'error');
+                }
+            } catch (error) {
+                addResult('❌ 测试错误', error.message, 'error');
+            }
+        }
+
+        async function testNavIcons() {
+            clearResults();
+            addResult('测试2: 导航图标', '检查图标显示...', 'info');
+
+            try {
+                // 先登录
+                await fetch(`${baseUrl}/api/admin-login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'sosy3080@sohu.com'
+                    })
+                });
+
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                const response = await fetch(`${baseUrl}/`, { credentials: 'include' });
+                const html = await response.text();
+
+                // 检查图标类
+                const hasCorrectIcons = 
+                    html.includes('bi-house-door-fill') &&
+                    html.includes('bi-arrow-repeat') &&
+                    html.includes('bi-building') &&
+                    html.includes('bi-shield-lock-fill');
+
+                const hasOldIcon = html.includes('bi-house-door-fill-nav-menu');
+
+                if (hasCorrectIcons && !hasOldIcon) {
+                    addResult('✅ 导航图标正常', 
+                        '所有图标类名正确:<br>' +
+                        '• Home: bi-house-door-fill ✓<br>' +
+                        '• 同步管理: bi-arrow-repeat ✓<br>' +
+                        '• 公司同步: bi-building ✓<br>' +
+                        '• 特权配置: bi-shield-lock-fill ✓', 
+                        'success');
+                } else if (hasOldIcon) {
+                    addResult('⚠️ 发现旧图标类', 
+                        '仍然使用 bi-house-door-fill-nav-menu (错误的类名)', 
+                        'warning');
+                } else {
+                    addResult('❌ 图标检查失败', '部分图标类名缺失', 'error');
+                }
+            } catch (error) {
+                addResult('❌ 测试错误', error.message, 'error');
+            }
+        }
+
+        async function testConfigSave() {
+            clearResults();
+            addResult('测试3: 配置保存功能', '开始测试...', 'info');
+
+            try {
+                // 登录
+                addResult('步骤1: 登录', '正在登录...', 'info');
+                await fetch(`${baseUrl}/api/admin-login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'sosy3080@sohu.com'
+                    })
+                });
+
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                // 访问配置页面
+                addResult('步骤2: 访问配置页面', '检查页面功能...', 'info');
+                const settingsResponse = await fetch(`${baseUrl}/admin/settings`, {
+                    credentials: 'include'
+                });
+
+                if (!settingsResponse.ok) {
+                    addResult('❌ 无法访问配置页面', `状态码: ${settingsResponse.status}`, 'error');
+                    return;
+                }
+
+                const settingsHtml = await settingsResponse.text();
+
+                // 检查页面元素
+                const hasForm = settingsHtml.includes('域名与协议配置');
+                const hasSaveButton = settingsHtml.includes('保存所有配置');
+                const hasPasswordField = settingsHtml.includes('特权登录密码');
+                const hasUsersField = settingsHtml.includes('用户访问控制');
+
+                if (hasForm && hasSaveButton && hasPasswordField && hasUsersField) {
+                    addResult('✅ 配置页面完整', 
+                        '所有配置项都存在:<br>' +
+                        '• 域名与协议配置 ✓<br>' +
+                        '• 特权登录密码 ✓<br>' +
+                        '• 用户访问控制 ✓<br>' +
+                        '• 保存按钮 ✓<br><br>' +
+                        '<strong>注意:</strong> 配置保存需要在浏览器中手动测试,因为涉及Blazor交互', 
+                        'success');
+                    
+                    addResult('📝 手动测试步骤', 
+                        '1. 访问 http://syncas.fzcsps.com/admin-login<br>' +
+                        '2. 使用 admin / sosy3080@sohu.com 登录<br>' +
+                        '3. 点击左侧"特权配置"菜单<br>' +
+                        '4. 修改域名或添加用户<br>' +
+                        '5. 点击"保存所有配置"<br>' +
+                        '6. 刷新页面检查配置是否保存', 
+                        'warning');
+                } else {
+                    addResult('⚠️ 配置页面不完整', 
+                        `表单: ${hasForm}, 保存按钮: ${hasSaveButton}, 密码字段: ${hasPasswordField}, 用户字段: ${hasUsersField}`, 
+                        'warning');
+                }
+            } catch (error) {
+                addResult('❌ 测试错误', error.message, 'error');
+            }
+        }
+
+        async function runAllTests() {
+            clearResults();
+            addResult('🚀 开始全部测试', '运行所有测试用例...', 'info');
+            
+            await testAdminLogin();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testNavIcons();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testConfigSave();
+            
+            addResult('✅ 所有测试完成', '请查看上方结果', 'success');
+        }
+    </script>
+</body>
+</html>

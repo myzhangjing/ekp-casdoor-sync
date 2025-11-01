@@ -40,11 +40,11 @@ public class AppConfig
                 
             OrganizationName = configuration.GetValue<string>("Casdoor:OrganizationName")
                 ?? Environment.GetEnvironmentVariable("CASDOOR_ORG_NAME")
-                ?? "fzswjtOrganization",
+                ?? "built-in",
                 
             DefaultOwner = configuration.GetValue<string>("Casdoor:DefaultOwner")
                 ?? Environment.GetEnvironmentVariable("DEFAULT_OWNER")
-                ?? "fzswjtOrganization",
+                ?? "built-in",
                 
             StateFilePath = configuration.GetValue<string>("StateFilePath")
                 ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sync_state.json")

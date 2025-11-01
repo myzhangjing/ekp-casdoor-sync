@@ -11,12 +11,92 @@
             <div class="top-row px-4">
                 <AuthorizeView>
                     <Authorized>
-                        <div class="user-info">
-                            <span class="user-name">
-                                <i class="bi bi-person-circle"></i>
-                                @context.User.Identity?.Name
-                            </span>
-                            <a href="/logout" class="btn btn-sm btn-outline-danger ms-3">
+                        <div class="user-info d-flex align-items-center">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-circle"></i>
+                                    @context.User.Identity?.Name
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" style="min-width: 300px;">
+                                    <li><h6 class="dropdown-header">用户信息</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    
+                                    @{
+                                        var userName = context.User.FindFirst("username")?.Value;
+                                        var owner = context.User.FindFirst("owner")?.Value;
+                                        var userId = context.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                                        var email = context.User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value;
+                                        var displayName = context.User.Identity?.Name;
+                                        var loginType = context.User.FindFirst("login_type")?.Value;
+                                        var role = context.User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+                                    }
+                                    
+                                    @if (!string.IsNullOrEmpty(displayName))
+                                    {
+                                        <li class="px-3 py-1">
+                                            <small class="text-muted">显示名称</small><br>
+                                            <strong>@displayName</strong>
+                                        </li>
+                                    }
+                                    
+                                    @if (!string.IsNullOrEmpty(userName))
+                                    {
+                                        <li class="px-3 py-1">
+                                            <small class="text-muted">用户名</small><br>
+                                            <strong>@userName</strong>
+                                        </li>
+                                    }
+                                    
+                                    @if (!string.IsNullOrEmpty(userId))
+                                    {
+                                        <li class="px-3 py-1">
+                                            <small class="text-muted">用户ID</small><br>
+                                            <code class="small">@userId</code>
+                                        </li>
+                                    }
+                                    
+                                    @if (!string.IsNullOrEmpty(owner))
+                                    {
+                                        <li class="px-3 py-1">
+                                            <small class="text-muted">组织</small><br>
+                                            <span class="badge bg-info">@owner</span>
+                                        </li>
+                                    }
+                                    
+                                    @if (!string.IsNullOrEmpty(email))
+                                    {
+                                        <li class="px-3 py-1">
+                                            <small class="text-muted">邮箱</small><br>
+                                            @email
+                                        </li>
+                                    }
+                                    
+                                    @if (!string.IsNullOrEmpty(loginType))
+                                    {
+                                        <li class="px-3 py-1">
+                                            <small class="text-muted">登录方式</small><br>
+                                            <span class="badge @(loginType == "admin" ? "bg-danger" : "bg-success")">
+                                                @(loginType == "admin" ? "特权登录" : "SSO登录")
+                                            </span>
+                                        </li>
+                                    }
+                                    
+                                    @if (!string.IsNullOrEmpty(role))
+                                    {
+                                        <li class="px-3 py-1">
+                                            <small class="text-muted">角色</small><br>
+                                            <span class="badge bg-warning text-dark">@role</span>
+                                        </li>
+                                    }
+                                    
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li class="px-3 py-1 small text-muted">
+                                        认证状态: 
+                                        <span class="badge bg-success">已认证</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="/logout" class="btn btn-sm btn-outline-danger ms-2">
                                 <i class="bi bi-box-arrow-right"></i>
                                 登出
                             </a>

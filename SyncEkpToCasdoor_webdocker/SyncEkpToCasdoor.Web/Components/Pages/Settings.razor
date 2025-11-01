@@ -1,7 +1,6 @@
 @page "/settings"
-@using SyncEkpToCasdoor.Web.Services
-@inject ISyncService SyncService
-@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IHttpClientFactory HttpFactory
 
 <PageTitle>系统配置</PageTitle>
 
@@ -144,12 +143,32 @@
                     <dd class="col-sm-6">@environment</dd>
                 </dl>
                 <hr>
-                <div class="alert alert-info mb-0">
+                <div class="alert alert-info mb-3">
                     <small>
                         <strong>提示:</strong> 修改配置后需要重启应用才能生效。
                         建议在非生产环境先测试配置的有效性。
                     </small>
                 </div>
+                <AuthorizeView>
+                    <Authorized>
+                        <button class="btn btn-danger w-100" @onclick="RestartApplication" disabled="@isRestarting">
+                            @if (isRestarting)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            else
+                            {
+                                <i class="bi bi-arrow-repeat"></i>
+                            }
+                            重启应用 (特权)
+                        </button>
+                    </Authorized>
+                    <NotAuthorized>
+                        <a href="/admin-login" class="btn btn-secondary w-100">
+                            <i class="bi bi-lock"></i> 登录后可重启应用
+                        </a>
+                    </NotAuthorized>
+                </AuthorizeView>
             </div>
         </div>
     </div>
@@ -205,20 +224,75 @@
     
     private async Task LoadCurrentConfig()
     {
-        // TODO: 从配置服务加载当前配置
-        await Task.CompletedTask;
+        try
+        {
+            var client = HttpFactory.CreateClient("WithCookies");
+            var response = await client.GetFromJsonAsync<ApiResponse>("/api/config/system");
+            if (response?.Success == true && response.Data != null)
+            {
+                ekpServer = ParseConnectionString(response.Data.EkpConnection, "Server");
+                ekpDatabase = ParseConnectionString(response.Data.EkpConnection, "Database");
+                ekpUsername = ParseConnectionString(response.Data.EkpConnection, "User Id");
+                ekpPassword = ParseConnectionString(response.Data.EkpConnection, "Password");
+                ekpTrustCertificate = ParseConnectionString(response.Data.EkpConnection, "TrustServerCertificate") == "True";
+                
+                casdoorEndpoint = response.Data.CasdoorEndpoint;
+                casdoorOwner = response.Data.CasdoorOwner;
+                casdoorClientId = response.Data.CasdoorClientId;
+                casdoorApplicationName = response.Data.CasdoorApplicationName;
+            }
+        }
+        catch (Exception ex)
+        {
+            saveMessage = $"加载配置失败: {ex.Message}";
+            saveSuccess = false;
+        }
+    }
+    
+    private string ParseConnectionString(string connStr, string key)
+    {
+        if (string.IsNullOrEmpty(connStr)) return "";
+        var parts = connStr.Split(';');
+        var part = parts.FirstOrDefault(p => p.Trim().StartsWith(key, StringComparison.OrdinalIgnoreCase));
+        if (part == null) return "";
+        var idx = part.IndexOf('=');
+        return idx > 0 ? part.Substring(idx + 1).Trim() : "";
     }
     
     private async Task SaveEkpConfig()
     {
         isSaving = true;
+        saveMessage = "";
         try
         {
-            // TODO: 保存到 appsettings.json 或数据库
-            await Task.Delay(500); // 模拟保存操作
+            var connStr = $"Server={ekpServer};Database={ekpDatabase};User Id={ekpUsername};Password={ekpPassword};TrustServerCertificate={ekpTrustCertificate};Encrypt=False;";
             
-            saveMessage = "✓ EKP 配置已保存成功！请重启应用以应用更改。";
-            saveSuccess = true;
+            var request = new
+            {
+                EkpConnection = connStr,
+                CasdoorEndpoint = casdoorEndpoint,
+                CasdoorOwner = casdoorOwner,
+                CasdoorClientId = casdoorClientId,
+                CasdoorClientSecret = casdoorClientSecret,
+                TargetCompanyIds = "",
+                ScheduledSyncEnabled = false,
+                ScheduledSyncInterval = 3600
+            };
+            
+            var client = HttpFactory.CreateClient("WithCookies");
+            var response = await client.PostAsJsonAsync("/api/config/system", request);
+            var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+            
+            if (response.IsSuccessStatusCode && result?.Success == true)
+            {
+                saveMessage = result.Message;
+                saveSuccess = true;
+            }
+            else
+            {
+                saveMessage = result?.Message ?? "保存失败";
+                saveSuccess = false;
+            }
         }
         catch (Exception ex)
         {
@@ -228,19 +302,43 @@
         finally
         {
             isSaving = false;
-            StateHasChanged();
         }
     }
     
     private async Task SaveCasdoorConfig()
     {
         isSaving = true;
+        saveMessage = "";
         try
         {
-            await Task.Delay(500);
+            var connStr = $"Server={ekpServer};Database={ekpDatabase};User Id={ekpUsername};Password={ekpPassword};TrustServerCertificate={ekpTrustCertificate};Encrypt=False;";
             
-            saveMessage = "✓ Casdoor 配置已保存成功！请重启应用以应用更改。";
-            saveSuccess = true;
+            var request = new
+            {
+                EkpConnection = connStr,
+                CasdoorEndpoint = casdoorEndpoint,
+                CasdoorOwner = casdoorOwner,
+                CasdoorClientId = casdoorClientId,
+                CasdoorClientSecret = casdoorClientSecret,
+                TargetCompanyIds = "",
+                ScheduledSyncEnabled = false,
+                ScheduledSyncInterval = 3600
+            };
+            
+            var client = HttpFactory.CreateClient("WithCookies");
+            var response = await client.PostAsJsonAsync("/api/config/system", request);
+            var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+            
+            if (response.IsSuccessStatusCode && result?.Success == true)
+            {
+                saveMessage = result.Message;
+                saveSuccess = true;
+            }
+            else
+            {
+                saveMessage = result?.Message ?? "保存失败";
+                saveSuccess = false;
+            }
         }
         catch (Exception ex)
         {
@@ -250,18 +348,16 @@
         finally
         {
             isSaving = false;
-            StateHasChanged();
         }
     }
     
     private async Task SaveSyncConfig()
     {
         isSaving = true;
+        saveMessage = "";
         try
         {
-            await Task.Delay(500);
-            
-            saveMessage = "✓ 同步配置已保存成功！";
+            saveMessage = "✓ 同步配置已保存成功！(此配置暂不支持修改)";
             saveSuccess = true;
         }
         catch (Exception ex)
@@ -272,12 +368,74 @@
         finally
         {
             isSaving = false;
-            StateHasChanged();
         }
     }
     
     private void ClearMessage()
     {
         saveMessage = "";
+    }
+
+    private bool isRestarting = false;
+
+    private async Task RestartApplication()
+    {
+        if (!await ConfirmRestart())
+            return;
+
+        isRestarting = true;
+        saveMessage = "";
+
+        try
+        {
+            var client = HttpFactory.CreateClient("WithCookies");
+            var response = await client.PostAsync("/api/config/restart", null);
+            var result = await response.Content.ReadFromJsonAsync<ApiMessageResponse>();
+
+            if (response.IsSuccessStatusCode && result?.Success == true)
+            {
+                saveMessage = result.Message;
+                saveSuccess = true;
+            }
+            else
+            {
+                saveMessage = result?.Message ?? "重启请求失败";
+                saveSuccess = false;
+                isRestarting = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            saveMessage = $"重启失败: {ex.Message}";
+            saveSuccess = false;
+            isRestarting = false;
+        }
+    }
+
+    private async Task<bool> ConfirmRestart()
+    {
+        // 简单确认，实际应用中可以用更好的UI组件
+        return await Task.FromResult(true); // 默认确认，可以改为JS confirm
+    }
+    
+    private class ApiResponse
+    {
+        public bool Success { get; set; }
+        public ConfigData? Data { get; set; }
+    }
+    
+    private class ConfigData
+    {
+        public string EkpConnection { get; set; } = "";
+        public string CasdoorEndpoint { get; set; } = "";
+        public string CasdoorOwner { get; set; } = "";
+        public string CasdoorClientId { get; set; } = "";
+        public string CasdoorApplicationName { get; set; } = "";
+    }
+    
+    private class ApiMessageResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; } = "";
     }
 }

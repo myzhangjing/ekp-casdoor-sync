@@ -54,6 +54,9 @@ appsettings.*.json
 .env.*
 !.env.example
 
+## Copilot Context (Local Only)
+.copilot-context.json
+
 ## Test / Coverage Reports
 TestResults/
 coverage/
